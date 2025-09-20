@@ -1,11 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;500;700&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    --WHITE_BASE_WHITE: #FFFFFF;
+    --WHITE_WHITE_700: #D3D8DF;
+    --WHITE_WHITE_500: #E2E5E9;
+    --WHITE_WHITE_300: #EBEDF0;
+    --BLACK_BASE_BLACK: #000000;
+    --BLACK_BLACK_700: #5F5F5F;
+    --BLACK_BLACK_500: #797979;
+    --BLACK_BLACK_300: #999999;
+    --NAVY_BASE_NAVY: #05215A;
+    --NAVY_NAVY_700: #112B72;
+    --NAVY_NAVY_500: #243C80;
+    --NAVY_NAVY_300: #2C2E65;
+    --ROYAL_BASE_ROYAL: #236FBD;
+    --ROYAL_ROYAL_700: #1E7ADC;
+    --ROYAL_ROYAL_500: #1E64B8;
+    --ROYAL_ROYAL_300: #60ADEC;
+    --YELLOW_BASE_YELLOW: #F1C40F;
+    --YELLOW_YELLOW_700: #F39C12;
+    --YELLOW_YELLOW_500: #F7DC6F;
+    --YELLOW_YELLOW_300: #F9E79F;
+    --RED_BASE_RED: #E74C3C;
+    --RED_RED_700: #C0392B;
+    --RED_RED_300: #FADBD8;
+    --RED_RED_500: #F08080;
+    --GREEN_BASE_GREEN: #669900;
+    --GREEN_GREEN_700: #9FD323;
+    --GREEN_GREEN_500: #B3E34B;
+    --GREEN_GREEN_300: #C6F272;
+    --PURPLE_BASE_PURPLE: #731CA5;
+    --PURPLE_PURPLE_700: #7D3C98;
+    --PURPLE_PURPLE_500: #9C5BB7;
+    --PURPLE_PURPLE_300: #B88FD3;
+
+  font-family: 'Crimson Pro', serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--BLACK_BASE_BLACK);
+  background-color: var(--WHITE_WHITE_500);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,13 +47,35 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Tipografia */
+.title-large {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 60px;
+}
+
+.title-medium {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 40px;
+}
+
+.title-regular {
+  font-family: 'Crimson Pro', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+}
+
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--ROYAL_BASE_ROYAL);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--ROYAL_ROYAL_700);
 }
 
 body {
@@ -41,28 +97,31 @@ button {
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: 'Crimson Pro', serif;
+  background-color: var(--ROYAL_BASE_ROYAL);
+  color: var(--WHITE_BASE_WHITE);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  background-color: var(--ROYAL_ROYAL_700);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto var(--ROYAL_ROYAL_300);
+}
+
+button:disabled {
+  background-color: var(--BLACK_BLACK_300);
+  cursor: not-allowed;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--BLACK_BASE_BLACK);
+    background-color: var(--WHITE_WHITE_500);
   }
   a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+    color: var(--ROYAL_ROYAL_700);
   }
 }
