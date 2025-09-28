@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Componente SimpleUploadSprint1 - Interface TEMPORÁRIA para Sprint 1
@@ -37,11 +37,11 @@ function SimpleUploadSprint1() {
     setProcessingComplete(false);
 
     const formData = new FormData();
-    formData.append('file', selectedFile);
+    formData.append('pdf', selectedFile);
 
     try {
       // Implementar endpoint /api/upload no backend
-      const response = await fetch('http://localhost:8000/api/upload', {
+      const response = await fetch('http://localhost:8000/api/upload_pdf', {
         method: 'POST',
         body: formData,
       });
@@ -61,57 +61,20 @@ function SimpleUploadSprint1() {
     }
   };
 
-  const handleExportSpreadsheet = async () => {
-    try {
-      // Implementar endpoint /api/export/{id} no backend
-      // Backend deve retornar arquivo Excel com nome correto já definido
-      
-      if (!result || !result.exportId) {
-        setError('Dados não disponíveis para exportação.');
-        return;
-      }
-
-      const response = await fetch(`http://localhost:8000/api/export/${result.exportId}`, {
-        method: 'GET',
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erro ao exportar: ${response.status}`);
-      }
-
-      // Download do arquivo (nome definido pelo backend)
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      
-      // Backend deve enviar filename no header Content-Disposition
-      // Caso contrário, usar nome padrão
-      const filename = response.headers.get('content-disposition')
-        ?.split('filename=')[1]
-        ?.replace(/"/g, '') || 'descriptum-analise.xlsx';
-      
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      window.URL.revokeObjectURL(url);
-      
-    } catch (err) {
-      setError(`Erro: ${err.message}`);
-    }
-  };
+  useEffect(() => {
+    console.log(result)
+  }, [result])
 
   return (
-    <div style={{ 
-      maxWidth: '600px', 
-      margin: '0 auto', 
+    <div style={{
+      // maxWidth: '600px',
+      margin: '0 auto',
       padding: '20px',
       backgroundColor: 'var(--WHITE_BASE_WHITE)',
       borderRadius: '8px',
       boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
     }}>
-      <div style={{ 
+      <div style={{
         textAlign: 'center',
         marginBottom: '30px',
         padding: '20px',
@@ -121,9 +84,9 @@ function SimpleUploadSprint1() {
           var(--NAVY_BASE_NAVY) 0%, 
           var(--ROYAL_BASE_ROYAL) 100%)`
       }}>
-        <img 
-          src="/LOGOEXEMPLO.svg" 
-          alt="Descriptum Logo" 
+        <img
+          src="/LOGOEXEMPLO.svg"
+          alt="Descriptum Logo"
           style={{
             maxHeight: '80px',
             maxWidth: '300px',
@@ -153,7 +116,7 @@ function SimpleUploadSprint1() {
           }}>
             Processando documento...
           </div>
-          
+
           {/* Animação da barra */}
           <div style={{
             width: '100%',
@@ -175,7 +138,7 @@ function SimpleUploadSprint1() {
               position: 'absolute'
             }} />
           </div>
-          
+
           <div style={{
             marginTop: '8px',
             fontSize: '12px',
@@ -196,16 +159,16 @@ function SimpleUploadSprint1() {
           }
         `}
       </style>
-      
-      <div style={{ 
+
+      <div style={{
         marginBottom: '20px',
         textAlign: 'center',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center'
       }}>
-        <label style={{ 
-          display: 'block', 
+        <label style={{
+          display: 'block',
           marginBottom: '15px',
           color: 'var(--BLACK_BLACK_700)',
           fontWeight: '500',
@@ -222,7 +185,7 @@ function SimpleUploadSprint1() {
             type="file"
             accept=".pdf"
             onChange={handleFileChange}
-            style={{ 
+            style={{
               marginBottom: '10px',
               padding: '12px',
               border: '2px solid var(--WHITE_WHITE_700)',
@@ -237,8 +200,8 @@ function SimpleUploadSprint1() {
           />
         </div>
         {selectedFile && (
-          <p style={{ 
-            fontSize: '14px', 
+          <p style={{
+            fontSize: '14px',
             color: 'var(--BLACK_BLACK_500)',
             backgroundColor: 'var(--WHITE_WHITE_300)',
             padding: '8px',
@@ -328,84 +291,56 @@ function SimpleUploadSprint1() {
       )}
 
       {processingComplete && !loading && (
-        <div style={{
-          marginTop: '20px',
-          padding: '20px',
-          backgroundColor: 'var(--GREEN_GREEN_300)',
-          color: 'var(--NAVY_BASE_NAVY)',
-          border: '1px solid var(--GREEN_BASE_GREEN)',
-          borderRadius: '6px',
-          textAlign: 'center'
-        }}>
-          <h3 style={{ 
-            margin: '0 0 15px 0',
-            color: 'var(--GREEN_BASE_GREEN)',
-            fontFamily: 'Crimson Pro, serif',
-            fontWeight: 500,
-            fontSize: '24px',
-            lineHeight: '28px'
-          }}>
-            ✅ Processamento Concluído!
-          </h3>
-          
-          <p style={{
-            margin: '0 0 20px 0',
-            fontSize: '16px',
-            fontFamily: 'Crimson Pro, serif',
-            color: 'var(--BLACK_BLACK_700)'
-          }}>
-            Seu documento foi analisado com sucesso. 
-          </p>
+        <div>
+          {/* Tabela 1 */}
+          <div style={{ marginBottom: '30px', overflowX: 'auto' }}>
+            <h4 style={{ color: 'var(--NAVY_BASE_NAVY)', marginBottom: '10px' }}>Produtos</h4>
+            <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'var(--WHITE_BASE_WHITE)' }}>
+              <thead>
+                <tr>
+                  <th style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px', backgroundColor: 'var(--ROYAL_BASE_ROYAL)', color: 'var(--WHITE_BASE_WHITE)' }}>ID</th>
+                  <th style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px', backgroundColor: 'var(--ROYAL_BASE_ROYAL)', color: 'var(--WHITE_BASE_WHITE)' }}>ERP Code</th>
+                  <th style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px', backgroundColor: 'var(--ROYAL_BASE_ROYAL)', color: 'var(--WHITE_BASE_WHITE)' }}>Part Number</th>
+                  <th style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px', backgroundColor: 'var(--ROYAL_BASE_ROYAL)', color: 'var(--WHITE_BASE_WHITE)' }}>Final Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.values(result.data).map((mercadoria, idx) => (
+                  <tr key={idx}>
+                    <td style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px' }}>{mercadoria.id}</td>
+                    <td style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px' }}>{mercadoria.erp_code}</td>
+                    <td style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px' }}>{mercadoria.part_number}</td>
+                    <td style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px' }}>{mercadoria.final_description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-          <button
-            onClick={handleExportSpreadsheet}
-            style={{
-              backgroundColor: 'var(--GREEN_BASE_GREEN)',
-              color: 'var(--WHITE_BASE_WHITE)',
-              padding: '12px 24px',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: '500',
-              fontFamily: 'Crimson Pro, serif',
-              transition: 'background-color 0.3s ease',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}
-            onMouseOver={(e) => {
-              e.target.style.backgroundColor = 'var(--GREEN_GREEN_700)';
-            }}
-            onMouseOut={(e) => {
-              e.target.style.backgroundColor = 'var(--GREEN_BASE_GREEN)';
-            }}
-          >
-            Exportar Planilha Excel
-          </button>
-
-          {/* !!Remover este bloco após integração com backend - apenas para debug */}
-          {result && (
-            <details style={{
-              marginTop: '20px',
-              padding: '10px',
-              backgroundColor: 'var(--WHITE_BASE_WHITE)',
-              borderRadius: '4px',
-              fontSize: '12px'
-            }}>
-              <summary style={{ cursor: 'pointer', fontWeight: 'bold' }}>
-                [DEBUG] Ver dados recebidos do backend
-              </summary>
-              <pre style={{
-                marginTop: '10px',
-                textAlign: 'left',
-                overflow: 'auto',
-                color: 'var(--BLACK_BASE_BLACK)'
-              }}>
-                {JSON.stringify(result, null, 2)}
-              </pre>
-            </details>
-          )}
+          {/* Tabela 2 */}
+          <div style={{ marginBottom: '10px', overflowX: 'auto' }}>
+            <h4 style={{ color: 'var(--NAVY_BASE_NAVY)', marginBottom: '10px' }}>Embeeding Product</h4>
+            <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'var(--WHITE_BASE_WHITE)' }}>
+              <thead>
+                <tr>
+                  <th style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px', backgroundColor: 'var(--ROYAL_BASE_ROYAL)', color: 'var(--WHITE_BASE_WHITE)' }}>Query</th>
+                  <th style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px', backgroundColor: 'var(--ROYAL_BASE_ROYAL)', color: 'var(--WHITE_BASE_WHITE)' }}>NCM Code</th>
+                  <th style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px', backgroundColor: 'var(--ROYAL_BASE_ROYAL)', color: 'var(--WHITE_BASE_WHITE)' }}>Description</th>
+                  <th style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px', backgroundColor: 'var(--ROYAL_BASE_ROYAL)', color: 'var(--WHITE_BASE_WHITE)' }}>Distance</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.values(result.data).map((mercadoria, idx) => (
+                  <tr key={idx}>
+                    <td style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px' }}>{mercadoria.product_embeeding.query}</td>
+                    <td style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px' }}>{mercadoria.product_embeeding.ncm_code}</td>
+                    <td style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px' }}>{mercadoria.product_embeeding.description}</td>
+                    <td style={{ border: '1px solid var(--NAVY_BASE_NAVY)', padding: '8px' }}>{mercadoria.product_embeeding.distance}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
