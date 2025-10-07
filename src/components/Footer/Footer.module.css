@@ -1,0 +1,34 @@
+footer#footer{
+    background-color: var(--navy-500);
+    padding: .5em;
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
+}
+    footer#footer > div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    div.containerTecsys{
+        color: var(--white-300);
+        
+    }
+        div.containerTecsys a{
+            color: currentColor;
+            font: var(--footer-large);
+            text-decoration: none;
+        }
+
+    div.containerCDB{
+        color: var(--white-300);
+        font: var(--label-regular);
+    }
+        div.containerCDB a{
+            color: currentColor;
+            text-decoration: none;
+        }
