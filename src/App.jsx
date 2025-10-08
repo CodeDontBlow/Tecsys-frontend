@@ -1,11 +1,17 @@
+import './App.css'
 import { useState } from 'react'
 import RoutesApp from './routes'
-import './App.css'
+import Footer from './components/Footer/Footer'
+import Navbar from './components/Navbar/Navbar'
 
 function App() {
 
     return (
+        <>
+        <Navbar/>
         <RoutesApp />
+        <Footer/>
+        </>
     )
 }
 
