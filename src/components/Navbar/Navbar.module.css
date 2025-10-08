@@ -1,6 +1,6 @@
 nav.navbar{
     background-color: var(--white-300);
-    color: var(--base-black);
+    color: var(--black-700);
 }
 
     img.logo{
@@ -9,5 +9,5 @@ nav.navbar{
 
     nav.navbar ul li{
         font: var(--label-medium);
-        color: red !important;
+        transition: 150ms ease-out;
     }

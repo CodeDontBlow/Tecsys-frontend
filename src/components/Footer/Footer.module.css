@@ -2,7 +2,7 @@ footer#footer{
     background-color: var(--navy-500);
     padding: .5em;
 
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;

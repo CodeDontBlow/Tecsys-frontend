@@ -3,7 +3,7 @@ import logo from '../../assets/logos/Descriptum_Logo.svg'
 
 const Navbar = () => {
     return(
-        <nav className={`navbar navbar-expand-lg px-1 py-0 ${styles.navbar}`}>
+        <nav className={`navbar navbar-expand-lg fixed-top px-1 py-0 ${styles.navbar}`}>
             <div class="container-xxl">
                 <a class="navbar-brand" href="/">
                     <img src={logo} className={styles.logo}/>
@@ -22,7 +22,7 @@ const Navbar = () => {
                             <a class="nav-link" href="#">Banco de Dados</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Histórico</a>
+                            <a class="nav-link" href="#">Histórico de Extrações</a>
                         </li>
                     </ul>
 
