@@ -16,11 +16,10 @@ footer#footer{
 
     div.containerTecsys{
         color: var(--white-300);
-        
+        font: var(--footer-large);
     }
         div.containerTecsys a{
             color: currentColor;
-            font: var(--footer-large);
             text-decoration: none;
         }
 
@@ -28,7 +27,13 @@ footer#footer{
         color: var(--white-300);
         font: var(--label-regular);
     }
-        div.containerCDB a{
-            color: currentColor;
-            text-decoration: none;
-        }
+    
+    footer#footer a{
+        color: currentColor;
+        text-decoration: none;
+    }
+    
+    footer#footer a:hover{
+        color: var(--base-white);
+        text-decoration-line: underline;
+    }

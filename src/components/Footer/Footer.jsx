@@ -1,4 +1,7 @@
 import styles from './Footer.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
     return(
@@ -10,7 +13,10 @@ const Footer = () => {
                 
                 <div className={styles.containerCDB}>
                     <span>Desenvolvido por </span>
-                    <a href="https://github.com/codedontblow" target='_blank'>Code Don't Blow</a>
+                    <a href="https://github.com/codedontblow" target='_blank'>
+                        <FontAwesomeIcon icon={faGithub} className={styles.icon}/>
+                        Code Don't Blow
+                    </a>
                 </div>
             </div>
         </footer>
