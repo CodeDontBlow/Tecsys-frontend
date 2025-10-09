@@ -1,0 +1,24 @@
+h1.title{
+    color: var(--black-700);
+    font: var(--title-large);
+    font-size: 4rem;
+    margin-bottom: 2.5rem;
+}
+
+div.textContainer{
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+    div.textContainer p{
+        margin: 0;
+    }
+    p.mainText{
+        font: var(--text-medium);
+        color: var(--black-700);
+    }
+
+    p.text{
+        font: var(--text-regular);
+        color: var(--black-500);
+    }
