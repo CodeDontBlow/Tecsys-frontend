@@ -1,0 +1,13 @@
+nav.navbar{
+    background-color: var(--white-300);
+    color: var(--black-700);
+}
+
+    img.logo{
+        height: 50px;
+    }
+
+    nav.navbar ul li{
+        font: var(--label-medium);
+        transition: 150ms ease-out;
+    }

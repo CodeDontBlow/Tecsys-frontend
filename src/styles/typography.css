@@ -1,26 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 :root {
-    --fontTitle: 'Crimson Pro';
-    --fontText: 'Lato';
+  --fontTitle: 'Crimson Pro';
+  --fontText: 'Lato';
 
-    /* Titles */
-    --title-large: 700 4rem/3.75rem var(--fontTitle), serif;   
-    --title-medium: 500 3rem/2.5rem var(--fontTitle), serif;   
-    --title-regular: 400 2.5rem/2.5rem var(--fontTitle), serif;
+  /* Titles */
+  --title-large: 700 2.25rem/2.5rem var(--fontTitle), serif;
+  --title-medium: 500 1.875rem/2.25rem var(--fontTitle), serif;
+  --title-regular: 400 1.5rem/2rem var(--fontTitle), serif;
 
-    /* Text */
-    --text-large: 700 2.5rem/2.5rem var(--fontText), sans-serif;     
-    --text-medium: 500 2.1875rem/2.5rem var(--fontText), sans-serif; 
-    --text-regular: 400 1.875rem/2.1875rem var(--fontText), sans-serif;
+  /* Text */
+  --text-large: 700 1.25rem/1.875rem var(--fontText), sans-serif;
+  --text-medium: 500 1.125rem/1.75rem var(--fontText), sans-serif;
+  --text-regular: 400 1rem/1.5rem var(--fontText), sans-serif;
 
-    /* Labels */
-    --label-large: 700 1.875rem/2.1875rem var(--fontText), sans-serif; 
-    --label-medium: 400 1.5625rem/1.875rem var(--fontText), sans-serif;
-    --label-regular: 400 1.25rem/1.5625rem var(--fontText), sans-serif;
+  /* Labels */
+  --label-large: 700 1rem/1.5rem var(--fontText), sans-serif;
+  --label-medium: 400 0.875rem/1.25rem var(--fontText), sans-serif;
+  --label-regular: 400 0.8125rem/1.125rem var(--fontText), sans-serif;
 
-    /* Footer */
-    --footer-large: 700 1.25rem/1.5625rem var(--fontText), sans-serif; 
-    --footer-medium: 400 0.9375rem/1.25rem var(--fontText), sans-serif;
-    --footer-regular: 400 0.625rem/0.3125rem var(--fontText), sans-serif;
+  /* Footer */
+  --footer-large: 700 0.875rem/1.25rem var(--fontText), sans-serif;
+  --footer-medium: 400 0.75rem/1rem var(--fontText), sans-serif;
+  --footer-regular: 400 0.6875rem/0.875rem var(--fontText), sans-serif;
 }
