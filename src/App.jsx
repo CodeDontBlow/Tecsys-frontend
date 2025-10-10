@@ -9,7 +9,7 @@ function App() {
     return (
         <>
         <Navbar/>
-        <section className="container-xxl">
+        <section className="container-xxl" id='contentContainer'>
             <RoutesApp/>
         </section>
         <Footer/>
