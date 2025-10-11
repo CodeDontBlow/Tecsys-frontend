@@ -10,8 +10,8 @@
   --title-regular: 400 1.5rem/2rem var(--fontTitle), serif;
 
   /* Text */
-  --text-large: 700 1.25rem/1.875rem var(--fontText), sans-serif;
-  --text-medium: 500 1.125rem/1.75rem var(--fontText), sans-serif;
+  --text-large: 700 1.5rem/1.875rem var(--fontText), sans-serif;
+  --text-medium: 500 1.25rem/1.75rem var(--fontText), sans-serif;
   --text-regular: 400 1rem/1.5rem var(--fontText), sans-serif;
 
   /* Labels */

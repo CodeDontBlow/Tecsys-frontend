@@ -1,0 +1,55 @@
+div.container{
+    height: 100%;
+    margin: 2.5rem auto 0;
+    padding: 0 5rem;
+ 
+}
+
+h1.title{
+    color: var(--black-700);
+    font: var(--title-large);
+    font-size: 4.3rem;
+    line-height: 3.5rem;
+}
+
+div.textContainer{
+    margin-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+    div.textContainer p{
+        margin: 0;
+    }
+    p.mainText{
+        font: var(--text-large);
+        color: var(--black-500);
+    }
+
+    p.text{
+        font: var(--text-medium);
+        color: var(--black-500);
+    }
+
+div.buttonsContainer{
+    width: 50%;
+    margin-top: 1rem;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+    a.userGuideBtn{
+        padding: .2rem 1rem;
+
+        color: var(--black-700);
+        font: var(--text-regular);
+        text-decoration: none;
+
+        transition: all 150ms ease;
+    }
+        a.userGuideBtn:hover{
+            scale: 1.02;
+            text-decoration: underline;
+        }
