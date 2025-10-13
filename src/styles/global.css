@@ -1,7 +1,15 @@
-body{
-    min-height: 100vh;
+html{
+    height: 100%;
 }
 
-#root{
-    margin-top: 75px;
+body{
+    min-height: 100vh;
+    height: 100%;
+}
+
+div#root{
+    background-color: var(--base-white);
+    min-height: 100%;
+    padding-top: 75px;
+    padding-bottom: 75px;
 }

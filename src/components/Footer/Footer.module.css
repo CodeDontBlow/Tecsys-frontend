@@ -30,6 +30,7 @@ footer#footer{
     
     footer#footer a{
         color: currentColor;
+        font: var(--label-medium);
         text-decoration: none;
     }
     
