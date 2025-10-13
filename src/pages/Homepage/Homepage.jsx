@@ -11,10 +11,10 @@ function Homepage () {
             
             <div className={styles.textContainer}>
                 <p className={styles.mainText}>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia adipisci est vitae placeat nobis corrupti omnis magni aspernatur autem tenetur.
+                    Automatize o processo de registro aduaneiro e transforme pedidos de compra em informações organizadas e prontas para análise!
                 </p>
                 <p className={styles.text}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas numquam alias sed culpa perspiciatis natus quis voluptate, repudiandae at distinctio accusantium nisi architecto impedit voluptatibus. Fugit tempora dolore dignissimos nobis rerum modi aspernatur vero maiores expedita rem, nesciunt veritatis velit!
+                    O <b>Descriptum</b> identifica automaticamente cada produto, pesquisando dados de origem, fabricante e fornecedor, além de o associar aos principais NCM's correspondentes. Envie o <abbr title="Portable Document Format">PDF</abbr> do pedido e acompanhe a geração das descrições completas, revisando e ajustando detalhes conforme necessário.
                 </p>
             </div>
 

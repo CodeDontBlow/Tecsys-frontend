@@ -1,6 +1,6 @@
 div.container{
     height: 100%;
-    margin: 2.5rem auto 0;
+    margin: 1.5rem auto 0;
     padding: 0 5rem; 
 }
 
@@ -33,9 +33,46 @@ div.textContainer{
         font: var(--text-medium);
         color: var(--black-500);
     }
+        p.text > b{
+            background: var(--white-300);
+            padding: 0 .5rem;
+            border-radius: 5px;
+
+            display: inline-block;
+
+            font-family: var(--fontTitle);
+            letter-spacing: -1px;
+            
+            cursor: default;
+            transition: all 200ms ease-out;
+        }
+            p.text > b:hover{  
+                background: 
+                    linear-gradient(
+                        45deg,
+                        transparent 0%,
+                        var(--royal-700) 60%,
+                        transparent 100%
+                    ),
+                    var(--royal-300);
+                color: var(--white-300);
+
+                scale: 1.02;
+                animation: shine-background 2s ease-out infinite;
+            }
+        p.text > abbr{
+            background: var(--white-500);
+            padding: .1rem .7rem;
+
+            font-size: .7em;
+            font-weight: 600;
+            text-decoration: none;
+            
+            border-radius: 5px;
+        }
 
 div.buttonsContainer{
-    width: 70%;
+    width: 100%;
     margin-top: 1rem;
 
     display: flex;
@@ -83,13 +120,7 @@ div.buttonsContainer{
     
 }
 
-@media (max-width:1000px){
-    div.buttonsContainer{
-        width: 100%;
-    }
-}
-
-@media (min-width: 1100px){
+@media (min-width: 1200px){
     h1.title > span.descriptum{
         font-size: 5.4rem;
         letter-spacing: .1rem;
@@ -97,13 +128,25 @@ div.buttonsContainer{
     }
     
     div.textContainer{
-        margin-top: 3.5rem;
+        margin-top: 2.5rem;
     }
 
     div.buttonsContainer{
+        width: 60%;
         margin-top: 2rem;
     }
         div.buttonsContainer > a{
-            padding: .5rem 2rem;
+            padding: .4rem 2rem;
         }
+}
+
+@keyframes shine-background{
+    from{
+        background-size: 1000% 100%;
+        background-position: left;
+    }
+    to{
+        background-size: 1000% 100%;
+        background-position: right;
+    }   
 }

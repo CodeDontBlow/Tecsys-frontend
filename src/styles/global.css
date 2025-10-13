@@ -11,5 +11,5 @@ div#root{
     background-color: var(--base-white);
     min-height: 100%;
     padding-top: 75px;
-    padding-bottom: 100px;
+    padding-bottom: 75px;
 }
