@@ -1,0 +1,102 @@
+
+.step-map {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.step-map-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 120px;
+    position: relative;
+}
+
+.step-map-container:before {
+    content: '';
+    position: absolute;
+    background-color: #2F3031;
+    height: 3px;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.step-map-filled-line {
+    content: '';
+    position: absolute;
+    background-color: #10b981;
+    height: 3px;
+    width: 100%;
+    top: 50%;
+    transition: 0.4s ease;
+    transform: translateY(-50%);
+    left: 0;
+}
+
+.step-map-item {
+    position: relative;
+    z-index: 1;
+}
+
+.step-map-circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #d3d8df;
+    border: 3px solid #2F3031;
+    transition: 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.step-map-count {
+    font: var(--title-medium);
+    font-size: 1.92rem;
+    color: #2F3031;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-map-label-container {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.step-map-label {
+    font-size: 19px;
+    color: #2F3031;
+    white-space: nowrap;
+}
+
+
+.step-map-check { 
+    font: var(--title-medium);
+    font-size: 1.92rem;
+    color: #10b981;
+    line-height: 1;
+}
+
+.step-map-load { 
+    font: var(--title-medium);
+    font-size: 1.5rem;
+    color: #2F3031;
+    animation: spin 2s ease-out infinite;
+    line-height: 1;
+}
+
+.circleCheck {
+    color:#10b981
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
