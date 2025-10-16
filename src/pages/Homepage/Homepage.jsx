@@ -1,6 +1,7 @@
 import styles from './Homepage.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight , faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import StepMap from '../../components/StepMap/StepMap'
 
 function Homepage () {
     return (
