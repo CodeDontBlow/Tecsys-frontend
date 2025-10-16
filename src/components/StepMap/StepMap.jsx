@@ -57,7 +57,7 @@ const StepMap = ({currentStep = 1}) => {
                             <div className={styles["step-map-label-container"]}>
                                 <div className={styles["step-map-label"]}>{label}</div>
                             </div>
-                            <div className={styles["step-map-circle"]}>
+                            <div className={`${styles['step-map-circle']} ${styles[`step-map-circle--${status}`]}`}>
                                 {renderStepContent(step, status)}
                             </div>
                         </div>
