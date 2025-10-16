@@ -8,6 +8,6 @@ nav.navbar{
     }
 
     nav.navbar ul li{
-        font: var(--label-medium);
+        font: var(--text-regular);
         transition: 150ms ease-out;
     }
