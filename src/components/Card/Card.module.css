@@ -1,0 +1,26 @@
+.card { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #e4eaf3;
+    border-radius: 8px;
+    padding: 20px;
+    margin: auto;
+    max-width: 300px;
+}
+
+.card-title {
+    font: var(--title-medium);
+}
+
+.card-description {
+    font: var(--text-medium);
+}
