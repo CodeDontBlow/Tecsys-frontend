@@ -2,16 +2,18 @@ import styles from './Homepage.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight , faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
-import Input from '../../components/Input/Input/Input'
+import Dropdown from '../../components/Input/Dropdown/Dropdown'
 
 function Homepage () {
+    const option = ['opção 1', 'opção 2', 'opção 3']
+    
     return (
         <div className={`container-sm ${styles.container}`}>
             <h1 className={styles.title}>Boas-Vindas ao 
                 <span className={styles.descriptum}>Descriptum</span>
             </h1>
 
-            <Input placeholder='Digite aqui' label={'Conteúdo'} id={2}/>
+            <Dropdown label={'Conteúdo'} options={option}/>
             
             <div className={styles.textContainer}>
                 <p className={styles.mainText}>
