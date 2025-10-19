@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight , faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 
 function Homepage () {
+    
     return (
         <div className={`container-sm ${styles.container}`}>
             <h1 className={styles.title}>Boas-Vindas ao 
                 <span className={styles.descriptum}>Descriptum</span>
             </h1>
-            
+
             <div className={styles.textContainer}>
                 <p className={styles.mainText}>
                     Automatize o processo de registro aduaneiro e transforme pedidos de compra em informações organizadas e prontas para análise!
