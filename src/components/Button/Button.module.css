@@ -101,6 +101,27 @@
   box-shadow: 0 2px 6px rgba(140, 140, 142, 0.2);   
 }
 
+/* variante preenchida - red */
+.button-filled.button-red {
+  background-color: var(--base-red);       
+  color: var(--base-white);                
+  border-color: var(--base-red);           
+}
+
+.button-filled.button-red:hover:not(.button-disabled) {
+  background-color: var(--red-700);        
+  border-color: var(--red-700);            
+  transform: translateY(-1px);             
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.25);  
+}
+
+.button-filled.button-red:active:not(.button-disabled) {
+  background-color: var(--red-700);        
+  border-color: var(--red-700);            
+  transform: translateY(0);                
+  box-shadow: 0 2px 6px rgba(231, 76, 60, 0.2);   
+}
+
 /* variante vazada - royal  */
 .button-outlined.button-royal {
   background-color: transparent;
@@ -164,15 +185,35 @@
   transform: translateY(0);
 }
 
-/* Estado Desabilitado - Mais Escuro que Gray Clicável */
-/* Aplicado quando o botão não pode ser interativo - visualmente mais pesado */
+/* variante vazada - red */
+.button-outlined.button-red {
+  background-color: transparent;           
+  color: var(--base-red);                  
+  border-color: var(--base-red);           
+}
+
+.button-outlined.button-red:hover:not(.button-disabled) {
+  background-color: rgba(231, 76, 60, 0.08);  
+  border-color: var(--red-700);               
+  color: var(--red-700);                      
+  transform: translateY(-1px);                
+}
+
+.button-outlined.button-red:active:not(.button-disabled) {
+  background-color: rgba(231, 76, 60, 0.12);  
+  border-color: var(--red-700);              
+  color: var(--red-700);                      
+  transform: translateY(0);                   
+}
+
+/* estado Desabilitado - mais Escuro que botão gray clicável */
 .button-disabled {
-  background-color: var(--black-300) !important;  /* Fundo cinza escuro (#686A6E) - mais escuro que gray clicável */
-  color: var(--white-700) !important;             /* Texto cinza claro para menos contraste */
-  border-color: var(--black-300) !important;      /* Borda cinza escura */
-  cursor: not-allowed !important;                 /* Cursor indica não clicável */
-  transform: none !important;                     /* Remove qualquer transformação */
-  box-shadow: none !important;                    /* Remove sombras */
+  background-color: var(--black-300) !important;  
+  color: var(--white-700) !important;             
+  border-color: var(--black-300) !important;      
+  cursor: not-allowed !important;                 /* cursor indica não clicável */
+  transform: none !important;                     /* remove qualquer transformação */
+  box-shadow: none !important;                    /* remove sombras */
 }
 
 .button-outlined.button-disabled {
@@ -226,5 +267,5 @@
 }
 
 .button-gray:focus-visible {
-  outline-color: var(--black-300);     /* Contorno cinza claro para contraste */
+  outline-color: var(--black-300);     
 }

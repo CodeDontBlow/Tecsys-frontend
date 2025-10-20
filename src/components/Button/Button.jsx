@@ -9,7 +9,7 @@
  * 
  * Variações:
  * - variant: filled (preenchido), outlined (só borda)
- * - color: royal, green, gray 
+ * - color: royal, green, gray, red 
  * - size: small, medium, large
  * - fullWidth: true para ocupar largura total
  * 
