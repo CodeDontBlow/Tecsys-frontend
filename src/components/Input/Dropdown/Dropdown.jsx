@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
@@ -6,12 +6,13 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import inputStyles from '../Input/Input.module.css'
 import styles from './Dropdown.module.css'
 
-const Dropdown = ({label, options}) => {
+const Dropdown = ({label, options, onChange}) => {
     // 'options' deve ser um array de opções do dropdown
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isActivated, setIsActivated] = useState(false)
-    
+    const isObj = typeof options[0] === 'object' && options[0] !== null
+
     return(
         <div className={inputStyles.container}>
             {label && (
@@ -22,8 +23,14 @@ const Dropdown = ({label, options}) => {
 
             {options.length > 0 ? (
                 <>
-                    <button className={`${inputStyles.input} ${styles.input} ${isActivated && (styles.activated)}`} onClick={() => {setIsActivated(!isActivated)}} onBlur={() => {setIsActivated(false)}}>
-                        {options[currentIndex]}
+                    <button className={`${inputStyles.input} ${styles.input} ${isActivated && (styles.activated)}`} onClick={() => {setIsActivated(!isActivated)}} type='button'>
+                        {
+                            isObj ? (
+                                options[currentIndex].valor + ' - ' + options[currentIndex].descricao
+                            ) : (
+                                options[currentIndex]
+                            )
+                        }
                         <FontAwesomeIcon icon={faChevronDown} className={styles.icon}/>
                     </button>
                     
@@ -31,8 +38,19 @@ const Dropdown = ({label, options}) => {
                         {isActivated && (
                             <div className={styles.options}>
                                 {options.map((option, i) => (
-                                    <p className={styles.option} key={i} onClick={() => {setCurrentIndex(i); setIsActivated(false)}}>
-                                        {option}
+                                    <p 
+                                        className={styles.option} 
+                                        key={i} 
+                                        onClick={() => {
+                                            onChange(option)
+                                            setCurrentIndex(i); setIsActivated(false)
+                                        }}
+                                    >
+                                        {isObj ? (
+                                            option.valor + ' - ' + option.descricao
+                                        ) : (
+                                            option
+                                        )}
                                     </p>
                                 ))}
                             </div>

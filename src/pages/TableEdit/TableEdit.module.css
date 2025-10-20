@@ -1,5 +1,5 @@
 section.introText{
-    margin: 3rem 0 2rem;
+    margin: 2.5rem 0 2rem;
 }
     section.introText > p.text{
         color: var(--base-black);
@@ -51,22 +51,46 @@ section.buttonsContainer{
     gap: 1.5rem;
 }
 
+
+
 /* MODAL */
 div.formModal div.modalBody{
-    background-color: var(--white-300);
-    border-radius: 5px;
+    background-color: var(--base-white);
+    padding: 2rem;
+    border-radius: 10px;
 }
 
     header.modalHeader{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 1rem;
     }
         header.modalHeader .modalTitle{
-            font: var(--title-medium);
+            font: var(--title-large);
             color: var(--base-black);
         }
             header.modalHeader .modalTitle .icon{
                 color: var(--base-royal);
                 margin-right: .5rem;
             }
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+    form section{
+        gap: .7rem;
+    }
+
+    form section.duoSection{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    section.formButtons{
+        margin-top: 1.2rem;
+        display: flex;
+        gap: .8rem;
+    }
