@@ -80,6 +80,27 @@
   box-shadow: 0 2px 6px rgba(2, 138, 94, 0.2);
 }
 
+/* variante preenchida - gray */
+.button-filled.button-gray {
+  background-color: var(--white-700);      
+  color: var(--base-white);                
+  border-color: var(--white-700);         
+}
+
+.button-filled.button-gray:hover:not(.button-disabled) {
+  background-color: var(--black-300);      
+  border-color: var(--black-300);          
+  transform: translateY(-1px);             
+  box-shadow: 0 4px 12px rgba(140, 140, 142, 0.25);  
+}
+
+.button-filled.button-gray:active:not(.button-disabled) {
+  background-color: var(--black-500);     
+  border-color: var(--black-500);          
+  transform: translateY(0);                
+  box-shadow: 0 2px 6px rgba(140, 140, 142, 0.2);   
+}
+
 /* variante vazada - royal  */
 .button-outlined.button-royal {
   background-color: transparent;
@@ -143,14 +164,15 @@
   transform: translateY(0);
 }
 
-/*desabilitado */
+/* Estado Desabilitado - Mais Escuro que Gray Clicável */
+/* Aplicado quando o botão não pode ser interativo - visualmente mais pesado */
 .button-disabled {
-  background-color: var(--black-300) !important;
-  color: var(--white-700) !important;
-  border-color: var(--black-300) !important;
-  cursor: not-allowed !important;
-  transform: none !important;
-  box-shadow: none !important;
+  background-color: var(--black-300) !important;  /* Fundo cinza escuro (#686A6E) - mais escuro que gray clicável */
+  color: var(--white-700) !important;             /* Texto cinza claro para menos contraste */
+  border-color: var(--black-300) !important;      /* Borda cinza escura */
+  cursor: not-allowed !important;                 /* Cursor indica não clicável */
+  transform: none !important;                     /* Remove qualquer transformação */
+  box-shadow: none !important;                    /* Remove sombras */
 }
 
 .button-outlined.button-disabled {
@@ -201,4 +223,8 @@
 
 .button-green:focus-visible {
   outline-color: var(--green-300);
+}
+
+.button-gray:focus-visible {
+  outline-color: var(--black-300);     /* Contorno cinza claro para contraste */
 }
