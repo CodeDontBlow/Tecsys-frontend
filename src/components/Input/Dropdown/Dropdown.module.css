@@ -1,0 +1,54 @@
+.input{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    transition: all 150ms ease-out;
+}
+.input.activated{
+    background-color: var(--white-300);
+    outline: 1px solid var(--royal-300);
+    scale: 1.005;
+}
+    .inupt:focus{
+        scale: 0;
+    }
+    .icon{
+        transition: 350ms ease;
+    }
+    .input.activated .icon{
+        transform: rotate(-180deg);
+    }
+
+.optionsContainer{
+    position: relative;
+}
+
+    .options{
+        position: absolute;
+        left: 0;
+        right: 0;
+        overflow: hidden;
+        z-index: 999;
+
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+    }
+
+        .option{
+            background-color: var(--white-300);
+            margin: 0;
+            padding: .5em 1rem;
+
+            cursor: pointer;
+            transition: 150ms ease-out;
+        }
+            .option:nth-child(even){
+                box-shadow: inset 0px 0px 0px 100px rgba(0, 0, 0, 0.02);
+            }
+            .option:hover{
+                background-color: var(--white-500);
+                box-shadow: none;
+                scale: 1.005;
+            }

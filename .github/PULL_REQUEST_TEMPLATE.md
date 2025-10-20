@@ -12,7 +12,7 @@
 - [ ] Alterações de documentação
 - [ ] Outro (descreva):
 
-#### Código ta task: 
+#### Código da task: 
 
 
 
