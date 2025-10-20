@@ -1,6 +1,7 @@
 import styles from './Homepage.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight , faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import Button from '../../components/Button'
 
 function Homepage () {
     return (
@@ -19,16 +20,27 @@ function Homepage () {
             </div>
 
             <div className={styles.buttonsContainer}>
-                {/* O outro botão virá aqui (precisa do componente de Botão) */}
-                {/* Botão provisório */}
-                <a href="" className={styles.startPorccessBtn}> 
-                    Começar a Extrair 
-                    <FontAwesomeIcon icon={faChevronRight} className={styles.icon}/> 
-                </a>
-                <a href="" className={styles.userGuideBtn}>
+                <Button 
+                    variant="filled" 
+                    color="royal" 
+                    size="medium"
+                    icon={<FontAwesomeIcon icon={faChevronRight} />}
+                    iconPosition="right"
+                    className={styles.startProcessBtn}
+                >
+                    Começar a Extrair
+                </Button>
+                
+                <Button 
+                    variant="outlined" 
+                    color="gray" 
+                    size="medium"
+                    icon={<FontAwesomeIcon icon={faArrowUpRightFromSquare} />}
+                    iconPosition="right"
+                    className={styles.userGuideBtn}
+                >
                     Ver Guia de Uso
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.icon} />
-                </a>
+                </Button>
             </div>
         </div>
     )
