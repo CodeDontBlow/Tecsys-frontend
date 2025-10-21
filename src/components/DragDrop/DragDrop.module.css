@@ -1,0 +1,155 @@
+.dropzone {
+  width: 100%;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 50px;
+  background-color: var(--white-300);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.dropzone:hover {
+  background-color: var(--white-300);
+}
+
+.uploadButton {
+  background-color: var(--base-white);
+  border: 2px dashed var(--base-navy);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  width: 100px;
+  height: 100px;
+}
+
+.uploadButton:hover {
+  background-color: var(--base-royal);
+}
+
+.uploadButton i {
+  font-size: 3rem;
+  color: var(--base-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.uploadButton:hover i {
+  color: var(--base-white);
+}
+
+.text-container {
+  flex: 1;
+  padding-left: 20px;
+  text-align: left;
+}
+
+.text-container h1 {
+  font: var(--title-large);
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--base-black);
+}
+
+.text-container h2 {
+  font: var(--text-medium);
+  color: var(--black-500);
+  font-weight: normal;
+}
+
+.uploadIcon {
+  background-color: var(--white-300);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+
+.uploadIcon i {
+  font-size: 4.5rem;
+  color: var(--base-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.uploadClock {
+  background-color: var(--white-300);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+
+.uploadClock i {
+  font-size: 4.5rem;
+  color: var(--black-300);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.infoText {
+  max-width: 600px;
+  margin: 10px auto 0 auto;
+  text-align: left;
+  font: var(--text-regular);
+  color: var(--black-500);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.actions {
+  margin-top: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions button {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 4px;
+}
+
+/* botões teste */
+.actions button:first-child {
+  background-color: var(--white-300);
+  color: var(--base-black);
+  border: 1px solid var(--black-500);
+}
+
+.actions button:first-child:hover {
+  background-color: var(--red-700);
+}
+
+.actions button:last-child {
+  background-color: var(--base-royal);
+  color: var(--base-white);
+}
+
+.actions button:last-child:hover {
+  background-color: var(--royal-500);
+}
