@@ -1,0 +1,114 @@
+/* container da Tooltip */
+.tooltip-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: help;        /* cursor de interrogação ao passar o mouse */
+}
+
+/* tooltip base */
+.tooltip {
+  position: absolute;
+  background-color: var(--base-black);     
+  color: var(--base-white);                
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: normal;                     /* permite quebra de linha */
+  max-width: 320px;                        /* largura máxima para textos longos */
+  z-index: 1000;                           /* fica acima de outros elementos */
+  pointer-events: none;                    /* não interfere em outros cliques */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
+  animation: tooltipFadeIn 0.2s ease-in-out;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* posição TOP (padrão) */
+.tooltip-top {
+  bottom: calc(100% + 8px);    
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* seta apontando para baixo */
+.tooltip-top::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: var(--base-black);
+}
+
+/* posição BOTTOM */
+.tooltip-bottom {
+  top: calc(100% + 8px);       
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* seta apontando para cima */
+.tooltip-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-bottom-color: var(--base-black);
+}
+
+/* posição LEFT */
+.tooltip-left {
+  right: calc(100% + 8px);     
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* seta apontando para direita */
+.tooltip-left::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-left-color: var(--base-black);
+}
+
+/* posição RIGHT */
+.tooltip-right {
+  left: calc(100% + 8px);      
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* seta apontando para esquerda */
+.tooltip-right::after {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 6px solid transparent;
+  border-right-color: var(--base-black);
+}
+
+@media (max-width: 768px) {
+  .tooltip {
+    max-width: 260px;
+    font-size: 13px;
+  }
+}
