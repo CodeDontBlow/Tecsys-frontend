@@ -79,37 +79,10 @@ div.buttonsContainer{
     align-items: center;
     gap: .8rem;
 }
-    div.buttonsContainer > a{
-        padding: .3rem 2rem;
-        
-        font: var(--text-medium);
-        text-decoration: none;
-        text-align: center;
-        
-        transition: all 150ms ease;
-    }
-        div.buttonsContainer > a > .icon{
-            margin-left: .3rem;
-            font-size: 1.1rem;
-        }
 
-    a.startPorccessBtn{
-        background-color: var(--base-royal);
-        
-        color: var(--white-300);
-        border-radius: 5px;
-        
-        flex-grow: 1;
-    }
-    a.userGuideBtn{
-        color: var(--black-700);
-    }
-        div.buttonsContainer > a:hover{
-            scale: 1.02;
-        }
-        div.buttonsContainer > a.userGuideBtn:hover{
-            text-decoration: underline;
-        }
+div.buttonsContainer .startProcessBtn{
+    flex-grow: 1;
+}
 
 @media (max-width:767px){
     div.container{
@@ -135,9 +108,6 @@ div.buttonsContainer{
         width: 60%;
         margin-top: 2rem;
     }
-        div.buttonsContainer > a{
-            padding: .4rem 2rem;
-        }
 }
 
 @keyframes shine-background{
