@@ -3,9 +3,14 @@
  * 
  * Como usar:
  * import Button from './Button'
- * <Button variant="filled" color="royal" onClick={() => alert('Oi!')}>
+ * import { faChevronRight } from '@fortawesome/free-solid-svg-icons' // qualquer ícone do FontAwesome
+ * 
+ * <Button variant="filled" color="royal" icon={faChevronRight} onClick={() => alert('Oi!')}>
  *   Clique aqui
  * </Button>
+ * 
+ * Button com icone: passar o objeto do ícone (ex: faChevronRight) 
+ * o componente button vai renderizar a tag <FontAwesome /> internamente
  * 
  * Variações:
  * - variant: filled (preenchido), outlined (só borda)
@@ -16,13 +21,14 @@
  */
 
 import styles from './Button.module.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Button = ({ 
   children,                    // texto que vai aparecer dentro do botão
   variant = 'filled',          // tipo do botão: 'filled' (preenchido) ou 'outlined' (só borda)
-  color = 'royal',             // cor do botão: 'royal' (azul), 'green' (verde) ou 'gray' (cinza)
+  color = 'royal',             // cor do botão: 'royal', 'green', 'gray' ou 'red'
   size = 'medium',             // tamanho: 'small', 'medium' ou 'large'
-  icon = null,                 // icone opcional 
+  icon = null,                 // objeto do ícone FontAwesome (ex: faChevronRight) - não precisa da tag <FontAwesome />
   iconPosition = 'left',       // posição do ícone 'left' ou 'right' 
   fullWidth = false,           // se true, o botão ocupa toda a largura disponível
   disabled = false,            // se true, o botão fica cinza e não funciona
@@ -58,10 +64,11 @@ const Button = ({
     >
       {// ÍCONE À ESQUERDA 
        // só renderiza se tiver ícone e posição for 'left'
+       // agora renderiza automaticamente a tag FontAwesome com o objeto do ícone
       }
       {icon && iconPosition === 'left' && (
         <span className={styles['button-icon']}>
-          {icon}
+          <FontAwesomeIcon icon={icon} />
         </span>
       )}
       
@@ -77,10 +84,11 @@ const Button = ({
       
       {// ÍCONE À DIREITA
        // só renderiza se tiver ícone e posição for 'right'
+       // agora renderiza automaticamente a tag FontAwesome com o objeto do ícone
       }
       {icon && iconPosition === 'right' && (
         <span className={styles['button-icon']}>
-          {icon}
+          <FontAwesomeIcon icon={icon} />
         </span>
       )}
     </button>

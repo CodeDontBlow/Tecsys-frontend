@@ -1,5 +1,4 @@
 import styles from './Homepage.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight , faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Button from '../../components/Button'
 
@@ -24,7 +23,7 @@ function Homepage () {
                     variant="filled" 
                     color="royal" 
                     size="medium"
-                    icon={<FontAwesomeIcon icon={faChevronRight} />}
+                    icon={faChevronRight}
                     iconPosition="right"
                     className={styles.startProcessBtn}
                 >
@@ -35,7 +34,7 @@ function Homepage () {
                     variant="outlined" 
                     color="gray" 
                     size="medium"
-                    icon={<FontAwesomeIcon icon={faArrowUpRightFromSquare} />}
+                    icon={faArrowUpRightFromSquare}
                     iconPosition="right"
                     className={styles.userGuideBtn}
                 >
