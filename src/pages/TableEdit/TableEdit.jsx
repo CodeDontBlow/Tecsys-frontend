@@ -7,81 +7,84 @@ import { faCircleInfo , faFilePen } from '@fortawesome/free-solid-svg-icons';
 import StepMap from '../../components/StepMap/StepMap';
 import Input from '../../components/Input/Input/Input'
 import Dropdown from '../../components/Input/Dropdown/Dropdown'
+import Button from '../../components/Button/Button';
+import Tooltip from '../../components/Tooltip/Tooltip';
 
 function TableEdit() {
-    const [formPN, setFormPN] = useState('MA0603CG150J500');
-    const [formCodERP, setFormCodERP] = useState('20020067');
-    const [formDescERP, setFormDescERP] = useState('0603 15PF 50V 5% C0G PN: MA0603CG');
-    const [formDescDI, setFormDescDI] = useState('CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)');
-    // NCM
-        // Todos NCM's pai
-        const [formParentNCMArray, setParentNCMArray] = useState([
-            {
-                valor: '8532.24',
-                descricao: 'Descrição',
-            },
-            {
-                valor: '8532.40',
-                descricao: 'Descrição',
-            },
-            {
-                valor: '8532.19',
-                descricao: 'Descrição',
-            }
-        ]);
-        // NCM Pai Atual (primeiro do array formParentNCMArray)
-        const [formParentNCM, setFormParentNCM] = useState(formParentNCMArray[0]);
-        // Todos NCM's filho
-        const [formNCMArray, setFormNCMArray] = useState([
-            [
+    // ESTADOS PARA O FORMULÁRIO -----------------------------------
+        const [formPN, setFormPN] = useState('MA0603CG150J500');
+        const [formCodERP, setFormCodERP] = useState('20020067');
+        const [formDescERP, setFormDescERP] = useState('0603 15PF 50V 5% C0G PN: MA0603CG');
+        const [formDescDI, setFormDescDI] = useState('CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)');
+        // NCM ------------------------------
+            // Todos NCM's pai
+            const [formParentNCMArray, setParentNCMArray] = useState([
                 {
-                    valor: '8532.24.10',
+                    valor: '8532.24',
                     descricao: 'Descrição',
                 },
                 {
-                    valor: '8532.24.70',
+                    valor: '8532.40',
                     descricao: 'Descrição',
                 },
                 {
-                    valor: '8532.24.20',
+                    valor: '8532.19',
                     descricao: 'Descrição',
-                },
-            ],
-            [
-                {
-                    valor: '8532.40.10',
-                    descricao: 'Descrição',
-                },
-                {
-                    valor: '8532.40.70',
-                    descricao: 'Descrição',
-                },
-                {
-                    valor: '8532.40.20',
-                    descricao: 'Descrição',
-                },
-            ],
-            [
-                {
-                    valor: '8532.19.10',
-                    descricao: 'Descrição',
-                },
-                {
-                    valor: '8532.19.70',
-                    descricao: 'Descrição',
-                },
-                {
-                    valor: '8532.19.20',
-                    descricao: 'Descrição',
-                },
-            ],
-            
-        ]);
-        // NCM Filho Atual (primeiro do array formNCMArray)
-        const [formNCM, setFormNCM] = useState(formNCMArray[0]);
-    const [formFabNome, setFormFabNome] = useState('MERITEK ELECTRONICS CORPORATION');
-    const [formFabEndereco, setFormFabEndereco] = useState('5160 RIVERGRADE RD, CA 91706');
-    const [formFabDesc, setFormFabDesc] = useState('ESTADOS UNIDOS');
+                }
+            ]);
+            // NCM Pai Atual (primeiro do array formParentNCMArray)
+            const [formParentNCM, setFormParentNCM] = useState(formParentNCMArray[0]);
+            // Todos NCM's filho
+            const [formNCMArray, setFormNCMArray] = useState([
+                [
+                    {
+                        valor: '8532.24.10',
+                        descricao: 'Descrição',
+                    },
+                    {
+                        valor: '8532.24.70',
+                        descricao: 'Descrição',
+                    },
+                    {
+                        valor: '8532.24.20',
+                        descricao: 'Descrição',
+                    },
+                ],
+                [
+                    {
+                        valor: '8532.40.10',
+                        descricao: 'Descrição',
+                    },
+                    {
+                        valor: '8532.40.70',
+                        descricao: 'Descrição',
+                    },
+                    {
+                        valor: '8532.40.20',
+                        descricao: 'Descrição',
+                    },
+                ],
+                [
+                    {
+                        valor: '8532.19.10',
+                        descricao: 'Descrição',
+                    },
+                    {
+                        valor: '8532.19.70',
+                        descricao: 'Descrição',
+                    },
+                    {
+                        valor: '8532.19.20',
+                        descricao: 'Descrição',
+                    },
+                ],
+                
+            ]);
+            // NCM Filho Atual (primeiro do array formNCMArray)
+            const [formNCM, setFormNCM] = useState(formNCMArray[0]);
+        const [formFabNome, setFormFabNome] = useState('MERITEK ELECTRONICS CORPORATION');
+        const [formFabEndereco, setFormFabEndereco] = useState('5160 RIVERGRADE RD, CA 91706');
+        const [formFabDesc, setFormFabDesc] = useState('ESTADOS UNIDOS');
 
 
     return (
@@ -98,8 +101,8 @@ function TableEdit() {
                 </p>
             </section>
 
-            <div className={`table-responsive card p-0 m-0 rounded-3`}>
-                <table className={`table rounded-3 m-0 overflow-hidden ${styles.table}`}>
+            <div className={`table-responsive card p-0 m-0 rounded-3 ${styles.tableContainer}`}>
+                <table className={`table rounded-3 m-0 ${styles.table}`}>
                     <thead>
                         <tr>
                             <th scope="col">SEQ</th>
@@ -119,8 +122,17 @@ function TableEdit() {
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
                             <td className={styles.ncm}>
-                                8532.24.10 
-                                <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
+                                <Tooltip content={
+                                    <div>
+                                        <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
+                                        <br/>
+                                        <br/>
+                                        <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
+                                    </div>
+                                } position='right'>
+                                    8532.24.10 
+                                    <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
+                                </Tooltip>
                             </td>
                             <td>MERITEK ELECTRONICS CORPORATION</td>
                             <td>5160 RIVERGRADE RD, CA 91706</td>
@@ -132,8 +144,17 @@ function TableEdit() {
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
                             <td className={styles.ncm}>
-                                8532.24.10
-                                <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
+                                <Tooltip content={
+                                    <div>
+                                        <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
+                                        <br/>
+                                        <br/>
+                                        <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
+                                    </div>
+                                } position='right'>
+                                    8532.24.10 
+                                    <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
+                                </Tooltip>
                             </td>
                             <td>MERITEK ELECTRONICS CORPORATION</td>
                             <td>5160 RIVERGRADE RD, CA 91706</td>
@@ -144,7 +165,8 @@ function TableEdit() {
             </div>
 
             <section className={styles.buttonsContainer}>
-
+                <Button children='Cancelar' variant='outlined' color='gray' fullWidth={true}/>
+                <Button children='Finalizar' fullWidth={true}/>
             </section>
 
 
@@ -176,9 +198,6 @@ function TableEdit() {
                                 <section className={styles.duoSection}>
                                     <Dropdown label='NCM Pai' options={formParentNCMArray} dataType='object' onChange={value => setFormParentNCM(value)}/>
                                     <Dropdown label='NCM do Produto' options={formNCMArray[formParentNCMArray.findIndex(o => o.valor === formParentNCM.valor)]} dataType='object' onChange={value => setFormNCM(value)} />
-                                    {console.log("formNCMArray: " + formNCMArray)}
-                                    {console.log("formParentNCMArray: " + formParentNCMArray)}
-                                    {console.log("formParentNCM: " + formParentNCM.valor)}
                                 </section>
 
                                 <Input label='Fabricante' placeholder='Nome do Fabricante' id='fabNome' value={formFabNome} onChange={e => setFormFabNome(e.target.value)} />
@@ -190,7 +209,8 @@ function TableEdit() {
 
 
                             <section className={styles.formButtons}>
-
+                                <Button children='Cancelar Edição' variant='outlined' color='gray' size='small' fullWidth={true}/>
+                                <Button children='Salvar Edição' size='small' fullWidth={true}/>
                             </section>
                         </div>
                         

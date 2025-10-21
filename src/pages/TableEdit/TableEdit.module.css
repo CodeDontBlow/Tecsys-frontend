@@ -7,9 +7,10 @@ section.introText{
         margin-bottom: 0;
     }
 
+div.tableContainer{
+}
 
 table.table{
-
 }
     table.table > thead *{
         background-color: var(--white-300);
@@ -19,15 +20,19 @@ table.table{
         font-weight: 600;
         vertical-align: middle;
     }
-    table.table > tbody *{
+    table.table > tbody tr,
+    table.table > tbody tr th,
+    table.table > tbody tr td{
         background-color: var(--base-white);
         color: var(--black-300);
         font: var(--footer-regular);
     }
-        table.table > tbody tr:nth-child(even) *{
+        table.table > tbody tr:nth-child(even) th,
+        table.table > tbody tr:nth-child(even) td{
             box-shadow: inset 0px 0px 0px 100px rgba(0, 0, 0, 0.015);
         }
-        table.table > tbody tr:hover *{
+        table.table > tbody tr:hover th,
+        table.table > tbody tr:hover td{
             background-color: var(--white-300);
             box-shadow: none;
 
@@ -39,16 +44,12 @@ table.table{
         table.table > tbody td.ncm .icon{
             margin-left: .15rem;
         }
-        table.table > tbody td.ncm:hover,
-        table.table > tbody td.ncm:hover *{
-            color: var(--base-royal);
-        }
 
 section.buttonsContainer{
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 
     display: flex;
-    gap: 1.5rem;
+    gap: .7rem;
 }
 
 
@@ -90,7 +91,7 @@ form{
     }
 
     section.formButtons{
-        margin-top: 1.2rem;
+        margin-top: 2rem;
         display: flex;
         gap: .8rem;
     }

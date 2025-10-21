@@ -21,19 +21,19 @@
 
 /* tamanhos */
 .button-small {
-  padding: 6px 12px;
+  padding: 1px 12px;
   font: var(--label-medium);
   min-height: 32px;
 }
 
 .button-medium {
-  padding: 10px 16px;
+  padding: 1px 16px;
   font: var(--text-regular);
   min-height: 40px;
 }
 
 .button-large {
-  padding: 12px 24px;
+  padding: 3px 24px;
   font: var(--text-medium);
   min-height: 48px;
 }
