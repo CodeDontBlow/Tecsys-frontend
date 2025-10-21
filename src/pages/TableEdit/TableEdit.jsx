@@ -14,7 +14,6 @@ function TableEdit() {
     const [formDescERP, setFormDescERP] = useState('0603 15PF 50V 5% C0G PN: MA0603CG');
     const [formDescDI, setFormDescDI] = useState('CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)');
     // NCM
-        const [formParentNCM, setFormParentNCM] = useState('8532.24');
         // Todos NCM's pai
         const [formParentNCMArray, setParentNCMArray] = useState([
             {
@@ -30,7 +29,8 @@ function TableEdit() {
                 descricao: 'Descrição',
             }
         ]);
-        const [formNCM, setFormNCM] = useState('8532.24.10');
+        // NCM Pai Atual (primeiro do array formParentNCMArray)
+        const [formParentNCM, setFormParentNCM] = useState(formParentNCMArray[0]);
         // Todos NCM's filho
         const [formNCMArray, setFormNCMArray] = useState([
             [
@@ -77,6 +77,8 @@ function TableEdit() {
             ],
             
         ]);
+        // NCM Filho Atual (primeiro do array formNCMArray)
+        const [formNCM, setFormNCM] = useState(formNCMArray[0]);
     const [formFabNome, setFormFabNome] = useState('MERITEK ELECTRONICS CORPORATION');
     const [formFabEndereco, setFormFabEndereco] = useState('5160 RIVERGRADE RD, CA 91706');
     const [formFabDesc, setFormFabDesc] = useState('ESTADOS UNIDOS');
@@ -172,8 +174,11 @@ function TableEdit() {
                                 <Input label='Descrição para DI' id='DescDI' type='textarea' value={formDescDI} onChange={e => setFormDescDI(e.target.value)} />
 
                                 <section className={styles.duoSection}>
-                                    <Dropdown label='NCM Pai' options={formParentNCMArray} onChange={value => setFormParentNCM(value)}/>
-                                    <Dropdown label='NCM do Produto' options={formNCMArray[formParentNCMArray.findIndex(o => o.valor === formParentNCM)]} onChange={value => setFormNCM(value)} />
+                                    <Dropdown label='NCM Pai' options={formParentNCMArray} dataType='object' onChange={value => setFormParentNCM(value)}/>
+                                    <Dropdown label='NCM do Produto' options={formNCMArray[formParentNCMArray.findIndex(o => o.valor === formParentNCM.valor)]} dataType='object' onChange={value => setFormNCM(value)} />
+                                    {console.log("formNCMArray: " + formNCMArray)}
+                                    {console.log("formParentNCMArray: " + formParentNCMArray)}
+                                    {console.log("formParentNCM: " + formParentNCM.valor)}
                                 </section>
 
                                 <Input label='Fabricante' placeholder='Nome do Fabricante' id='fabNome' value={formFabNome} onChange={e => setFormFabNome(e.target.value)} />

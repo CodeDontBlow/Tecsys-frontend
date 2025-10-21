@@ -6,13 +6,13 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import inputStyles from '../Input/Input.module.css'
 import styles from './Dropdown.module.css'
 
-const Dropdown = ({label, options, onChange}) => {
+const Dropdown = ({label, options, onChange, dataType}) => {
     // 'options' deve ser um array de opções do dropdown
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isActivated, setIsActivated] = useState(false)
-    const isObj = typeof options[0] === 'object' && options[0] !== null
-
+    const isObj = dataType === 'object'
+    
     return(
         <div className={inputStyles.container}>
             {label && (
