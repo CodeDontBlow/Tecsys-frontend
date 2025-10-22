@@ -1,6 +1,6 @@
 import styles from './Input.module.css'
 
-const Input = ({placeholder, label, id, type = 'text'}) => {
+const Input = ({placeholder = 'Digite o valor', label, id, type = 'text', value, onChange}) => {
     
     return(
         <div className={styles.container}>
@@ -9,13 +9,25 @@ const Input = ({placeholder, label, id, type = 'text'}) => {
                     {label}
                 </label>
             )}
-
-            <input
-                type={type} 
-                id={id && (id) }
-                placeholder={placeholder && (placeholder)}
-                className={styles.input}
-            />
+            {type === 'textarea' ? (
+                <textarea
+                    type='textarea'
+                    id={id && (id) }
+                    placeholder={placeholder && (placeholder)}
+                    className={styles.input}
+                    value={value}
+                    onChange={onChange} 
+                ></textarea>
+            ) : (
+                <input
+                    type={type} 
+                    id={id && (id) }
+                    placeholder={placeholder && (placeholder)}
+                    className={styles.input}
+                    value={value}
+                    onChange={onChange}
+                />
+            )}
         </div>
     )
 }
