@@ -88,7 +88,7 @@ function TableEdit() {
 
 
     return (
-        <div className='px-lg-5 px-md-3'>
+        <div className='container-lg'>
 
             <StepMap currentStep={3} />
 
@@ -101,7 +101,6 @@ function TableEdit() {
                 </p>
             </section>
 
-            <div className={`table-responsive card p-0 m-0 rounded-3 ${styles.tableContainer}`}>
                 <table className={`table rounded-3 m-0 ${styles.table}`}>
                     <thead>
                         <tr>
@@ -162,7 +161,6 @@ function TableEdit() {
                         </tr>
                     </tbody>
                 </table>
-            </div>
 
             <section className={styles.buttonsContainer}>
                 <Button children='Cancelar' variant='outlined' color='gray' fullWidth={true}/>

@@ -7,19 +7,42 @@ section.introText{
         margin-bottom: 0;
     }
 
-div.tableContainer{
-}
 
 table.table{
+    
 }
-    table.table > thead *{
-        background-color: var(--white-300);
 
-        color: var(--black-500);
-        font: var(--footer-medium);
-        font-weight: 600;
-        vertical-align: middle;
+table.table {
+}
+
+    /* Adicionando borda  */
+        table.table > thead th:first-child {
+            border-top-left-radius: 5px;
+        }
+        table.table > thead th:last-child {
+            border-top-right-radius: 5px; 
+        }
+    table.table > tbody tr:last-child {
+        border: none;
+        border-color: transparent;
     }
+        table.table > tbody tr:last-child th:first-child {
+            border-bottom-left-radius: 5px;
+        }
+        table.table > tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 5px; 
+        }
+
+        table.table > thead *{
+            background-color: var(--white-300);
+
+            color: var(--black-500);
+            font: var(--footer-medium);
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+
     table.table > tbody tr,
     table.table > tbody tr th,
     table.table > tbody tr td{
