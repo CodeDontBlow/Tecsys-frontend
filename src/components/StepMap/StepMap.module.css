@@ -16,7 +16,7 @@
 .step-map-container:before {
     content: '';
     position: absolute;
-    background-color: #2F3031;
+    background-color: var(--black-700);
     height: 3px;
     width: 100%;
     top: 50%;
@@ -27,7 +27,7 @@
 .step-map-filled-line {
     content: '';
     position: absolute;
-    background-color: #10b981;
+    background-color: var(--green-500);
     height: 3px;
     width: 100%;
     top: 50%;
@@ -45,8 +45,8 @@
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background-color: #e4eaf3;
-    border: 3px solid #2F3031;
+    background-color: var(--white-300);
+    color: var(--black-700);
     transition: 0.4s ease;
     display: flex;
     justify-content: center;
@@ -55,14 +55,14 @@
 
 /* Estados dos círculos */
 .step-map-circle--completed {
-    background-color: #e4eaf3;
-    border-color: #10b981;
+    background-color: var(--white-300);
+    border-color: var(--green-500);
 }
 
 .step-map-count {
     font: var(--title-medium);
     font-size: 1.92rem;
-    color: #2F3031;
+    color: var(--black-700);
     line-height: 1;
     display: flex;
     align-items: center;
@@ -79,7 +79,7 @@
 }
 
 .step-map-label {
-    color: #2F3031;
+    color: var(--black-700);
     white-space: nowrap;
 }
 
@@ -87,7 +87,7 @@
 .step-map-check { 
     font: var(--title-medium);
     font-size: 2.1rem;
-    color: #10b981;
+    color: var(--green-500);
     line-height: 1;
     display: flex;
     align-items: center;
@@ -99,7 +99,7 @@
 .step-map-load { 
     font: var(--title-medium);
     font-size: 1.5rem;
-    color: #2F3031;
+    color: var(--black-700);
     animation: spin 2s ease-out infinite;
     line-height: 1;
     display: flex;
@@ -110,7 +110,7 @@
 }
 
 .circleCheck {
-    color:#10b981;
+    color: var(--green-500);
 }
 
 @keyframes spin {

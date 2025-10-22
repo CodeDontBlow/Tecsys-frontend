@@ -1,10 +1,13 @@
 import styles from './Homepage.module.css'
+import { faChevronRight , faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
+import Button from '../../components/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight , faArrowUpRightFromSquare, faClock} from '@fortawesome/free-solid-svg-icons'
 import Checklist from '../../components/Checklist/Checklist'
 import StepMap from '../../components/StepMap/StepMap'
 
 function Homepage () {
+    
     return (
         <div className={`container-sm ${styles.container}`}>
            
@@ -16,7 +19,7 @@ function Homepage () {
             <h1 className={styles.title}>Boas-Vindas ao 
                 <span className={styles.descriptum}>Descriptum</span>
             </h1>
-            
+
             <div className={styles.textContainer}>
                 <p className={styles.mainText}>
                     Automatize o processo de registro aduaneiro e transforme pedidos de compra em informações organizadas e prontas para análise!
@@ -27,16 +30,27 @@ function Homepage () {
             </div>
 
             <div className={styles.buttonsContainer}>
-                {/* O outro botão virá aqui (precisa do componente de Botão) */}
-                {/* Botão provisório */}
-                <a href="" className={styles.startPorccessBtn}> 
-                    Começar a Extrair 
-                    <FontAwesomeIcon icon={faChevronRight} className={styles.icon}/> 
-                </a>
-                <a href="" className={styles.userGuideBtn}>
+                <Button 
+                    variant="filled" 
+                    color="royal" 
+                    size="medium"
+                    icon={faChevronRight}
+                    iconPosition="right"
+                    className={styles.startProcessBtn}
+                >
+                    Começar a Extrair
+                </Button>
+                
+                <Button 
+                    variant="outlined" 
+                    color="gray" 
+                    size="medium"
+                    icon={faArrowUpRightFromSquare}
+                    iconPosition="right"
+                    className={styles.userGuideBtn}
+                >
                     Ver Guia de Uso
-                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} className={styles.icon} />
-                </a>
+                </Button>
             </div>
         </div>
     )
