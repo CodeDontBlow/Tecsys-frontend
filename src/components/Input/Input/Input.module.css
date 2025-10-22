@@ -4,23 +4,28 @@ div.container{
 }
 
 .label{
-    font: var(--text-medium);
+    font: var(--text-regular);
     font-weight: 500;
     color: var(--black-700);
 }
 
 .input{
     background-color: var(--white-500);
-    padding: .4rem 1rem;
+    padding: .4rem .7rem;
 
-    color: var(--base-black);
-    font: var(--text-regular);
+    color: var(--black-700);
+    font: var(--label-regular);
     text-align: start;
 
     border: 1px solid var(--white-700);
     border-radius: 5px;
 
     transition: scale 150ms ease-out;
+}
+textarea.input{
+    min-height: 100px;
+    max-height: 300px;
+    font: var(--label-regular);
 }
     .input:focus{
         border-color: var(--white-700);

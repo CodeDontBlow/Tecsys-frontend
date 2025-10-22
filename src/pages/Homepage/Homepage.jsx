@@ -1,20 +1,11 @@
 import styles from './Homepage.module.css'
 import { faChevronRight , faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Button from '../../components/Button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronRight , faArrowUpRightFromSquare, faClock} from '@fortawesome/free-solid-svg-icons'
-import Checklist from '../../components/Checklist/Checklist'
-import StepMap from '../../components/StepMap/StepMap'
 
 function Homepage () {
     
     return (
         <div className={`container-sm ${styles.container}`}>
-           
-           
-            <Checklist icon={<FontAwesomeIcon icon={faClock} />}/>
-           
-           
            
             <h1 className={styles.title}>Boas-Vindas ao 
                 <span className={styles.descriptum}>Descriptum</span>

@@ -5,6 +5,9 @@
   align-items: center;
   cursor: help;        /* cursor de interrogação ao passar o mouse */
 }
+  .tooltip-container:hover  {
+    color: var(--base-royal);
+  }
 
 /* tooltip base */
 .tooltip {
@@ -13,11 +16,11 @@
   color: var(--base-white);                
   padding: 8px 12px;
   border-radius: 6px;
-  font-size: 14px;
-  line-height: 1.4;
+  font: var(--footer-medium);
   white-space: normal;                     /* permite quebra de linha */
-  max-width: 320px;                        /* largura máxima para textos longos */
-  z-index: 1000;                           /* fica acima de outros elementos */
+  max-width: 400px;                        /* largura máxima para textos longos */
+  min-width: 230px;
+  z-index: 1;                           /* fica acima de outros elementos */
   pointer-events: none;                    /* não interfere em outros cliques */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); 
   animation: tooltipFadeIn 0.2s ease-in-out;
