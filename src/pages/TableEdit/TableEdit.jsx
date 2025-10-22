@@ -105,7 +105,7 @@ function TableEdit() {
                     <thead>
                         <tr>
                             <th scope="col">SEQ</th>
-                            <th scope="col">Cod ERP</th>
+                            {/* <th scope="col">Cod ERP</th> */}
                             <th scope="col">Descrição ERP</th>
                             <th scope="col">Descrição para DI</th>
                             <th scope="col">NCM</th>
@@ -117,7 +117,7 @@ function TableEdit() {
                     <tbody>
                         <tr data-bs-toggle="modal" data-bs-target="#formModal">
                             <th scope="row">1</th>
-                            <td>20020067</td>
+                            {/* <td>20020067</td> */}
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
                             <td className={styles.ncm}>
@@ -139,7 +139,7 @@ function TableEdit() {
                         </tr>
                         <tr data-bs-toggle="modal" data-bs-target="#formModal">
                             <th scope="row">2</th>
-                            <td>20020067</td>
+                            {/* <td>20020067</td> */}
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
                             <td className={styles.ncm}>
