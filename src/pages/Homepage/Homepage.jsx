@@ -6,6 +6,7 @@ function Homepage () {
     
     return (
         <div className={`container-sm ${styles.container}`}>
+           
             <h1 className={styles.title}>Boas-Vindas ao 
                 <span className={styles.descriptum}>Descriptum</span>
             </h1>
