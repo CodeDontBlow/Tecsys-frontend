@@ -1,0 +1,48 @@
+.checklist-container h1 {
+    font: var(--text-large);
+    color: var(--black-900);
+    text-align: left;
+    margin: 0.3rem;
+}
+
+.checklist-container {
+    width: fit-content;
+}
+
+.checklist-container ul {
+    list-style: none;
+    height: fit-content;
+    margin: 0.5rem auto;
+    padding: 0;
+}
+
+.checklist-container li {
+    padding: 0.3rem;
+    border-top: 1px solid var(--white-500);
+}   
+
+.checklist-count {
+    background-color: var(--base-royal);
+    font: var(--text-medium);
+    color: var(--white-300);
+    width: fit-content;
+    border-radius: 5px;
+    margin: auto 0.2rem;
+    padding: 0.1rem 1.2rem;
+}
+
+.checklist-text {
+    font: var(--text-regular);
+    color: var(--black-500);
+}
+
+
+.checklist-icon {
+    color: var(--black-500);
+    padding-left: 0.1rem;
+    padding-right: 0.2rem;
+}
+
+.completed {
+    color: var(--green-500);
+}
