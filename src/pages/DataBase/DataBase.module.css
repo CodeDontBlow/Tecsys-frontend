@@ -1,5 +1,4 @@
-
-div.container{
+.container{
     height: 100%;
     margin: 1.5rem auto 0;
     padding: 0 5rem; 
@@ -7,14 +6,18 @@ div.container{
 
 .container h1{
     font: var(--title-large);
+    font-size: 3rem;
+    padding-bottom: 0.5rem;
 }
 
 .container p{
     font: var(--text-medium);
 }
+
 .cardArea{
     display: flex;
+    padding: 1.5rem 0;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: center;
+    justify-content: space-between;
 }
