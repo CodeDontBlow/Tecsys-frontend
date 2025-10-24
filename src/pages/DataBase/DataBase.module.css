@@ -1,0 +1,20 @@
+
+div.container{
+    height: 100%;
+    margin: 1.5rem auto 0;
+    padding: 0 5rem; 
+}
+
+.container h1{
+    font: var(--title-large);
+}
+
+.container p{
+    font: var(--text-medium);
+}
+.cardArea{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}

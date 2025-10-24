@@ -1,26 +1,34 @@
-.card { 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
-}
 
-.card-container{
+.card{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: #e4eaf3;
+    background-color: var(--white-300);
     border-radius: 8px;
-    padding: 20px;
+    padding: 30px;
     margin: auto;
-    max-width: 300px;
+    width: 19rem;
+    height: 27rem;
 }
 
-.card-title {
+.card-icon {
+    border-radius: 10px;
+    height: 15rem;
+    width: 15rem;
+    margin-bottom: 1rem;
+    background-color: var(--base-white);
+}
+
+.card-content {
+    text-align: left;
+}
+
+.card-content h1 {
     font: var(--title-medium);
+    color: var(--black-700);
 }
 
-.card-description {
+.card-content p {
     font: var(--text-medium);
+    color: var(--black-700);
 }
