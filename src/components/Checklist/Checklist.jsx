@@ -45,9 +45,6 @@ const Checklist = ({processData = defaultProcessData}) => {
     return (
         <div className={styles['checklist-container']}>
             <h1>Produtos Extraídos</h1>
-            <p className={styles['checklist-count']}>
-                {formatCount(currentItem, totalItems)}
-            </p>
             <ul>
                 {steps.map((step, index) => {
                     const status = getStepStatus(index, currentStep);

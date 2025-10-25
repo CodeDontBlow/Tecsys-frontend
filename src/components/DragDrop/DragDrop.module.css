@@ -1,3 +1,12 @@
+.mainContainer {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .dropzone {
   width: 100%;
   max-width: 600px;
@@ -120,36 +129,9 @@ input[type="file"] {
 
 .actions {
   margin-top: 20px;
-  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  justify-content: space-between;
-}
-
-.actions button {
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 4px;
-}
-
-/* botões teste */
-.actions button:first-child {
-  background-color: var(--white-300);
-  color: var(--base-black);
-  border: 1px solid var(--black-500);
-}
-
-.actions button:first-child:hover {
-  background-color: var(--red-700);
-}
-
-.actions button:last-child {
-  background-color: var(--base-royal);
-  color: var(--base-white);
-}
-
-.actions button:last-child:hover {
-  background-color: var(--royal-500);
+  gap: 15px;
+  width: 100%;
 }

@@ -4,10 +4,11 @@ import { useState, useRef } from "react";
 // Local Imports
 import styles from './DragDrop.module.css';
 import api from "../../services/axiosConfig";
+import Button from "../Button";
 
-const DragDropFiles = () => {
+const DragDropFiles = ({isFileUploaded, setIsFileUploaded}) => {
   const [file, setFile] = useState(null);
-  const [isFileUploaded, setIsFileUploaded] = useState(false);
+  // const [isFileUploaded, setIsFileUploaded] = useState(false);
   const inputRef = useRef();
 
   const handleDragOver = (event) => {
@@ -19,7 +20,7 @@ const DragDropFiles = () => {
     setFile(event.dataTransfer.files);
   };
 
-  const handleUpload = () => {
+  const handleUpload = ({ status }) => {
     const formData = new FormData();
     formData.append("pdf", file[0]);
 
@@ -36,7 +37,7 @@ const DragDropFiles = () => {
 
   if (isFileUploaded) {
     return (
-      <>
+    <div className={styles.mainContainer}>
         <div className={styles.dropzone}>
           <div className={styles.uploadClock}>
             <i class="bi bi-clock-fill"></i>
@@ -54,18 +55,22 @@ const DragDropFiles = () => {
         </p>
 
         <div className={styles.actions}>
-          <button onClick={() => {
-            setFile(null)
-            setIsFileUploaded(false)
-          }}> Cancelar </button>
+          <Button
+            variant="outlined"
+            color="gray"
+            fullWidth = "true"
+            onClick={() => setFile(null)}
+          >
+            Cancelar
+          </Button>
         </div>
-      </>
+      </div>
     );
   }
 
   if (file) {
     return (
-      <>
+      <div className={styles.mainContainer}>
         <div className={styles.dropzone}>
           <div className={styles.uploadIcon}>
             <i class="bi bi-file-earmark-check-fill"></i>
@@ -83,10 +88,25 @@ const DragDropFiles = () => {
         </p>
 
         <div className={styles.actions}>
-          <button onClick={() => setFile(null)}>Cancelar</button>
-          <button onClick={handleUpload}>Enviar</button>
+          <Button
+            variant="outlined"
+            color="gray"
+            fullWidth = "true"
+            onClick={() => setFile(null)}
+          >
+            Cancelar
+          </Button>
+
+          <Button
+            variant="filled"
+            color="royal"
+            fullWidth = "true"
+            onClick={handleUpload}
+          >
+            Enviar
+          </Button>
         </div>
-      </>
+      </div>
     );
   }
 
