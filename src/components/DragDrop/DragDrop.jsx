@@ -1,15 +1,24 @@
 // Third Party Imports
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 // Local Imports
 import styles from './DragDrop.module.css';
 import api from "../../services/axiosConfig";
 import Button from "../Button";
+import { connectWebSocket } from "../../services/websocket";
 
 const DragDropFiles = ({isFileUploaded, setIsFileUploaded}) => {
   const [file, setFile] = useState(null);
   // const [isFileUploaded, setIsFileUploaded] = useState(false);
   const inputRef = useRef();
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => { 
+    const ws = connectWebSocket((msg) => {
+      setMessages((prev) => [...prev, msg]);
+    });
+  })
+  
 
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -24,12 +33,12 @@ const DragDropFiles = ({isFileUploaded, setIsFileUploaded}) => {
     const formData = new FormData();
     formData.append("pdf", file[0]);
 
-    // api.post("/pdf/upload", formData, {
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // }
-    // )
+    api.post("/pdf/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+    )
 
     setIsFileUploaded(true);
   };
