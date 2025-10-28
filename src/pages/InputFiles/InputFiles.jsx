@@ -5,7 +5,10 @@ import StepMap from '../../components/StepMap/StepMap'
 import Checklist from '../../components/Checklist/Checklist'
 
 function InputFiles() {
-    const [isFileUploaded, setIsFileUploaded] = useState(false)
+    const [isFileUploaded, setIsFileUploaded] = useState(false);
+    const [isPipelineFinished, setIsPipelineFinished] = useState(false);
+    const [wsMessages, setWsMessages] = useState([]);
+    const [currentStep, setCurrentStep] = useState(1);
 
     return (
         <div className={styles.container}>
@@ -14,15 +17,24 @@ function InputFiles() {
             </header>
 
             <main
-                className={`${styles.main} ${isFileUploaded ? styles.mainUploaded : ''}`}                
+                className={`${styles.main} ${isFileUploaded ? styles.mainUploaded : ''}`}
             >
 
                 <div className={styles.right}>
-                    <DragDrop setIsFileUploaded={setIsFileUploaded} isFileUploaded={isFileUploaded} />
+                    <DragDrop
+                        setIsFileUploaded={setIsFileUploaded}
+                        isFileUploaded={isFileUploaded} 
+                        setWsMessages={setWsMessages}
+                        wsMessages={wsMessages}
+                        />
                 </div>
 
                 <div className={styles.left}>
-                    {isFileUploaded && <Checklist />}
+                    {isFileUploaded &&
+                        <Checklist
+                            isPipelineFinished={isPipelineFinished}
+                            wsMessages={wsMessages}
+                        />}
                 </div>
 
             </main>

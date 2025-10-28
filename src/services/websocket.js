@@ -14,9 +14,13 @@ export const connectWebSocket = (onMessage, onOpen, onClose) => {
     };
 
     socket.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        console.log("WebSocket message received:", data);
-        if (onMessage) onMessage(data);
+        try {
+            const data = JSON.parse(event.data);
+            console.log("WebSocket message received:", data);
+            if (onMessage) onMessage(data);
+        } catch (e) {
+            console.error("Error parsing WebSocket message:", e, event.data)
+        }
     };
 
     socket.onclose = () => {
@@ -24,12 +28,27 @@ export const connectWebSocket = (onMessage, onOpen, onClose) => {
         if (onClose) onClose();
         socket = null;
     };
-    
+
     socket.onerror = (error) => {
         console.error("WebSocket error:", error);
     };
 
     return socket;
 }
+
+export const diconnectWebSocket = () => {
+    if (socket) {
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.close(1000, "Component unmount");
+            console.log("WebSocket connection initiated close.");
+        } else if (socket.readyState === WebSocket.CONNECTING) {
+            console.log("WebSocket was connecting, interrupting the attempt.")
+            socket = null
+        } else {
+            console.log("WebSocket is not connected...")
+            socket = null
+        }
+    }
+};
 
 export const getWebSocket = () => socket;

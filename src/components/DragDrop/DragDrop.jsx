@@ -7,17 +7,21 @@ import api from "../../services/axiosConfig";
 import Button from "../Button";
 import { connectWebSocket } from "../../services/websocket";
 
-const DragDropFiles = ({isFileUploaded, setIsFileUploaded}) => {
+const DragDropFiles = ({isFileUploaded, setIsFileUploaded, setWsMessages, wsMessages}) => {
   const [file, setFile] = useState(null);
   // const [isFileUploaded, setIsFileUploaded] = useState(false);
   const inputRef = useRef();
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => { 
-    const ws = connectWebSocket((msg) => {
-      setMessages((prev) => [...prev, msg]);
-    });
-  })
+  // useEffect(() => { 
+  //   const ws = connectWebSocket((msg) => {
+  //     setMessages((prev) => [...prev, msg]);
+  //   });
+  // })
+
+  useEffect(() => {
+    console.log(wsMessages)
+  }, [wsMessages])
   
 
   const handleDragOver = (event) => {
@@ -29,9 +33,31 @@ const DragDropFiles = ({isFileUploaded, setIsFileUploaded}) => {
     setFile(event.dataTransfer.files);
   };
 
-  const handleUpload = ({ status }) => {
+  const handleWsMessage = (newMsg) => {
+    setWsMessages((prevMessages) => {
+      const existingIndex = prevMessages.findIndex(
+        (msg) => msg.process == newMsg.process
+      );
+
+      if (existingIndex !== -1) {
+        const updatedMessages = [...prevMessages];
+        updatedMessages[existingIndex] = newMsg;
+        return updatedMessages;
+      };
+
+      return[...prevMessages, newMsg]
+    })
+  }
+
+  const handleUpload = () => {
     const formData = new FormData();
     formData.append("pdf", file[0]);
+
+    connectWebSocket(
+      handleWsMessage,
+      null,
+      null
+    )
 
     api.post("/pdf/upload", formData, {
       headers: {
