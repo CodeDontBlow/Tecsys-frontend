@@ -19,7 +19,7 @@ const Navbar = () => {
                             <a className="nav-link" aria-current="page" href="#">Extrair Documento</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Banco de Dados</a>
+                            <a className="nav-link" href="database">Banco de Dados</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="#">Histórico de Extrações</a>
