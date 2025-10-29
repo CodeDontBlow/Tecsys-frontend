@@ -1,13 +1,17 @@
 import styles from './Checklist.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faCheckCircle, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons'
 import Button from '../Button/Button.jsx';
 import { useEffect, useState } from 'react';
+import { disconnectWebSocket } from '../../services/websocket.js';
+import { useNavigate } from 'react-router-dom';
 
 const renderIcon = (status) => {
     switch (status) {
         case "completed":
             return <FontAwesomeIcon icon={faCheckCircle} className={styles.completed} />;
+        case "in-progress":
+            return <FontAwesomeIcon icon={faArrowRotateRight} className={styles.icon_load}/>;
         default:
             return <FontAwesomeIcon icon={faClock} />;
     }
@@ -31,6 +35,7 @@ const getStepStatus = (stepIndex, currentStep) => {
 const Checklist = ({ wsMessages }) => {
     const [calculatedCurrentStep, setCalculatedCurrentStep] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
+      const navigate = useNavigate();
 
     useEffect(() => {
         let latestCompletedStepIndex = -1;
@@ -48,6 +53,7 @@ const Checklist = ({ wsMessages }) => {
         const overallMessage = wsMessages.find(msg => msg.process === 'pipeline_overall');
         if (overallMessage && overallMessage.status === 'finished') {
             pipelineOverallFinished = true;
+            disconnectWebSocket();
         }
 
         setCalculatedCurrentStep(latestCompletedStepIndex + 1);
@@ -68,7 +74,7 @@ const Checklist = ({ wsMessages }) => {
                     );
                 })}
             </ul>
-            <Button variant="filled" color="royal" fullWidth={true} disabled={!isFinished}>Visualizar Resultados</Button>
+            <Button variant="filled" color="royal" fullWidth={true} disabled={!isFinished} onClick={() => { navigate("/table-editing") }}>Visualizar Resultados</Button>
         </div>
     )
 }

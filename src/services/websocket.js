@@ -36,13 +36,13 @@ export const connectWebSocket = (onMessage, onOpen, onClose) => {
     return socket;
 }
 
-export const diconnectWebSocket = () => {
+export const disconnectWebSocket = () => {
     if (socket) {
         if (socket.readyState === WebSocket.OPEN) {
             socket.close(1000, "Component unmount");
-            console.log("WebSocket connection initiated close.");
+            console.log("WebSocket connection closing...");
         } else if (socket.readyState === WebSocket.CONNECTING) {
-            console.log("WebSocket was connecting, interrupting the attempt.")
+            console.log("WebSocket is connecting, interrupting the attempt.")
             socket = null
         } else {
             console.log("WebSocket is not connected...")

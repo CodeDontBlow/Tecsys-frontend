@@ -7,23 +7,10 @@ import api from "../../services/axiosConfig";
 import Button from "../Button";
 import { connectWebSocket } from "../../services/websocket";
 
-const DragDropFiles = ({isFileUploaded, setIsFileUploaded, setWsMessages, wsMessages}) => {
+const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMessages, setCurrentStep }) => {
   const [file, setFile] = useState(null);
-  // const [isFileUploaded, setIsFileUploaded] = useState(false);
   const inputRef = useRef();
-  const [messages, setMessages] = useState([]);
-
-  // useEffect(() => { 
-  //   const ws = connectWebSocket((msg) => {
-  //     setMessages((prev) => [...prev, msg]);
-  //   });
-  // })
-
-  useEffect(() => {
-    console.log(wsMessages)
-  }, [wsMessages])
-  
-
+  // const navigate = useNavigate();
   const handleDragOver = (event) => {
     event.preventDefault();
   };
@@ -45,7 +32,7 @@ const DragDropFiles = ({isFileUploaded, setIsFileUploaded, setWsMessages, wsMess
         return updatedMessages;
       };
 
-      return[...prevMessages, newMsg]
+      return [...prevMessages, newMsg]
     })
   }
 
@@ -67,12 +54,13 @@ const DragDropFiles = ({isFileUploaded, setIsFileUploaded, setWsMessages, wsMess
     )
 
     setIsFileUploaded(true);
+    setCurrentStep(2)
   };
 
 
   if (isFileUploaded) {
     return (
-    <div className={styles.mainContainer}>
+      <div className={styles.mainContainer}>
         <div className={styles.dropzone}>
           <div className={styles.uploadClock}>
             <i class="bi bi-clock-fill"></i>
@@ -93,7 +81,7 @@ const DragDropFiles = ({isFileUploaded, setIsFileUploaded, setWsMessages, wsMess
           <Button
             variant="outlined"
             color="gray"
-            fullWidth = "true"
+            fullWidth="true"
             onClick={() => setFile(null)}
           >
             Cancelar
@@ -126,7 +114,7 @@ const DragDropFiles = ({isFileUploaded, setIsFileUploaded, setWsMessages, wsMess
           <Button
             variant="outlined"
             color="gray"
-            fullWidth = "true"
+            fullWidth="true"
             onClick={() => setFile(null)}
           >
             Cancelar
@@ -135,7 +123,7 @@ const DragDropFiles = ({isFileUploaded, setIsFileUploaded, setWsMessages, wsMess
           <Button
             variant="filled"
             color="royal"
-            fullWidth = "true"
+            fullWidth="true"
             onClick={handleUpload}
           >
             Enviar
@@ -152,6 +140,7 @@ const DragDropFiles = ({isFileUploaded, setIsFileUploaded, setWsMessages, wsMess
       onDrop={handleDrop}
     >
       <button onClick={() => inputRef.current.click()} className={styles.uploadButton}>
+      {/* <button onClick={() => { navigate("/input-files") }} className={styles.uploadButton}> */}
         <i className='bi bi-upload'></i>
       </button>
 

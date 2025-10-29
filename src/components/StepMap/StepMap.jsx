@@ -18,7 +18,7 @@ const steps = [
 ]
 
 
-const StepMap = ({currentStep = 1}) => {
+const StepMap = ({currentStep}) => {
     
     const getStepStatus = (stepNumber) => {
       if (currentStep > steps.length) {

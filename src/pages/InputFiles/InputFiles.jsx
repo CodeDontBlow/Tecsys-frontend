@@ -6,14 +6,13 @@ import Checklist from '../../components/Checklist/Checklist'
 
 function InputFiles() {
     const [isFileUploaded, setIsFileUploaded] = useState(false);
-    const [isPipelineFinished, setIsPipelineFinished] = useState(false);
     const [wsMessages, setWsMessages] = useState([]);
     const [currentStep, setCurrentStep] = useState(1);
 
     return (
         <div className={styles.container}>
             <header className={styles.header}>
-                <StepMap />
+                <StepMap currentStep={currentStep}/>
             </header>
 
             <main
@@ -26,13 +25,13 @@ function InputFiles() {
                         isFileUploaded={isFileUploaded} 
                         setWsMessages={setWsMessages}
                         wsMessages={wsMessages}
+                        setCurrentStep={setCurrentStep}
                         />
                 </div>
 
                 <div className={styles.left}>
                     {isFileUploaded &&
                         <Checklist
-                            isPipelineFinished={isPipelineFinished}
                             wsMessages={wsMessages}
                         />}
                 </div>
