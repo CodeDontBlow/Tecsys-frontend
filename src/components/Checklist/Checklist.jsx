@@ -35,7 +35,7 @@ const getStepStatus = (stepIndex, currentStep) => {
 const Checklist = ({ wsMessages }) => {
     const [calculatedCurrentStep, setCalculatedCurrentStep] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         let latestCompletedStepIndex = -1;

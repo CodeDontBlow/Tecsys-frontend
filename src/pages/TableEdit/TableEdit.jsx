@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import api from '../../services/axiosConfig';
 
 import styles from './TableEdit.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -86,6 +87,25 @@ function TableEdit() {
         const [formFabEndereco, setFormFabEndereco] = useState('5160 RIVERGRADE RD, CA 91706');
         const [formFabDesc, setFormFabDesc] = useState('ESTADOS UNIDOS');
 
+    const [orderData, setOrderData] = useState()
+
+    useEffect(() => {
+        api.get('/imports/all-results')
+            .then(res => setOrderData(res.data))
+            .catch(err => console.err("Erro ao chamar dados", err))
+    }, [])
+        
+    function setInfoToModal(i){
+        let d = orderData[i]
+
+        setFormPN(d.product_part_number)
+        setFormDescERP(d.supplier_product.erp_description)
+        setFormDescDI(d.supplier_product.product.final_description)
+        setFormFabNome(d.manufacturer.name)
+    }
+
+    console.log(orderData)
+    
 
     return (
         <div className='container-lg'>
@@ -114,51 +134,42 @@ function TableEdit() {
                             <th scope="col">Descrição País</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        <tr data-bs-toggle="modal" data-bs-target="#formModal">
-                            <th scope="row">1</th>
-                            {/* <td>20020067</td> */}
-                            <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
-                            <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
-                            <td className={styles.ncm}>
-                                <Tooltip content={
-                                    <div>
-                                        <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
-                                        <br/>
-                                        <br/>
-                                        <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
-                                    </div>
-                                } position='right'>
-                                    8532.24.10 
-                                    <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
-                                </Tooltip>
-                            </td>
-                            <td>MERITEK ELECTRONICS CORPORATION</td>
-                            <td>5160 RIVERGRADE RD, CA 91706</td>
-                            <td>ESTADOS UNIDOS</td>
-                        </tr>
-                        <tr data-bs-toggle="modal" data-bs-target="#formModal">
-                            <th scope="row">2</th>
-                            {/* <td>20020067</td> */}
-                            <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
-                            <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
-                            <td className={styles.ncm}>
-                                <Tooltip content={
-                                    <div>
-                                        <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
-                                        <br/>
-                                        <br/>
-                                        <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
-                                    </div>
-                                } position='right'>
-                                    8532.24.10 
-                                    <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
-                                </Tooltip>
-                            </td>
-                            <td>MERITEK ELECTRONICS CORPORATION</td>
-                            <td>5160 RIVERGRADE RD, CA 91706</td>
-                            <td>ESTADOS UNIDOS</td>
-                        </tr>
+
+                        {orderData && (
+                            orderData.map((d, index) => (
+                                <tr data-bs-toggle="modal" data-bs-target="#formModal" key={index + 1} onClick={() => setInfoToModal(index)}>
+                                    <th scope="row"> {index + 1} </th>
+                                    {/* <td>20020067</td> */}
+                                    <td>
+                                        {d.supplier_product.erp_description}
+                                    </td>
+                                    <td> {`
+                                        ${ d.supplier_product.product.final_description }.
+                                        P/N: ${ d.product_part_number }.
+                                    `} </td>
+                                    <td className={styles.ncm}>
+                                        <Tooltip content={
+                                            <div>
+                                                <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
+                                                <br/>
+                                                <br/>
+                                                <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
+                                            </div>
+                                        } position='right'>
+                                            8532.24.10 
+                                            <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
+                                        </Tooltip>
+                                    </td>
+                                    <td> {d.manufacturer.name} </td>
+                                    <td>5160 RIVERGRADE RD, CA 91706</td>
+                                    <td>ESTADOS UNIDOS</td>
+                                </tr>
+                            ))
+                        )}
+
+                        
                     </tbody>
                 </table>
 
