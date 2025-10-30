@@ -1,9 +1,12 @@
 import styles from './Homepage.module.css'
 import { faChevronRight , faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons'
 import Button from '../../components/Button'
+import { useNavigate } from 'react-router-dom'
 
 function Homepage () {
-    
+
+    const navigate = useNavigate()
+
     return (
         <div className={`container-sm ${styles.container}`}>
            
@@ -28,6 +31,9 @@ function Homepage () {
                     icon={faChevronRight}
                     iconPosition="right"
                     className={styles.startProcessBtn}
+                    onClick={() => {
+                        navigate('/input-files')
+                    }}
                 >
                     Começar a Extrair
                 </Button>

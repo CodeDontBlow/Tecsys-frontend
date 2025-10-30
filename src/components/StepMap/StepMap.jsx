@@ -18,16 +18,15 @@ const steps = [
 ]
 
 
-const StepMap = ({currentStep = 1}) => {
+const StepMap = ({currentStep}) => {
     
-    // Função para determinar o status de cada step
     const getStepStatus = (stepNumber) => {
       if (currentStep > steps.length) {
         return 'completed'
       }
-        if (stepNumber < currentStep) return 'completed'  // Steps anteriores = feitos
-        if (stepNumber === currentStep) return 'in-progress'  // Step atual = fazendo
-        return 'pending'  // Steps futuros = a fazer
+        if (stepNumber < currentStep) return 'completed' 
+        if (stepNumber === currentStep) return 'in-progress'  
+        return 'pending' 
     }
 
     const renderStepContent = (stepNumber, status) => {
@@ -43,7 +42,7 @@ const StepMap = ({currentStep = 1}) => {
 
     const getProgressWidth = () => {
         if (currentStep <= 1) return '0%'
-        if (currentStep > steps.length) return '100%'  // Processo totalmente completo
+        if (currentStep > steps.length) return '100%'
         return `${((currentStep - 1) / (steps.length - 1)) * 100}%`
     }
 

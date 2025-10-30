@@ -1,18 +1,17 @@
 import styles from './Checklist.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faClock, faCheckCircle, faArrowRotateRight } from '@fortawesome/free-solid-svg-icons'
 import Button from '../Button/Button.jsx';
-
-const defaultProcessData = {
-    currentItem: 1,        
-    totalItems: 10,
-    currentStep: 2,
-}
+import { useEffect, useState } from 'react';
+import { disconnectWebSocket } from '../../services/websocket.js';
+import { useNavigate } from 'react-router-dom';
 
 const renderIcon = (status) => {
     switch (status) {
         case "completed":
             return <FontAwesomeIcon icon={faCheckCircle} className={styles.completed} />;
+        case "in-progress":
+            return <FontAwesomeIcon icon={faArrowRotateRight} className={styles.icon_load}/>;
         default:
             return <FontAwesomeIcon icon={faClock} />;
     }
@@ -20,37 +19,53 @@ const renderIcon = (status) => {
 
 //Definição dos passos do checklist
 const steps = [
-    { id: 0, name: "Coletando Informações", status: "pending" },
-    { id: 1, name: "Pesquisando PN", status: "pending" },
-    { id: 2, name: "Pesquisando Fabricante", status: "pending" },
-    { id: 3, name: "Estimando NCM", status: "pending" },
-    { id: 4, name: "Gerando Descrição", status: "pending" },
+    { id: 0, name: "Coletando Informações", process: "pdf_extraction", status: "pending" },
+    { id: 1, name: "Pesquisando PN", process: "web_scrapping", status: "pending" },
+    { id: 2, name: "Pesquisando Fabricante", process: "web_scrapping", status: "pending" },
+    { id: 3, name: "Estimando NCM", process: "get_ncms", status: "pending" },
+    { id: 4, name: "Gerando Descrição", process: "description_generate", status: "pending" },
 ]
 
-//Determina qual o status do passo atual
 const getStepStatus = (stepIndex, currentStep) => {
-    if (stepIndex < currentStep) return "completed";    
-    if (stepIndex === currentStep) return "in-progress"; 
-    return "pending";                                    
+    if (stepIndex < currentStep) return "completed";
+    if (stepIndex === currentStep) return "in-progress";
+    return "pending";
 }
 
-//Formatar o contador para exibição com dois dígitos
-const formatCount = (currentItem, totalItems) => {
-    return `${currentItem.toString().padStart(2, '0')}/${totalItems}`;
-}
+const Checklist = ({ wsMessages }) => {
+    const [calculatedCurrentStep, setCalculatedCurrentStep] = useState(0);
+    const [isFinished, setIsFinished] = useState(false);
+      const navigate = useNavigate();
 
-const Checklist = ({processData = defaultProcessData}) => {
-    const { currentItem, totalItems, currentStep } = processData;
+    useEffect(() => {
+        let latestCompletedStepIndex = -1;
+        let pipelineOverallFinished = false;
+
+        steps.forEach((step, index) => {
+
+            const wsMessage = wsMessages.find(msg => msg.process === step.process);
+
+            if (wsMessage && wsMessage.status === 'success') {
+                latestCompletedStepIndex = index;
+            }
+        });
+
+        const overallMessage = wsMessages.find(msg => msg.process === 'pipeline_overall');
+        if (overallMessage && overallMessage.status === 'finished') {
+            pipelineOverallFinished = true;
+            disconnectWebSocket();
+        }
+
+        setCalculatedCurrentStep(latestCompletedStepIndex + 1);
+        setIsFinished(pipelineOverallFinished);
+    }, [wsMessages]); 
 
     return (
         <div className={styles['checklist-container']}>
             <h1>Produtos Extraídos</h1>
-            <p className={styles['checklist-count']}>
-                {formatCount(currentItem, totalItems)}
-            </p>
             <ul>
                 {steps.map((step, index) => {
-                    const status = getStepStatus(index, currentStep);
+                    const status = getStepStatus(index, calculatedCurrentStep);
                     return (
                         <li key={step.id}>
                             <span className={styles['checklist-icon']}>{renderIcon(status)}</span>
@@ -59,7 +74,7 @@ const Checklist = ({processData = defaultProcessData}) => {
                     );
                 })}
             </ul>
-            <Button variant="filled" color="royal" fullWidth={true}>Visualizar Resultados</Button>
+            <Button variant="filled" color="royal" fullWidth={true} disabled={!isFinished} onClick={() => { navigate("/table-editing") }}>Visualizar Resultados</Button>
         </div>
     )
 }
