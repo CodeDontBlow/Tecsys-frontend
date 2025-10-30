@@ -79,9 +79,9 @@ const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMes
 
         <div className={styles.actions}>
           <Button
-            variant="outlined"
+            variant="disabled"
             color="gray"
-            fullWidth="true"
+            full="true"
             onClick={() => setFile(null)}
           >
             Cancelar

@@ -16,7 +16,7 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link" aria-current="page" href="#">Extrair Documento</a>
+                            <a className="nav-link" aria-current="page" href="input-files">Extrair Documento</a>
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="database">Banco de Dados</a>

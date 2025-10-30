@@ -7,7 +7,7 @@ const Footer = () => {
         <footer id={styles.footer}>
             <div className="container-xxl">
                 <div className={styles.containerTecsys}>
-                    <a href="">TecSys Website</a>
+                    <a href="https://www.tecsysbrasil.com.br/" target='_blank'><img src='src/assets/logos/Tecsys_LogoW.svg' width="25rem"></img>TecSys Website</a>
                 </div>
                 
                 <div className={styles.containerCDB}>
