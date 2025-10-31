@@ -88,6 +88,7 @@ function TableEdit() {
         const [formFabDesc, setFormFabDesc] = useState('ESTADOS UNIDOS');
 
     const [orderData, setOrderData] = useState()
+    const [orderNcms, setOrderNcms] = useState() //NCMs virão aqui
 
     useEffect(() => {
         api.get('/imports/all-results')
@@ -99,9 +100,38 @@ function TableEdit() {
         let d = orderData[i]
 
         setFormPN(d.product_part_number)
+        setFormCodERP(d.supplier_product.product.erp_code)
         setFormDescERP(d.supplier_product.erp_description)
         setFormDescDI(d.supplier_product.product.final_description)
         setFormFabNome(d.manufacturer.name)
+
+        let ncmPath = orderNcms.ncms?.ncms || []
+        let parentNCMs = [];
+        let childNCMs = [];
+
+        ncmPath.forEach(item => {
+            item.ncms.forEach(ncm => {
+                // NCM 6 dígitos
+                parentNCMs.push({
+                    valor: ncm.ncm_6,
+                    descricao: ncm.description
+                });
+
+                // NCMs 8 dígitos
+                const filhos = ncm.ncm_8.map(f => ({
+                    valor: f.ncm_code,
+                    descricao: f.description
+                }));
+
+                childNCMs.push(filhos);
+            });
+        });
+
+        setParentNCMArray(parentNCMs);
+        setFormNCMArray(childNCMs);
+
+        setFormParentNCM(parentNCMs[0]);
+        setFormNCM(childNCMs[0]);
     }
 
     console.log(orderData)
@@ -125,7 +155,7 @@ function TableEdit() {
                     <thead>
                         <tr>
                             <th scope="col">SEQ</th>
-                            {/* <th scope="col">Cod ERP</th> */}
+                            <th scope="col">Cod ERP</th>
                             <th scope="col">Descrição ERP</th>
                             <th scope="col">Descrição para DI</th>
                             <th scope="col">NCM</th>
@@ -141,7 +171,9 @@ function TableEdit() {
                             orderData.map((d, index) => (
                                 <tr data-bs-toggle="modal" data-bs-target="#formModal" key={index + 1} onClick={() => setInfoToModal(index)}>
                                     <th scope="row"> {index + 1} </th>
-                                    {/* <td>20020067</td> */}
+                                    <td>
+                                        {d.supplier_product.product.erp_code}
+                                    </td>
                                     <td>
                                         {d.supplier_product.erp_description}
                                     </td>
@@ -152,13 +184,25 @@ function TableEdit() {
                                     <td className={styles.ncm}>
                                         <Tooltip content={
                                             <div>
-                                                <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
+                                                <strong>
+                                                    { orderNcms.ncms.ncms[index].ncm_6 }
+                                                </strong> 
+                                                <span> 
+                                                    { orderNcms.ncms.ncms[index].description }
+                                                </span>
+
                                                 <br/>
                                                 <br/>
-                                                <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
+
+                                                <strong>
+                                                    { orderNcms.ncms.ncms[index].ncm_8[0].ncm_code }
+                                                </strong> 
+                                                <span> 
+                                                    { orderNcms.ncms.ncms[index].ncm_8[0].description }
+                                                </span>
                                             </div>
                                         } position='right'>
-                                            8532.24.10 
+                                            { orderNcms.ncms.ncms[index].ncm_8[0].ncm_code }
                                             <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
                                         </Tooltip>
                                     </td>
