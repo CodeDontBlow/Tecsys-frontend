@@ -1,0 +1,40 @@
+footer#footer{
+    background-color: var(--navy-500);
+    padding: .5em;
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    
+}
+    footer#footer > div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    div.containerTecsys{
+        color: var(--white-300);
+        font: var(--footer-large);
+    }
+        div.containerTecsys a{
+            color: currentColor;
+            text-decoration: none;
+        }
+
+    div.containerCDB{
+        color: var(--white-300);
+        font: var(--label-regular);
+    }
+    
+    footer#footer a{
+        color: currentColor;
+        font: var(--label-medium);
+        text-decoration: none;
+    }
+    
+    footer#footer a:hover{
+        color: var(--base-white);
+        text-decoration-line: underline;
+    }
