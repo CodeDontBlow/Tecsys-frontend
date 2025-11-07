@@ -22,7 +22,7 @@ const Navbar = () => {
                             <a className="nav-link" href="database">Banco de Dados</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Histórico de Extrações</a>
+                            <a className="nav-link" href="extraction-history">Histórico de Extrações</a>
                         </li>
                     </ul>
 

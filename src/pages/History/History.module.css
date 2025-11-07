@@ -1,0 +1,31 @@
+.title{
+    font: var(--title-large);
+    color: var(--black-700);
+}
+
+.returnBtn{
+    background-color: transparent;
+    
+    color: var(--black-700);
+    font: var(--text-regular);
+    text-decoration: underline;
+    
+    border: none;
+    outline: none;
+
+    &:hover{
+        scale: 1.03;
+    }
+
+    &:active{
+        color: var(--base-royal);
+    }
+}
+
+table.table thead tr{
+    & th{
+        margin-bottom: -1px !important;
+        background-color: royalblue !important;
+        color: white;
+    }
+}
