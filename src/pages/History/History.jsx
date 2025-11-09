@@ -7,7 +7,7 @@ function History () {
 
     return (
         <>
-            <div className="container-md">
+            <div className="container-lg">
                 <header className='d-flex justify-content-between'>
                     <h1 className={styles.title}>
                         Histórico de Extrações
@@ -19,16 +19,17 @@ function History () {
                 </header>
 
                 <p className={styles.introText}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati eos iusto commodi natus unde fuga ea dolore sunt id dolor.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione iusto dignissimos ea, nostrum velit, modi soluta eum consectetur omnis maiores alias magni quo corrupti ex enim minima excepturi cupiditate nihil totam. Consequuntur, ipsum incidunt?
                 </p>
             </div>
 
-            <div className="conatiner-lg">                
-                
+            <section className={`container-lg ${styles.ordersContainer}`}>
+                {/* Tabela (representa 1 Order) */}
                 <table className={`table rounded-3 m-0 ${styles.table}`}>
                     <thead>
-                        <tr>
-                            <th colSpan={5}>
+                        {/* Informações do Order */}
+                        <tr className={styles.orderRow}>
+                            <th colSpan={6}>
                                 Extração Número XX
                             </th>
 
@@ -36,9 +37,10 @@ function History () {
                                 Extraído em XX/XX/XXXX
                             </th>
                         </tr>
+                        {/* Informações dos Imports */}
                         <tr>
                             <th scope="col">SEQ</th>
-                            {/* <th scope="col">Cod ERP</th> */}
+                            <th scope="col">Cod ERP</th>
                             <th scope="col">Descrição ERP</th>
                             <th scope="col">Descrição para DI</th>
                             <th scope="col">NCM</th>
@@ -48,9 +50,10 @@ function History () {
                         </tr>
                     </thead>
                     <tbody>
+                        {/* Linha (representa 1 Import) */}
                         <tr data-bs-toggle="modal" data-bs-target="#formModal">
                             <th scope="row">1</th>
-                            {/* <td>20020067</td> */}
+                            <td>20020067</td>
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
                             <td className={styles.ncm}>
@@ -62,7 +65,7 @@ function History () {
                         </tr>
                         <tr data-bs-toggle="modal" data-bs-target="#formModal">
                             <th scope="row">2</th>
-                            {/* <td>20020067</td> */}
+                            <td>20020067</td>
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
                             <td className={styles.ncm}>
@@ -74,7 +77,8 @@ function History () {
                         </tr>
                     </tbody>
                 </table>
-            </div>
+
+            </section>
         </>
     )
 }

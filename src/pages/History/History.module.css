@@ -22,10 +22,27 @@
     }
 }
 
-table.table thead tr{
-    & th{
-        margin-bottom: -1px !important;
-        background-color: royalblue !important;
-        color: white;
-    }
+p.introText{
+    font: var(--text-regular);
+    margin-bottom: 2rem;
 }
+
+section.ordersContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+
+table.table thead tr th{
+    background-color: var(--base-royal);
+    color: white;
+    border: transparent;
+}
+    table.table thead tr:not(.orderRow) th{
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+    }
+    table.table thead tr.orderRow > th{
+        font: var(--footer-large);
+    }
