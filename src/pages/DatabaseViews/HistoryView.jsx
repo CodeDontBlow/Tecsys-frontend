@@ -1,8 +1,7 @@
-import styles from './History.module.css'
+import styles from './DatabaseViews.module.css'
 import { useNavigate } from 'react-router-dom'
-import Button from '../../components/Button/Button'
 
-function History () {
+function HistoryView () {
     const navigate = useNavigate()
 
     return (
@@ -83,4 +82,4 @@ function History () {
     )
 }
 
-export default History
+export default HistoryView
