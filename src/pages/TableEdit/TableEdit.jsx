@@ -163,8 +163,8 @@ function TableEdit() {
                 </table>
 
             <section className={styles.buttonsContainer}>
-                <Button children='Cancelar' variant='disabled' color='gray' fullWidth={true}/>
-                <Button children='Finalizar' variant='disabled' fullWidth={true}/>
+                <Button children='Cancelar' variant='outlined' color='gray' fullWidth={true}/>
+                <Button children='Finalizar' fullWidth={true}  data-bs-toggle="modal" data-bs-target="#excelModal"/>
             </section>
 
 
@@ -215,6 +215,42 @@ function TableEdit() {
                     </div>
                 </div>
             </div>
+
+
+            {/* MODAL EXCEL */}
+            <div className={`modal modal-sm fade ${styles.excelModal}`} id="excelModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+
+                        <div className={`modal-body ${styles.modalBody}`}>
+                            <header className={styles.modalHeader}>
+                                <i class="bi bi-file-earmark-check-fill"></i>
+                                <h3 className={styles.modalTitle}>
+                                    Extração Finalizada!
+                                </h3>
+                            </header>
+
+                            {/* CORPO */}
+                            <p className={styles.modalExcelMain}>
+                                A extração do seu pedido de compras foi finalizado com sucesso!
+                            </p>
+                            <p className={styles.modalExcelText}>
+                                Clique abaixo para baixar o resultado final como Excel e finalizar essa extração.
+                            </p>
+
+
+                            <section className={styles.formButtons}>
+                                <Button children='Voltar' variant='outlined' color='gray' size='small'/>
+                                <Button children='Baixar Excel' size='small' color='green' fullWidth={true}/>
+                            </section>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+            
+
         </div>
     );
 }

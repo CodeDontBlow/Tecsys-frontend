@@ -84,7 +84,7 @@ div.formModal div.modalBody{
     border-radius: 10px;
 }
 
-    header.modalHeader{
+    div.formModal header.modalHeader{
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -117,4 +117,36 @@ form{
         margin-top: 2rem;
         display: flex;
         gap: .8rem;
+    }
+
+/* MODAL EXCEL */
+div.excelModal div.modalBody{
+    padding: 1.5rem;
+    padding-bottom: 1.7rem;
+    border-radius: 10px;
+}
+
+    div.excelModal header.modalHeader{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        color: var(--base-green);
+    }
+        header.modalHeader i{
+            color: currentColor;
+            margin-right: .5rem;
+            font-size: 3.5rem;
+        }
+        header.modalHeader .modalTitle{
+            color: currentColor;
+        }
+
+    div.excelModal div.modalBody p.modalExcelMain{
+        font: var(--text-regular);
+        margin-bottom: .5rem;
+        line-height: 20px;
+    }
+    div.excelModal div.modalBody p.modalExcelText{
+        font: var(--label-medium);
     }
