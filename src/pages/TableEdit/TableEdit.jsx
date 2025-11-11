@@ -101,7 +101,7 @@ function TableEdit() {
                 </p>
             </section>
 
-                <table className={`table rounded-3 m-0 ${styles.table}`}>
+                <table className={`table rounded-3 m-0`}>
                     <thead>
                         <tr>
                             <th scope="col">SEQ</th>
@@ -120,7 +120,7 @@ function TableEdit() {
                             {/* <td>20020067</td> */}
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
-                            <td className={styles.ncm}>
+                            <td className="ncm">
                                 <Tooltip content={
                                     <div>
                                         <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
@@ -130,7 +130,7 @@ function TableEdit() {
                                     </div>
                                 } position='right'>
                                     8532.24.10 
-                                    <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
+                                    <FontAwesomeIcon icon={faCircleInfo} className="icon"/>
                                 </Tooltip>
                             </td>
                             <td>MERITEK ELECTRONICS CORPORATION</td>
@@ -142,7 +142,7 @@ function TableEdit() {
                             {/* <td>20020067</td> */}
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
-                            <td className={styles.ncm}>
+                            <td className="ncm">
                                 <Tooltip content={
                                     <div>
                                         <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
@@ -152,7 +152,7 @@ function TableEdit() {
                                     </div>
                                 } position='right'>
                                     8532.24.10 
-                                    <FontAwesomeIcon icon={faCircleInfo} className={styles.icon}/>
+                                    <FontAwesomeIcon icon={faCircleInfo} className="icon"/>
                                 </Tooltip>
                             </td>
                             <td>MERITEK ELECTRONICS CORPORATION</td>

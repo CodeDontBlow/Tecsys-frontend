@@ -1,0 +1,48 @@
+.title{
+    font: var(--title-large);
+    color: var(--black-700);
+}
+
+.returnBtn{
+    background-color: transparent;
+    
+    color: var(--black-700);
+    font: var(--text-regular);
+    text-decoration: underline;
+    
+    border: none;
+    outline: none;
+
+    &:hover{
+        scale: 1.03;
+    }
+
+    &:active{
+        color: var(--base-royal);
+    }
+}
+
+p.introText{
+    font: var(--text-regular);
+    margin-bottom: 2rem;
+}
+
+section.ordersContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+}
+
+
+table.table thead tr th{
+    background-color: var(--base-royal);
+    color: white;
+    border: transparent;
+}
+    table.table thead tr:not(.orderRow) th{
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+    }
+    table.table thead tr.orderRow > th{
+        font: var(--footer-large);
+    }

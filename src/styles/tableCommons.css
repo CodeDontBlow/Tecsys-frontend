@@ -1,0 +1,64 @@
+/* Estilos reaproveitados da tabela */
+
+table.table{
+    
+}
+
+table.table {
+}
+
+    /* Adicionando borda  */
+        table.table > thead tr:first-child th:first-child {
+            border-top-left-radius: 5px;
+        }
+        table.table > thead tr:first-child th:last-child {
+            border-top-right-radius: 5px; 
+        }
+    table.table > tbody tr:last-child {
+        border: none;
+        border-color: transparent;
+    }
+        table.table > tbody tr:last-child th:first-child {
+            border-bottom-left-radius: 5px;
+        }
+        table.table > tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 5px; 
+        }
+
+        table.table > thead *{
+            background-color: var(--white-300);
+
+            color: var(--black-500);
+            font: var(--footer-medium);
+            font-weight: 600;
+            vertical-align: middle;
+        }
+
+
+    table.table > tbody tr,
+    table.table > tbody tr th,
+    table.table > tbody tr td{
+        background-color: var(--base-white);
+        color: var(--black-300);
+        font: var(--footer-regular);
+    }
+        table.table > tbody tr:nth-child(even) th,
+        table.table > tbody tr:nth-child(even) td{
+            box-shadow: inset 0px 0px 0px 100px rgba(0, 0, 0, 0.015);
+        }
+        table.table > tbody tr:hover th,
+        table.table > tbody tr:hover td{
+            background-color: var(--white-300);
+            box-shadow: none;
+
+            cursor: pointer;
+        }
+
+      
+    /* Estilos de NCM da tabela de TableEdit.jsx */
+    table.table > tbody td.ncm{
+        white-space: nowrap;
+    }
+        table.table > tbody td.ncm .icon{
+            margin-left: .15rem;
+        }
