@@ -1,13 +1,20 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import styles from './DatabaseViews.module.css'
+
 import Input from '../../components/Input/Input/Input'
 import Button from '../../components/Button/Button'
 
-import styles from './DatabaseViews.module.css'
+import api from '../../services/axiosConfig'
 
 function ProductView () {
     const navigate = useNavigate()
 
+    // Todos os Produtos
+    const [products, setProducts] = useState([])
+
+    // Campos do formulário para edição
     const [formVisibility, setFormVisibility] = useState(false)
     const [formId, setFormId] = useState()
     const [formNcm, setFormNcm] = useState('8532.24.10')
@@ -22,6 +29,12 @@ function ProductView () {
 
         setFormVisibility(true)
     }
+
+    useEffect(() => {
+        api.get('api/v1/product')
+            .then(res => setProducts(res.data))
+            .cathc(err => console.err("Erro ao chamar dados", err))
+    }, [])
 
     return (
         <>
@@ -51,17 +64,15 @@ function ProductView () {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* Linha (representa 1 Produto) */}
-                        <tr onClick={() => showForm()}>
-                            <th scope="row">1</th>
-                            <td>8532.24.10</td>
-                            <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V</td>
-                        </tr>
-                        <tr onClick={() => showForm()}>
-                            <th scope="row">2</th>
-                            <td>8532.24.10</td>
-                            <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V</td>
-                        </tr>
+                        {/* Linhas (representam 1 Produto) */}
+                        {products.map((p, index) => (
+                            <tr onClick={() => showForm(p)} key={index}>
+                                <th scope="row">1</th>
+                                <td>8532.24.10</td>
+                                <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V</td>
+                            </tr>
+
+                        ))}
                     </tbody>
                 </table>
 
