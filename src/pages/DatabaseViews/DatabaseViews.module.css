@@ -39,10 +39,63 @@ table.table thead tr th{
     color: white;
     border: transparent;
 }
-    table.table thead tr:not(.orderRow) th{
+    table.table thead tr.orderRow + tr th{
         padding-top: 0rem;
-        padding-bottom: 0rem;
+        padding-bottom: .2rem;
     }
     table.table thead tr.orderRow > th{
         font: var(--footer-large);
     }
+
+/* MODAL DE CONFIRMAÇÃO DE EDIÇÃO */
+div.confirmModal header.header,
+div.confirmModal header.header div.headerText{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.confirmModal header.header div.headerText{
+    margin-bottom: .5rem;
+
+    color: var(--base-green);
+
+    & i.icon{
+        margin-right: .5rem;
+
+        color: currentColor;
+        font-size: 1.5rem;
+    }
+
+    & .title{
+        margin: 0;
+
+        color: currentColor;
+        font: var(--title-medium);
+        vertical-align: middle;
+    }
+}
+
+div.confirmModal {
+    & p{
+        margin: 0;
+    }
+
+    & p.mainText{
+        margin-bottom: .3rem;
+
+        color: var(--base-black);
+        font: var(--text-medium);
+    }
+    & p.text{
+        color: var(--black-700);
+        font: var(--text-regular);
+    }
+
+    & section.btn{
+        margin-top: 1.5rem;
+        
+        display: flex;
+        gap: .5rem;
+    }
+}

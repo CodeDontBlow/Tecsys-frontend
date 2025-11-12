@@ -5,6 +5,7 @@ import TableEdit from "./pages/TableEdit/TableEdit";
 import InputFiles from "./pages/InputFiles/InputFiles";
 import DataBase from "./pages/DataBase/DataBase";
 import HistoryView from "./pages/DatabaseViews/HistoryView";
+import ProductView from "./pages/DatabaseViews/ProductView";
 
 const RoutesApp = () => {
     return (
@@ -14,7 +15,8 @@ const RoutesApp = () => {
                 <Route path="/table-editing" element={ <TableEdit/> } />
                 <Route path="/input-files" element={ <InputFiles/> } />
                 <Route path="/database" element={ <DataBase/> } />
-                <Route path="/history" element={ <HistoryView/> } />
+                <Route path="/database/history" element={ <HistoryView/> } />
+                <Route path="/database/product" element={ <ProductView/> } />
             </Routes>
         </BrowserRouter>
     )
