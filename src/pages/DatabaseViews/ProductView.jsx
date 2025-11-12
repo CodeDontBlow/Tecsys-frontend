@@ -22,44 +22,55 @@ function ProductView () {
     const [products, setProducts] = useState([])
     // Campos do formulário para edição
     const [formVisibility, setFormVisibility] = useState(false)
-    const [formId, setFormId] = useState()
-    const [formNcm, setFormNcm] = useState()
-    const [formDescricao, setFormDescricao] = useState()
+    const [formData, setFormData] = useState({
+        id: '',
+        ncm: '',
+        final_description: ''
+    })
 
     // EFFECTS
     useEffect(() => {
         api.get('/product')
             .then(res => setProducts(res.data))
-            .catch(err => console.err("Erro ao chamar produtos: ", err))
-    }, [products])
+            .catch(err => console.error("Erro ao chamar produtos: ", err))
+    }, [])
+
+    useEffect(() => {
+        if(editFormRef.current){
+            redirectToForm()
+        }
+    }, [formData])
     
     // FUNCTIONS
-    function showForm(product) {
-        setFormId(product.id)
-        setFormNcm(product.ncm ?? "")
-        setFormDescricao(product.final_description ?? "")
+    function handleEditProduct(product) {
+        setFormData({
+            id: product.id,
+            ncm: product.ncm ?? '',
+            final_description: product.final_description ?? '',
+        })
 
-        setFormVisibility(true)
-        
-        setTimeout(() => {
-            redirectToForm()
-        }, 100)
+        setFormVisibility(true)        
     }
 
-    function hideForm(){
-        setFormId(undefined)
-        setFormNcm(undefined)
-        setFormDescricao(undefined)
+    function handleEditCancel(){
+        setFormData({
+            id: '',
+            ncm: '',
+            final_description: ''
+        })
 
         setFormVisibility(false)
     }
 
-    function updateProduct(id) {
+    function handleUpdateProduct(id) {
         api.put(`/product/${id}`, {
-            ncm: formNcm,
-            final_description: formDescricao
+            ncm: formData.ncm,
+            final_description: formData.final_description
         })
-        .then(res => console.log('Produto Atualizado: ', res.data))
+        .then(res => {
+            console.log('Produto Atualizado: ', res.data)
+            setProducts(prev => prev.map(p => p.id === id ? res.data : p))
+        })
         .catch(err => console.error("Erro ao atualizar produto: ", err))
 
         setFormVisibility(false)
@@ -98,8 +109,8 @@ function ProductView () {
                         {/* Linhas (representam 1 Produto) */}
                         {products
                             .sort((a, b) => a.id - b.id)
-                            .map((p, index) => (
-                            <tr onClick={() => showForm(p)} key={index}>
+                            .map(p => (
+                            <tr onClick={() => handleEditProduct(p)} key={p.id}>
                                 <th scope="row">
                                     {p.id}
                                 </th>
@@ -118,25 +129,41 @@ function ProductView () {
             </section>
 
             {/* FORMULÁRIO */}
-            <section ref={editFormRef}>
+            {formVisibility && (
+                <form className={`container-lg mt-4`} ref={editFormRef}>
+                    <div className="col-3">
+                        <Input label='NCM do produto' labelFont='label-medium' id='ncm' 
+                            value={formData.ncm} 
+                            onChange={
+                                e => setFormData(prev => ({
+                                    ...prev, 
+                                    ncm: e.target.value
+                                })) 
+                            }
+                        />
+                    </div>
 
-                {formVisibility && (
-                    <form className={`container-lg mt-4`} ref={editFormRef}>
-                        <div className="col-3">
-                            <Input label='NCM do produto' labelFont='label-medium' id='ncm' value={formNcm} onChange={e => setFormNcm(e.target.value) }/>
-                        </div>
+                    <Input label='Descrição Final' labelFont='label-medium' id='desc' type='textarea' 
+                        value={formData.final_description} 
+                        onChange={
+                            e => setFormData(prev => ({
+                                ...prev, 
+                                final_description: e.target.value
+                            })) 
+                        }
+                        />
 
-                        <Input label='Descrição Final' labelFont='label-medium' id='desc' type='textarea' value={formDescricao} onChange={e => setFormDescricao(e.target.value) }/>
+                    <section className='d-flex mt-2'>
+                        <Button color='gray' variant='outlined' fullWidth={true} size='small' onClick={() => handleEditCancel()}> 
+                            Cancelar
+                        </Button>
+                        <Button color='royal' fullWidth={true} size='small' data-bs-toggle="modal" data-bs-target="#confirmModal"> 
+                            Atualizar
+                        </Button>
+                    </section>
 
-                        <section className='d-flex mt-2'>
-                            <Button children='Cancelar' color='gray' variant='outlined' fullWidth={true} size='small' onClick={() => hideForm()}/>
-                            <Button children='Atualizar' color='royal' fullWidth={true} size='small' data-bs-toggle="modal" data-bs-target="#confirmModal"/>
-                        </section>
-
-                    </form>
-                )}
-                
-            </section>
+                </form>
+            )}
 
             {/* MODAL DE CONFIRMAÇÃO */}
             <div className={`modal modal-md fade ${styles.confirmModal}`} id="confirmModal" tabIndex="-1" aria-hidden="true">
@@ -160,8 +187,12 @@ function ProductView () {
                             <p className={styles.text}> Note que isso pode alterar o resultado de futuras extrações deste mesmo produto. </p>
 
                             <section className={styles.btn}>
-                                <Button children='Cancelar' variant='outlined' color='gray' size='small' fullWidth={true} data-bs-dismiss="modal" aria-label="Close"/>
-                                <Button children='Salvar Edição' color='green' size='small' fullWidth={true} onClick={() => updateProduct(formId) } data-bs-dismiss="modal" aria-label="Close"/>
+                                <Button variant='outlined' color='gray' size='small' fullWidth={true} data-bs-dismiss="modal" aria-label="Close"> 
+                                    Cancelar 
+                                </Button>
+                                <Button color='green' size='small' fullWidth={true} onClick={() => handleUpdateProduct(formData.id) } data-bs-dismiss="modal" aria-label="Close">
+                                    Salvar Edição
+                                </Button>
                             </section>
                         </div>
                         
