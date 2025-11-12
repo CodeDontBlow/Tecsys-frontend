@@ -240,7 +240,7 @@ function TableEdit() {
 
 
                             <section className={styles.formButtons}>
-                                <Button children='Voltar' variant='outlined' color='gray' size='small'/>
+                                <Button children='Voltar' variant='outlined' color='gray' size='small' data-bs-dismiss="modal" aria-label="Close"/>
                                 <Button children='Baixar Excel' size='small' color='green' fullWidth={true}/>
                             </section>
                         </div>
