@@ -56,7 +56,7 @@ function HistoryView () {
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
                             <td className={styles.ncm}>
-                                    8532.24.10
+                                8532.24.10
                             </td>
                             <td>MERITEK ELECTRONICS CORPORATION</td>
                             <td>5160 RIVERGRADE RD, CA 91706</td>
@@ -68,7 +68,7 @@ function HistoryView () {
                             <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
                             <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
                             <td className={styles.ncm}>
-                                    8532.24.10
+                                8532.24.10
                             </td>
                             <td>MERITEK ELECTRONICS CORPORATION</td>
                             <td>5160 RIVERGRADE RD, CA 91706</td>
