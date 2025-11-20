@@ -15,7 +15,9 @@ function DataBase() {
     return (
         <div className={`container-sm ${styles.container}`}>
             <h1>Banco de Dados</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices velit dapibus sapien semper, et ornare tellus interdum, et ornar e tellus interdum.</p>
+            <p>Nesta página você tem acesso ao histórico de dados de extrações realizadas, fornecedores, fabricantes e produtos.
+                <br></br>Clique em um dos cards abaixo para navegar entre as tabelas.
+            </p>
             <div className={`${styles.cardArea}`}>
                 <Card 
                     onClick={() => handleCardClick('/')}

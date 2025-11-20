@@ -11,7 +11,7 @@ const renderIcon = (status) => {
         case "completed":
             return <FontAwesomeIcon icon={faCheckCircle} className={styles.completed} />;
         case "in-progress":
-            return <FontAwesomeIcon icon={faArrowRotateRight} className={styles.icon_load}/>;
+            return <div className={styles.spinner}></div>;
         default:
             return <FontAwesomeIcon icon={faClock} />;
     }
