@@ -8,7 +8,7 @@ import Button from '../../components/Button/Button'
 
 import api from '../../services/axiosConfig'
 
-function ProductView () {
+function ManufacturerView () {
     // VARIÁVEIS
     const navigate = useNavigate()
     const editFormRef = useRef(null)
@@ -18,21 +18,20 @@ function ProductView () {
     }
 
     // STATES
-    // Todos os Produtos
-    const [products, setProducts] = useState([])
-    // Campos do formulário para edição
+    const [manufacturers, setManufacturers] = useState([])
     const [formVisibility, setFormVisibility] = useState(false)
     const [formData, setFormData] = useState({
         id: '',
-        ncm: '',
-        final_description: ''
+        name: '',
+        address: '',
+        origin_country: '',
     })
 
     // EFFECTS
     useEffect(() => {
-        api.get('/product')
-            .then(res => setProducts(res.data))
-            .catch(err => console.error("Erro ao chamar produtos: ", err))
+        api.get('/manufacturer')
+            .then(res => setManufacturers(res.data))
+            .catch(err => console.error("Erro ao chamar fabricantes: ", err))
     }, [])
 
     useEffect(() => {
@@ -42,11 +41,12 @@ function ProductView () {
     }, [formData])
     
     // FUNCTIONS
-    function handleEditProduct(product) {
+    function handleEditManufacturer(m) {
         setFormData({
-            id: product.id,
-            ncm: product.ncm ?? '',
-            final_description: product.final_description ?? '',
+            id: m.id,
+            name: m.name,
+            address: m.address,
+            origin_country: m.origin_country,
         })
 
         setFormVisibility(true)        
@@ -55,23 +55,25 @@ function ProductView () {
     function handleEditCancel(){
         setFormData({
             id: '',
-            ncm: '',
-            final_description: ''
+            name: '',
+            address: '',
+            origin_country: '',
         })
 
         setFormVisibility(false)
     }
 
-    function handleUpdateProduct(id) {
-        api.put(`/product/${id}`, {
-            ncm: formData.ncm,
-            final_description: formData.final_description
+    function handleUpdateManufacturer(id) {
+        api.put(`/manufacturer/${id}`, {
+            name: formData.name,
+            origin_country: formData.origin_country,
+            address: formData.address,
         })
         .then(res => {
-            console.log('Produto Atualizado: ', res.data)
-            setProducts(prev => prev.map(p => p.id === id ? res.data : p))
+            console.log('Fabricante Atualizado: ', res.data)
+            setManufacturers(prev => prev.map(p => p.id === id ? res.data : p))
         })
-        .catch(err => console.error("Erro ao atualizar produto: ", err))
+        .catch(err => console.error("Erro ao atualizar fabricante: ", err))
 
         setFormVisibility(false)
     }
@@ -82,7 +84,7 @@ function ProductView () {
             <div className="container-lg">
                 <header className='d-flex justify-content-between'>
                     <h1 className={styles.title}>
-                        Produtos
+                        Fabricantes
                     </h1>
 
                     <button className={styles.returnBtn} onClick={() => {navigate(-1)}}>
@@ -91,7 +93,7 @@ function ProductView () {
                 </header>
 
                 <p className={styles.introText}>
-                    Nesta página você encontra todos os produtos cadastrados pelo nosso processo. Clique em qualquer linha da tabela para visualizar ou editar informações como NCM e a Descrição Final do item. As alterações realizadas aqui serão aplicadas imediatamente e poderão impactar futuras análises e extrações relacionadas a este produto.
+                    Nesta página você encontra todos os fabricantes cadastrados em nossa base. Clique em qualquer linha da tabela abaixo para editar informações como nome, endereço e país de origem do fabricante.
                 </p>
             </div>
 
@@ -101,24 +103,27 @@ function ProductView () {
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">NCM</th>
-                            <th scope="col">Descrição Final</th>
+                            <th scope="col">Nome do Fabricante</th>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">País de Origem</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* Linhas (representam 1 Produto) */}
-                        {products
+                        {manufacturers
                             .sort((a, b) => a.id - b.id)
-                            .map(p => (
-                            <tr onClick={() => handleEditProduct(p)} key={p.id}>
+                            .map(m => (
+                            <tr onClick={() => handleEditManufacturer(m)} key={m.id}>
                                 <th scope="row">
-                                    {p.id}
+                                    {m.id}
                                 </th>
                                 <td>
-                                    {p.ncm ?? "---"}
+                                    {m.name ?? "---"}
                                 </td>
                                 <td>
-                                    {p.final_description ?? "---"}
+                                    {m.address ?? "---"}
+                                </td>
+                                <td>
+                                    {m.origin_country ?? "---"}
                                 </td>
                             </tr>
 
@@ -131,27 +136,37 @@ function ProductView () {
             {/* FORMULÁRIO */}
             {formVisibility && (
                 <form className={`container-lg mt-4`} ref={editFormRef}>
-                    <div className="col-3">
-                        <Input label='NCM do produto' labelFont='label-medium' id='ncm' 
-                            value={formData.ncm} 
+                        <Input label='Nome do Fabricante' labelFont='label-medium' id='nome' 
+                            value={formData.name} 
                             onChange={
                                 e => setFormData(prev => ({
                                     ...prev, 
-                                    ncm: e.target.value
+                                    name: e.target.value
                                 })) 
                             }
                         />
-                    </div>
-
-                    <Input label='Descrição Final' labelFont='label-medium' id='desc' type='textarea' 
-                        value={formData.final_description} 
-                        onChange={
-                            e => setFormData(prev => ({
-                                ...prev, 
-                                final_description: e.target.value
-                            })) 
-                        }
+                    <div className="col">
+                        <Input label='Endereço' labelFont='label-medium' id='address' 
+                            value={formData.address} 
+                            onChange={
+                                e => setFormData(prev => ({
+                                    ...prev, 
+                                address: e.target.value
+                                })) 
+                            }
                         />
+
+                        <Input label='País de Origem' labelFont='label-medium' id='country' 
+                            value={formData.origin_country} 
+                            onChange={
+                                e => setFormData(prev => ({
+                                    ...prev, 
+                                origin_country: e.target.value
+                                })) 
+                            }
+                        />
+
+                    </div>
 
                     <section className='d-flex mt-2'>
                         <Button color='gray' variant='outlined' fullWidth={true} size='small' onClick={() => handleEditCancel()}> 
@@ -183,14 +198,14 @@ function ProductView () {
                             </header>
 
                             {/* CORPO */}
-                            <p className={styles.mainText}> Você tem certeza que deseja atualizar este produto?</p>
-                            <p className={styles.text}> Note que isso pode alterar o resultado de futuras extrações deste mesmo produto. </p>
+                            <p className={styles.mainText}> Você tem certeza que deseja atualizar este fabricante?</p>
+                            <p className={styles.text}> Note que isso pode alterar o resultado de futuras extrações deste mesmo fabricante. </p>
 
                             <section className={styles.btn}>
                                 <Button variant='outlined' color='gray' size='small' fullWidth={true} data-bs-dismiss="modal" aria-label="Close"> 
                                     Cancelar 
                                 </Button>
-                                <Button color='green' size='small' fullWidth={true} onClick={() => handleUpdateProduct(formData.id) } data-bs-dismiss="modal" aria-label="Close">
+                                <Button color='green' size='small' fullWidth={true} onClick={() => handleUpdateManufacturer(formData.id) } data-bs-dismiss="modal" aria-label="Close">
                                     Salvar Edição
                                 </Button>
                             </section>
@@ -204,4 +219,4 @@ function ProductView () {
     )
 }
 
-export default ProductView
+export default ManufacturerView
