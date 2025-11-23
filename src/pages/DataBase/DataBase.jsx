@@ -1,9 +1,11 @@
 import styles from './DataBase.module.css';
 import Card from '../../components/Card/Card';
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDolly, faTruck, faIndustry, faClockRotateLeft} from '@fortawesome/free-solid-svg-icons';
 
 function DataBase() {
+    const navigate = useNavigate();
     return (
 
         <div className={`container-sm ${styles.container}`}>
@@ -24,7 +26,10 @@ function DataBase() {
 
                 <Card 
                     icon={<FontAwesomeIcon icon={faTruck}/>} 
-                    title="Fornecedores" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+                    title="Fornecedores" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    onClick={() => {
+                        navigate('/database/supplier');
+                    }}>
                 </Card>
 
                 <Card 
