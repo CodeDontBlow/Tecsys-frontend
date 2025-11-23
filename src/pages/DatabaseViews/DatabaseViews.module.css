@@ -144,10 +144,6 @@ section.multiInputSection{
                 }
             }
 
-.orderTable *{
-    cursor: default !important;
-}
-
 /* MODAL DE CONFIRMAÇÃO DE EDIÇÃO */
 div.confirmModal header.header,
 div.confirmModal header.header div.headerText{
@@ -244,3 +240,7 @@ section.multiInputSection{
                     margin: 0;
                 }
             }
+
+.orderTable *{
+    cursor: default !important;
+}

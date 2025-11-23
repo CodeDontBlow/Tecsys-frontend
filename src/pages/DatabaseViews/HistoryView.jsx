@@ -28,7 +28,6 @@ function HistoryView () {
         }));    
 
         setOrders(ordersList)
-        console.log(ordersList)
     }, [imports])
 
     function handleImportsOfOrder(id){
@@ -62,8 +61,7 @@ function HistoryView () {
     }
 
 
-
-
+    
     return (
         <>
             <div className="container-lg">
@@ -78,7 +76,7 @@ function HistoryView () {
                 </header>
 
                 <p className={styles.introText}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione iusto dignissimos ea, nostrum velit, modi soluta eum consectetur omnis maiores alias magni quo corrupti ex enim minima excepturi cupiditate nihil totam. Consequuntur, ipsum incidunt?
+                    Nesta página, você pode visualizar o histórico completo das extrações de dados, com informações detalhadas, facilitando o acompanhamento e auditoria dos registros importados ao longo do tempo.                
                 </p>
             </div>
 
