@@ -136,9 +136,9 @@ function SupplierView () {
                 </header>
 
                 <p className={styles.introText}>
-                    Nesta página você encontra todos os fornecedores cadastrados em nossa base.
-                    Clique em qualquer linha da tabela para visualizar e editar informações do fornecedor, incluindo nome e descrições ERP dos produtos associados.
-                    Após realizar as alterações desejadas, basta confirmar para atualizar os dados no sistema.
+                    Nesta página você encontra todos os fornecedores cadastrados pelo nosso processo.
+                    Clique em qualquer linha da tabela abaixo para visualizar e editar informações do fornecedor, incluindo nome e as descrições ERP dos produtos associados.
+                    As alterações realizadas aqui serão aplicadas imediatamente e poderão impactar futuras análises e extrações relacionadas a este fornecedor e seus produtos.
                 </p>
             </div>
 
