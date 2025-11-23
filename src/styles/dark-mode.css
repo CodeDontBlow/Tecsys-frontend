@@ -27,6 +27,11 @@
     color: var(--base-white) !important;
 }
 
+[data-theme="dark"] nav.navbar img,
+[data-theme="dark"] .navbar-brand img {
+    filter: brightness(0) invert(1);
+}
+
 [data-theme="dark"] .nav-link {
     color: var(--white-500) !important;
 }
@@ -83,8 +88,65 @@
 
 /* Cards e Containers */
 [data-theme="dark"] .card,
-[data-theme="dark"] [class*="container"] > div {
+[data-theme="dark"] div[class*="card"] {
     background-color: var(--black-700) !important;
+    border-color: var(--black-500) !important;
+}
+
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] div[class*="card"]:hover {
+    background-color: var(--black-700) !important;
+    border-color: var(--royal-500) !important;
+    box-shadow: 0 4px 12px rgba(35, 111, 189, 0.3) !important;
+}
+
+[data-theme="dark"] .card-body,
+[data-theme="dark"] div[class*="card-content"] {
+    background-color: transparent !important;
+}
+
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .card h1,
+[data-theme="dark"] .card h2,
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .card h4,
+[data-theme="dark"] .card h5,
+[data-theme="dark"] .card h6,
+[data-theme="dark"] div[class*="card"] h1,
+[data-theme="dark"] div[class*="card"] h2,
+[data-theme="dark"] div[class*="card"] h3 {
+    color: var(--base-white) !important;
+}
+
+[data-theme="dark"] .card-text,
+[data-theme="dark"] .card p,
+[data-theme="dark"] div[class*="card"] p {
+    color: var(--white-500) !important;
+}
+
+/* Ícone dentro dos cards */
+[data-theme="dark"] .card-icon,
+[data-theme="dark"] div[class*="card-icon"] {
+    background-color: var(--black-500) !important;
+}
+
+[data-theme="dark"] .card:hover .card-icon,
+[data-theme="dark"] div[class*="card"]:hover div[class*="card-icon"] {
+    background-color: var(--black-500) !important;
+}
+
+[data-theme="dark"] .card svg,
+[data-theme="dark"] .card i,
+[data-theme="dark"] div[class*="card"] svg,
+[data-theme="dark"] div[class*="card"] i {
+    filter: brightness(1) !important;
+}
+
+[data-theme="dark"] .container,
+[data-theme="dark"] .container-sm,
+[data-theme="dark"] .container-fluid,
+[data-theme="dark"] [class*="container"] > div {
+    background-color: transparent !important;
     color: var(--base-white) !important;
 }
 
@@ -127,6 +189,14 @@
 
 [data-theme="dark"] [class*="step-map-count"],
 [data-theme="dark"] [class*="step-map-label"] {
+    color: var(--base-white) !important;
+}
+
+[data-theme="dark"] [class*="step-map-load"],
+[data-theme="dark"] [class*="loading"],
+[data-theme="dark"] .fa-spinner,
+[data-theme="dark"] .fa-circle-notch,
+[data-theme="dark"] .fa-arrow-rotate-right {
     color: var(--base-white) !important;
 }
 
@@ -178,6 +248,31 @@
 
 [data-theme="dark"] #dark-mode-toggle:hover {
     color: var(--white-300) !important;
+}
+
+/* Homepage - Elementos destacados (Descriptum e PDF) */
+[data-theme="dark"] b {
+    background: var(--black-500) !important;
+    color: var(--base-white) !important;
+}
+
+[data-theme="dark"] abbr {
+    background: var(--black-500) !important;
+    color: var(--base-white) !important;
+}
+
+/* Botões outlined no modo escuro */
+[data-theme="dark"] button[class*="outlined"],
+[data-theme="dark"] a[class*="outlined"] {
+    border-color: var(--white-500) !important;
+    color: var(--base-white) !important;
+}
+
+[data-theme="dark"] button[class*="outlined"]:hover,
+[data-theme="dark"] a[class*="outlined"]:hover {
+    background-color: var(--black-500) !important;
+    border-color: var(--base-white) !important;
+    color: var(--base-white) !important;
 }
 
 /* Transições suaves */
