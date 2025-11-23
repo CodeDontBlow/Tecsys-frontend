@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import api from '../../services/axiosConfig';
+import { useLocation } from 'react-router-dom';
 
 import styles from './TableEdit.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,52 +11,18 @@ import Input from '../../components/Input/Input/Input'
 import Dropdown from '../../components/Input/Dropdown/Dropdown'
 import Button from '../../components/Button/Button';
 import Tooltip from '../../components/Tooltip/Tooltip';
-import api from '../../services/axiosConfig';
 
 function TableEdit() {
+    const location = useLocation();
+
+    // ESTADOS PARA O FORMULÁRIO -----------------------------------
     const [formPN, setFormPN] = useState('MA0603CG150J500');
     const [formCodERP, setFormCodERP] = useState('20020067');
     const [formDescERP, setFormDescERP] = useState('0603 15PF 50V 5% C0G PN: MA0603CG');
     const [formDescDI, setFormDescDI] = useState('CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)');
-
-    const handleFinalizar = async () => {
-        try {
-            const response = await api.get("export?format=xlsx&download=true", {
-                responseType: "blob",
-            });
-
-            const blob = new Blob([response.data], {
-                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            });
-
-            const url = URL.createObjectURL(blob);
-
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "export.xlsx";
-            a.click();
-
-            URL.revokeObjectURL(url);
-
-        } catch (err) {
-            console.error("Erro ao exportar:", err);
-        }
-    };
-
-    const [formParentNCMArray, setParentNCMArray] = useState([
-        {
-            valor: '8532.24',
-            descricao: 'Descrição',
-        },
-        {
-            valor: '8532.40',
-            descricao: 'Descrição',
-        },
-        {
-            valor: '8532.19',
-            descricao: 'Descrição',
-        }
-    ]);
+    // NCM ------------------------------
+    // Todos NCM's pai
+    const [formParentNCMArray, setParentNCMArray] = useState([]);
     // NCM Pai Atual (primeiro do array formParentNCMArray)
     const [formParentNCM, setFormParentNCM] = useState(formParentNCMArray[0]);
     // Todos NCM's filho
@@ -103,12 +71,101 @@ function TableEdit() {
         ],
 
     ]);
-    // NCM Filho Atual (primeiro do array formNCMArray)
+    const handleFinalizar = async () => {
+        try {
+            const response = await api.get("export?format=xlsx&download=true", {
+                responseType: "blob",
+            });
+
+            const blob = new Blob([response.data], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            });
+
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "export.xlsx";
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+        } catch (err) {
+            console.error("Erro ao exportar:", err);
+        }
+    };
+
     const [formNCM, setFormNCM] = useState(formNCMArray[0]);
     const [formFabNome, setFormFabNome] = useState('MERITEK ELECTRONICS CORPORATION');
     const [formFabEndereco, setFormFabEndereco] = useState('5160 RIVERGRADE RD, CA 91706');
     const [formFabDesc, setFormFabDesc] = useState('ESTADOS UNIDOS');
 
+    const [orderData, setOrderData] = useState()
+    const [orderNcms, setOrderNcms] = useState() //NCMs virão aqui
+
+    useEffect(() => {
+        api.get('/imports/')
+            .then(res => setOrderData(res.data))
+            .catch(err => console.err("Erro ao chamar dados", err))
+    }, [])
+
+    useEffect(() => {
+        if (!location.state.data) return;
+
+        const data = location.state.data || [];
+
+        // 1 — transforma a lista inteira
+        const transformed = data.map(item => {
+            const ncms = item.ncms || [];
+            return ncms.map(ncm => ({
+                valor: ncm.ncm_6,
+                descricao: ncm.description,
+                filhos: (ncm.ncm_8 ?? []).map(f => ({
+                    valor: f.ncm_code,
+                    descricao: f.description
+                }))
+            }));
+        });
+
+        // 2 — duplica essa lista transformada para cada item
+        const final = data.map(() => ({
+            item: transformed
+        }));
+        console.log('result', transformed)
+
+
+        setOrderNcms(transformed)
+
+    }, [location])
+
+    function setInfoToModal(i) {
+        const d = orderData[i];
+
+        // --- Preenche dados gerais ---
+        setFormPN(d.product_part_number);
+        setFormCodERP(d.supplier_product.product.erp_code);
+        setFormDescERP(d.supplier_product.erp_description);
+        setFormDescDI(d.supplier_product.product.final_description);
+        setFormFabNome(d.manufacturer.name);
+
+        const ncms = location.state.data?.[i]?.ncms || [];
+
+        const result = ncms.map(ncm => ({
+            valor: ncm.ncm_6,
+            descricao: ncm.description,
+            filhos: (ncm.ncm_8 ?? []).map(f => ({
+                valor: f.ncm_code,
+                descricao: f.description
+            }))
+        }));
+        setParentNCMArray(result);
+
+        const firstParent = result[0] || null;
+        setFormParentNCM(firstParent);
+
+        const firstChildren = firstParent?.filhos || [];
+        setFormNCM(firstChildren);
+    }
     return (
         <div className='container-lg'>
 
@@ -123,11 +180,11 @@ function TableEdit() {
                 </p>
             </section>
 
-            <table className={`table rounded-3 m-0`}>
+            <table className={`table rounded-3 m-0 ${styles.table}`}>
                 <thead>
                     <tr>
                         <th scope="col">SEQ</th>
-                        {/* <th scope="col">Cod ERP</th> */}
+                        <th scope="col">Cod ERP</th>
                         <th scope="col">Descrição ERP</th>
                         <th scope="col">Descrição para DI</th>
                         <th scope="col">NCM</th>
@@ -136,51 +193,58 @@ function TableEdit() {
                         <th scope="col">Descrição País</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr data-bs-toggle="modal" data-bs-target="#formModal">
-                        <th scope="row">1</th>
-                        {/* <td>20020067</td> */}
-                        <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
-                        <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
-                        <td className="ncm">
-                            <Tooltip content={
-                                <div>
-                                    <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
-                                    <br />
-                                    <br />
-                                    <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
-                                </div>
-                            } position='right'>
-                                8532.24.10
-                                <FontAwesomeIcon icon={faCircleInfo} className="icon" />
-                            </Tooltip>
-                        </td>
-                        <td>MERITEK ELECTRONICS CORPORATION</td>
-                        <td>5160 RIVERGRADE RD, CA 91706</td>
-                        <td>ESTADOS UNIDOS</td>
-                    </tr>
-                    <tr data-bs-toggle="modal" data-bs-target="#formModal">
-                        <th scope="row">2</th>
-                        {/* <td>20020067</td> */}
-                        <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
-                        <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
-                        <td className="ncm">
-                            <Tooltip content={
-                                <div>
-                                    <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
-                                    <br />
-                                    <br />
-                                    <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
-                                </div>
-                            } position='right'>
-                                8532.24.10
-                                <FontAwesomeIcon icon={faCircleInfo} className="icon" />
-                            </Tooltip>
-                        </td>
-                        <td>MERITEK ELECTRONICS CORPORATION</td>
-                        <td>5160 RIVERGRADE RD, CA 91706</td>
-                        <td>ESTADOS UNIDOS</td>
-                    </tr>
+
+                    {orderData && (
+                        orderData.map((d, index) => (
+                            <tr data-bs-toggle="modal" data-bs-target="#formModal" key={index + 1} onClick={() => setInfoToModal(index)}>
+                                <th scope="row"> {index + 1} </th>
+                                <td>
+                                    {d.supplier_product.product.erp_code}
+                                </td>
+                                <td>
+                                    {d.supplier_product.erp_description}
+                                </td>
+                                <td> {`
+                                        ${d.supplier_product.product.final_description}.
+                                        P/N: ${d.product_part_number}.
+                                    `} </td>
+                                <td className={styles.ncm}>
+                                    {orderNcms && (
+                                        <Tooltip content={
+                                            <div>
+                                                <strong>
+                                                    {orderNcms[index][0].valor}
+                                                </strong>
+                                                <span>
+                                                    {orderNcms[index][0].descricao}
+                                                </span>
+
+                                                <br />
+                                                <br />
+
+                                                <strong>
+                                                    {orderNcms[index][0].filhos[0].valor}
+                                                </strong>
+                                                <span>
+                                                    {orderNcms[index][0].filhos[0].descricao}
+                                                </span>
+                                            </div>
+                                        } position='right'>
+                                            {orderNcms[index][0].filhos[0].valor}
+                                            <FontAwesomeIcon icon={faCircleInfo} className={styles.icon} />
+                                        </Tooltip>
+                                    )}
+                                </td>
+                                <td> {d.manufacturer.name} </td>
+                                <td>5160 RIVERGRADE RD, CA 91706</td>
+                                <td>ESTADOS UNIDOS</td>
+                            </tr>
+                        ))
+                    )}
+
+
                 </tbody>
             </table>
 
@@ -217,7 +281,7 @@ function TableEdit() {
 
                             <section className={styles.formButtons}>
                                 <Button children='Voltar' variant='outlined' color='gray' size='small' data-bs-dismiss="modal"
-                                 />
+                                />
                                 <Button children='Baixar Excel' size='small' color='green' fullWidth={true} onClick={handleFinalizar} />
                             </section>
                         </div>
@@ -253,7 +317,12 @@ function TableEdit() {
 
                                 <section className={styles.duoSection}>
                                     <Dropdown label='NCM Pai' options={formParentNCMArray} dataType='object' onChange={value => setFormParentNCM(value)} />
-                                    <Dropdown label='NCM do Produto' options={formNCMArray[formParentNCMArray.findIndex(o => o.valor === formParentNCM.valor)]} dataType='object' onChange={value => setFormNCM(value)} />
+                                    <Dropdown
+                                        label='NCM do Produto'
+                                        options={formParentNCM?.filhos || []}
+                                        dataType='object'
+                                        onChange={value => setFormNCM(value)}
+                                    />
                                 </section>
 
                                 <Input label='Fabricante' placeholder='Nome do Fabricante' id='fabNome' value={formFabNome} onChange={e => setFormFabNome(e.target.value)} />
