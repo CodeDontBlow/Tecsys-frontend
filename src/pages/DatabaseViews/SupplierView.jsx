@@ -89,7 +89,7 @@ function SupplierView () {
             // Atualiza todos supplierProducts do fornecedor
             const spRequests = formData.products.map(p =>
                 api.put(`/supplierproduct/${p.relationId}`, {
-                    erp_description: prod.erp_description
+                    erp_description: p.erp_description
                 })
             )
 
