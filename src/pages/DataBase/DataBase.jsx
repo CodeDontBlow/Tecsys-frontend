@@ -10,23 +10,29 @@ function DataBase() {
 
         <div className={`container-sm ${styles.container}`}>
             <h1>Banco de Dados</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices velit dapibus sapien semper, et ornare tellus interdum, et ornar e tellus interdum.</p>
+            <p>Nesta página, você pode visualizar e editar os dados armazenados no banco, como produtos, fornecedores e fabricantes. Também disponibilizamos o histórico de extração e acompanhamento dessas informações.</p>
             <div className={`${styles.cardArea}`}>
                 <Card 
                     icon={<FontAwesomeIcon icon={faClockRotateLeft}/>} 
                     title="Histórico de Extrações" 
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit." 
-                    horizontal={true}>
+                    description="Visualize o histórico completo das extrações" 
+                    horizontal={true}
+                    onClick={() => {
+                        navigate('/database/history');
+                    }}>
                 </Card>
 
                 <Card 
                     icon={<FontAwesomeIcon icon={faDolly}/>} title="Produtos" 
-                    description="Lorem ipsum dolor sit amet, consectetur adipiscing elit">
+                    description="Explore e atualize o catálogo de produtos"
+                    onClick={() => {
+                        navigate('/database/product');
+                    }}>
                 </Card>
 
                 <Card 
                     icon={<FontAwesomeIcon icon={faTruck}/>} 
-                    title="Fornecedores" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    title="Fornecedores" description="Gerencie as informações dos seus fornecedores"
                     onClick={() => {
                         navigate('/database/supplier');
                     }}>
@@ -34,7 +40,10 @@ function DataBase() {
 
                 <Card 
                     icon={<FontAwesomeIcon icon={faIndustry}/>} 
-                    title="Fabricantes" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit.">
+                    title="Fabricantes" description="Controle e acompanhe os dados dos fabricantes"
+                    onClick={() => {
+                        navigate('/database/manufacturer');
+                    }}>
                 </Card>
             </div>
         </div>

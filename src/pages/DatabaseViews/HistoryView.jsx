@@ -18,7 +18,7 @@ function HistoryView () {
                 </header>
 
                 <p className={styles.introText}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione iusto dignissimos ea, nostrum velit, modi soluta eum consectetur omnis maiores alias magni quo corrupti ex enim minima excepturi cupiditate nihil totam. Consequuntur, ipsum incidunt?
+                    Nesta página, você pode visualizar o histórico completo das extrações de dados, com informações detalhadas, facilitando o acompanhamento e auditoria dos registros importados ao longo do tempo.
                 </p>
             </div>
 
@@ -29,11 +29,11 @@ function HistoryView () {
                         {/* Informações do Order */}
                         <tr className={styles.orderRow}>
                             <th colSpan={6}>
-                                Extração Número XX
+                                {/* Extração Número XX */}
                             </th>
 
                             <th colSpan={2}>
-                                Extraído em XX/XX/XXXX
+                                {/* Extraído em XX/XX/XXXX */}
                             </th>
                         </tr>
                         {/* Informações dos Imports */}
