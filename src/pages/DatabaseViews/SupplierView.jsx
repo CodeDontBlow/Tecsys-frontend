@@ -127,7 +127,7 @@ function SupplierView () {
             <div className="container-lg">
                 <header className='d-flex justify-content-between'>
                     <h1 className={styles.title}>
-                        Fabricantes
+                        Fornecedores
                     </h1>
 
                     <button className={styles.returnBtn} onClick={() => {navigate(-1)}}>
@@ -136,7 +136,9 @@ function SupplierView () {
                 </header>
 
                 <p className={styles.introText}>
-                    Nesta página você encontra todos os fabricantes cadastrados em nossa base. Clique em qualquer linha da tabela abaixo para editar informações como nome, endereço e país de origem do fabricante.
+                    Nesta página você encontra todos os fornecedores cadastrados em nossa base.
+                    Clique em qualquer linha da tabela para visualizar e editar informações do fornecedor, incluindo nome e descrições ERP dos produtos associados.
+                    Após realizar as alterações desejadas, basta confirmar para atualizar os dados no sistema.
                 </p>
             </div>
 
