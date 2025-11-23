@@ -163,8 +163,8 @@ function TableEdit() {
                 </table>
 
             <section className={styles.buttonsContainer}>
-                <Button children='Cancelar' variant='outlined' color='gray' fullWidth={true}/>
-                <Button children='Finalizar' fullWidth={true}/>
+                <Button children='Cancelar' variant='disabled' color='gray' fullWidth={true}/>
+                <Button children='Finalizar' variant='disabled' fullWidth={true}/>
             </section>
 
 

@@ -4,7 +4,6 @@ div.container{
 }
 
 .label{
-    font: var(--text-regular);
     font-weight: 500;
     color: var(--black-700);
 }
@@ -33,3 +32,20 @@ textarea.input{
 
         scale: 1.005;
     }
+
+/*
+Source - https://stackoverflow.com/a
+Posted by antonj, modified by community. See post 'Timeline' for change history
+Retrieved 2025-11-11, License - CC BY-SA 4.0
+*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
