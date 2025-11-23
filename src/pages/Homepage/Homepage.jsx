@@ -38,7 +38,7 @@ function Homepage () {
                     Começar a Extrair
                 </Button>
                 
-                <Button 
+                {/* <Button 
                     variant="outlined" 
                     color="gray" 
                     size="medium"
@@ -47,7 +47,7 @@ function Homepage () {
                     className={styles.userGuideBtn}
                 >
                     Ver Guia de Uso
-                </Button>
+                </Button> */}
             </div>
         </div>
     )

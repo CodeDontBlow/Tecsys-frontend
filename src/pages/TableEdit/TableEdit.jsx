@@ -2,90 +2,112 @@ import { useState } from 'react';
 
 import styles from './TableEdit.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo , faFilePen } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo, faFilePen } from '@fortawesome/free-solid-svg-icons';
 
 import StepMap from '../../components/StepMap/StepMap';
 import Input from '../../components/Input/Input/Input'
 import Dropdown from '../../components/Input/Dropdown/Dropdown'
 import Button from '../../components/Button/Button';
 import Tooltip from '../../components/Tooltip/Tooltip';
+import api from '../../services/axiosConfig';
 
 function TableEdit() {
-    // ESTADOS PARA O FORMULÁRIO -----------------------------------
-        const [formPN, setFormPN] = useState('MA0603CG150J500');
-        const [formCodERP, setFormCodERP] = useState('20020067');
-        const [formDescERP, setFormDescERP] = useState('0603 15PF 50V 5% C0G PN: MA0603CG');
-        const [formDescDI, setFormDescDI] = useState('CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)');
-        // NCM ------------------------------
-            // Todos NCM's pai
-            const [formParentNCMArray, setParentNCMArray] = useState([
-                {
-                    valor: '8532.24',
-                    descricao: 'Descrição',
-                },
-                {
-                    valor: '8532.40',
-                    descricao: 'Descrição',
-                },
-                {
-                    valor: '8532.19',
-                    descricao: 'Descrição',
-                }
-            ]);
-            // NCM Pai Atual (primeiro do array formParentNCMArray)
-            const [formParentNCM, setFormParentNCM] = useState(formParentNCMArray[0]);
-            // Todos NCM's filho
-            const [formNCMArray, setFormNCMArray] = useState([
-                [
-                    {
-                        valor: '8532.24.10',
-                        descricao: 'Descrição',
-                    },
-                    {
-                        valor: '8532.24.70',
-                        descricao: 'Descrição',
-                    },
-                    {
-                        valor: '8532.24.20',
-                        descricao: 'Descrição',
-                    },
-                ],
-                [
-                    {
-                        valor: '8532.40.10',
-                        descricao: 'Descrição',
-                    },
-                    {
-                        valor: '8532.40.70',
-                        descricao: 'Descrição',
-                    },
-                    {
-                        valor: '8532.40.20',
-                        descricao: 'Descrição',
-                    },
-                ],
-                [
-                    {
-                        valor: '8532.19.10',
-                        descricao: 'Descrição',
-                    },
-                    {
-                        valor: '8532.19.70',
-                        descricao: 'Descrição',
-                    },
-                    {
-                        valor: '8532.19.20',
-                        descricao: 'Descrição',
-                    },
-                ],
-                
-            ]);
-            // NCM Filho Atual (primeiro do array formNCMArray)
-            const [formNCM, setFormNCM] = useState(formNCMArray[0]);
-        const [formFabNome, setFormFabNome] = useState('MERITEK ELECTRONICS CORPORATION');
-        const [formFabEndereco, setFormFabEndereco] = useState('5160 RIVERGRADE RD, CA 91706');
-        const [formFabDesc, setFormFabDesc] = useState('ESTADOS UNIDOS');
+    const [formPN, setFormPN] = useState('MA0603CG150J500');
+    const [formCodERP, setFormCodERP] = useState('20020067');
+    const [formDescERP, setFormDescERP] = useState('0603 15PF 50V 5% C0G PN: MA0603CG');
+    const [formDescDI, setFormDescDI] = useState('CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)');
 
+    const handleFinalizar = async () => {
+        try {
+            const response = await api.get("export?format=xlsx&download=true", {
+                responseType: "blob",
+            });
+
+            const blob = new Blob([response.data], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            });
+
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "export.xlsx";
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+        } catch (err) {
+            console.error("Erro ao exportar:", err);
+        }
+    };
+
+    const [formParentNCMArray, setParentNCMArray] = useState([
+        {
+            valor: '8532.24',
+            descricao: 'Descrição',
+        },
+        {
+            valor: '8532.40',
+            descricao: 'Descrição',
+        },
+        {
+            valor: '8532.19',
+            descricao: 'Descrição',
+        }
+    ]);
+    // NCM Pai Atual (primeiro do array formParentNCMArray)
+    const [formParentNCM, setFormParentNCM] = useState(formParentNCMArray[0]);
+    // Todos NCM's filho
+    const [formNCMArray, setFormNCMArray] = useState([
+        [
+            {
+                valor: '8532.24.10',
+                descricao: 'Descrição',
+            },
+            {
+                valor: '8532.24.70',
+                descricao: 'Descrição',
+            },
+            {
+                valor: '8532.24.20',
+                descricao: 'Descrição',
+            },
+        ],
+        [
+            {
+                valor: '8532.40.10',
+                descricao: 'Descrição',
+            },
+            {
+                valor: '8532.40.70',
+                descricao: 'Descrição',
+            },
+            {
+                valor: '8532.40.20',
+                descricao: 'Descrição',
+            },
+        ],
+        [
+            {
+                valor: '8532.19.10',
+                descricao: 'Descrição',
+            },
+            {
+                valor: '8532.19.70',
+                descricao: 'Descrição',
+            },
+            {
+                valor: '8532.19.20',
+                descricao: 'Descrição',
+            },
+        ],
+
+    ]);
+    // NCM Filho Atual (primeiro do array formNCMArray)
+    const [formNCM, setFormNCM] = useState(formNCMArray[0]);
+    const [formFabNome, setFormFabNome] = useState('MERITEK ELECTRONICS CORPORATION');
+    const [formFabEndereco, setFormFabEndereco] = useState('5160 RIVERGRADE RD, CA 91706');
+    const [formFabDesc, setFormFabDesc] = useState('ESTADOS UNIDOS');
 
     return (
         <div className='container-lg'>
@@ -101,72 +123,108 @@ function TableEdit() {
                 </p>
             </section>
 
-                <table className={`table rounded-3 m-0`}>
-                    <thead>
-                        <tr>
-                            <th scope="col">SEQ</th>
-                            {/* <th scope="col">Cod ERP</th> */}
-                            <th scope="col">Descrição ERP</th>
-                            <th scope="col">Descrição para DI</th>
-                            <th scope="col">NCM</th>
-                            <th scope="col">Fabricante</th>
-                            <th scope="col">Endereço</th>
-                            <th scope="col">Descrição País</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr data-bs-toggle="modal" data-bs-target="#formModal">
-                            <th scope="row">1</th>
-                            {/* <td>20020067</td> */}
-                            <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
-                            <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
-                            <td className="ncm">
-                                <Tooltip content={
-                                    <div>
-                                        <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
-                                        <br/>
-                                        <br/>
-                                        <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
-                                    </div>
-                                } position='right'>
-                                    8532.24.10 
-                                    <FontAwesomeIcon icon={faCircleInfo} className="icon"/>
-                                </Tooltip>
-                            </td>
-                            <td>MERITEK ELECTRONICS CORPORATION</td>
-                            <td>5160 RIVERGRADE RD, CA 91706</td>
-                            <td>ESTADOS UNIDOS</td>
-                        </tr>
-                        <tr data-bs-toggle="modal" data-bs-target="#formModal">
-                            <th scope="row">2</th>
-                            {/* <td>20020067</td> */}
-                            <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
-                            <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
-                            <td className="ncm">
-                                <Tooltip content={
-                                    <div>
-                                        <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
-                                        <br/>
-                                        <br/>
-                                        <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
-                                    </div>
-                                } position='right'>
-                                    8532.24.10 
-                                    <FontAwesomeIcon icon={faCircleInfo} className="icon"/>
-                                </Tooltip>
-                            </td>
-                            <td>MERITEK ELECTRONICS CORPORATION</td>
-                            <td>5160 RIVERGRADE RD, CA 91706</td>
-                            <td>ESTADOS UNIDOS</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <table className={`table rounded-3 m-0`}>
+                <thead>
+                    <tr>
+                        <th scope="col">SEQ</th>
+                        {/* <th scope="col">Cod ERP</th> */}
+                        <th scope="col">Descrição ERP</th>
+                        <th scope="col">Descrição para DI</th>
+                        <th scope="col">NCM</th>
+                        <th scope="col">Fabricante</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Descrição País</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-bs-toggle="modal" data-bs-target="#formModal">
+                        <th scope="row">1</th>
+                        {/* <td>20020067</td> */}
+                        <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
+                        <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
+                        <td className="ncm">
+                            <Tooltip content={
+                                <div>
+                                    <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
+                                    <br />
+                                    <br />
+                                    <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
+                                </div>
+                            } position='right'>
+                                8532.24.10
+                                <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+                            </Tooltip>
+                        </td>
+                        <td>MERITEK ELECTRONICS CORPORATION</td>
+                        <td>5160 RIVERGRADE RD, CA 91706</td>
+                        <td>ESTADOS UNIDOS</td>
+                    </tr>
+                    <tr data-bs-toggle="modal" data-bs-target="#formModal">
+                        <th scope="row">2</th>
+                        {/* <td>20020067</td> */}
+                        <td>0603 15PF 50V 5% C0G PN: MA0603CG</td>
+                        <td>CONDENSADORES ELÉTRICOS( CAPACITORES) DE CAMADAS MÚLTIPLAS, FIXOS, SMD, 15 PF ± 5% 50V, C0G P/N: MA0603CG150J500. (COD. 020020067)</td>
+                        <td className="ncm">
+                            <Tooltip content={
+                                <div>
+                                    <strong>NCM 8532.24:</strong> <span> Descrição do NCM</span>
+                                    <br />
+                                    <br />
+                                    <strong>NCM 8532.24.10:</strong> <span> Descrição do NCM filho</span>
+                                </div>
+                            } position='right'>
+                                8532.24.10
+                                <FontAwesomeIcon icon={faCircleInfo} className="icon" />
+                            </Tooltip>
+                        </td>
+                        <td>MERITEK ELECTRONICS CORPORATION</td>
+                        <td>5160 RIVERGRADE RD, CA 91706</td>
+                        <td>ESTADOS UNIDOS</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <section className={styles.buttonsContainer}>
-                <Button children='Cancelar' variant='disabled' color='gray' fullWidth={true}/>
-                <Button children='Finalizar' variant='disabled' fullWidth={true}/>
+                <Button children='Cancelar' variant='disabled' color='gray' fullWidth={true} />
+                <Button
+                    children='Finalizar'
+                    fullWidth={true}
+                    data-bs-toggle="modal" data-bs-target="#excelModal"
+                />
             </section>
 
+            {/* MODAL EXCEL */}
+            <div className={`modal modal-sm fade ${styles.excelModal}`} id="excelModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+
+                        <div className={`modal-body ${styles.modalBody}`}>
+                            <header className={styles.modalHeader}>
+                                <i class="bi bi-file-earmark-check-fill"></i>
+                                <h3 className={styles.modalTitle}>
+                                    Extração Finalizada!
+                                </h3>
+                            </header>
+
+                            {/* CORPO */}
+                            <p className={styles.modalExcelMain}>
+                                A extração do seu pedido de compras foi finalizado com sucesso!
+                            </p>
+                            <p className={styles.modalExcelText}>
+                                Clique abaixo para baixar o resultado final como Excel e finalizar essa extração.
+                            </p>
+
+
+                            <section className={styles.formButtons}>
+                                <Button children='Voltar' variant='outlined' color='gray' size='small' data-bs-dismiss="modal"
+                                 />
+                                <Button children='Baixar Excel' size='small' color='green' fullWidth={true} onClick={handleFinalizar} />
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
             {/* MODAL FORMULÁRIO */}
@@ -189,12 +247,12 @@ function TableEdit() {
                                     <Input label='Part Number' id='PN' value={formPN} onChange={e => setFormPN(e.target.value)} />
                                     <Input label='Código ERP' id='CodERP' value={formCodERP} onChange={e => setFormCodERP(e.target.value)} />
                                 </section>
-                                
+
                                 <Input label='Descrição ERP' id='DescERP' value={formDescERP} onChange={e => setFormDescERP(e.target.value)} />
                                 <Input label='Descrição para DI' id='DescDI' type='textarea' value={formDescDI} onChange={e => setFormDescDI(e.target.value)} />
 
                                 <section className={styles.duoSection}>
-                                    <Dropdown label='NCM Pai' options={formParentNCMArray} dataType='object' onChange={value => setFormParentNCM(value)}/>
+                                    <Dropdown label='NCM Pai' options={formParentNCMArray} dataType='object' onChange={value => setFormParentNCM(value)} />
                                     <Dropdown label='NCM do Produto' options={formNCMArray[formParentNCMArray.findIndex(o => o.valor === formParentNCM.valor)]} dataType='object' onChange={value => setFormNCM(value)} />
                                 </section>
 
@@ -207,11 +265,11 @@ function TableEdit() {
 
 
                             <section className={styles.formButtons}>
-                                <Button children='Cancelar Edição' variant='outlined' color='gray' size='small' fullWidth={true}/>
-                                <Button children='Salvar Edição' size='small' fullWidth={true}/>
+                                <Button children='Cancelar Edição' variant='outlined' color='gray' size='small' fullWidth={true} />
+                                <Button children='Salvar Edição' size='small' fullWidth={true} />
                             </section>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

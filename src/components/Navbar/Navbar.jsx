@@ -27,11 +27,11 @@ const Navbar = () => {
                         </li>
                     </ul>
 
-                    <ul className="navbar-nav">
+                    {/* <ul className="navbar-nav">
                         <li className="nav-item">
                             <Link className="nav-link" aria-current="page" to="#">Guia de Uso</Link>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
             </div>
         </nav>
