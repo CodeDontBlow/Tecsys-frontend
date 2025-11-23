@@ -7,75 +7,12 @@ section.introText{
         margin-bottom: 0;
     }
 
-
-table.table{
-    
-}
-
-table.table {
-}
-
-    /* Adicionando borda  */
-        table.table > thead th:first-child {
-            border-top-left-radius: 5px;
-        }
-        table.table > thead th:last-child {
-            border-top-right-radius: 5px; 
-        }
-    table.table > tbody tr:last-child {
-        border: none;
-        border-color: transparent;
-    }
-        table.table > tbody tr:last-child th:first-child {
-            border-bottom-left-radius: 5px;
-        }
-        table.table > tbody tr:last-child td:last-child {
-            border-bottom-right-radius: 5px; 
-        }
-
-        table.table > thead *{
-            background-color: var(--white-300);
-
-            color: var(--black-500);
-            font: var(--footer-medium);
-            font-weight: 600;
-            vertical-align: middle;
-        }
-
-
-    table.table > tbody tr,
-    table.table > tbody tr th,
-    table.table > tbody tr td{
-        background-color: var(--base-white);
-        color: var(--black-300);
-        font: var(--footer-regular);
-    }
-        table.table > tbody tr:nth-child(even) th,
-        table.table > tbody tr:nth-child(even) td{
-            box-shadow: inset 0px 0px 0px 100px rgba(0, 0, 0, 0.015);
-        }
-        table.table > tbody tr:hover th,
-        table.table > tbody tr:hover td{
-            background-color: var(--white-300);
-            box-shadow: none;
-
-            cursor: pointer;
-        }
-    table.table > tbody td.ncm{
-        white-space: nowrap;
-    }
-        table.table > tbody td.ncm .icon{
-            margin-left: .15rem;
-        }
-
 section.buttonsContainer{
     margin-top: 1.5rem;
 
     display: flex;
     gap: .7rem;
 }
-
-
 
 /* MODAL */
 div.formModal div.modalBody{
@@ -117,4 +54,36 @@ form{
         margin-top: 2rem;
         display: flex;
         gap: .8rem;
+    }
+
+/* MODAL EXCEL */
+div.excelModal div.modalBody{
+    padding: 1.5rem;
+    padding-bottom: 1.7rem;
+    border-radius: 10px;
+}
+
+    div.excelModal header.modalHeader{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        color: var(--base-green);
+    }
+        header.modalHeader i{
+            color: currentColor;
+            margin-right: .5rem;
+            font-size: 3.5rem;
+        }
+        header.modalHeader .modalTitle{
+            color: currentColor;
+        }
+
+    div.excelModal div.modalBody p.modalExcelMain{
+        font: var(--text-regular);
+        margin-bottom: .5rem;
+        line-height: 20px;
+    }
+    div.excelModal div.modalBody p.modalExcelText{
+        font: var(--label-medium);
     }

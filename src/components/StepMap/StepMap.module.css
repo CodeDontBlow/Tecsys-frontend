@@ -1,15 +1,13 @@
-
 .step-map {
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 5% auto 2%;
     padding: 0 16px;
 }
 
 .step-map-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 2rem;
     position: relative;
 }
 

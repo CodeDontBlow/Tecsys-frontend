@@ -21,7 +21,16 @@ footer#footer{
         div.containerTecsys a{
             color: currentColor;
             text-decoration: none;
+
+            display: flex;
+            align-items: center;
         }
+            div.containerTecsys a img{
+                margin-right: .23rem;
+                padding: .15rem;
+                height: 100%;
+                aspect-ratio: 1/1;
+            }
 
     div.containerCDB{
         color: var(--white-300);

@@ -71,7 +71,30 @@ function TableEdit() {
         ],
 
     ]);
-    // NCM Filho Atual (primeiro do array formNCMArray)
+    const handleFinalizar = async () => {
+        try {
+            const response = await api.get("export?format=xlsx&download=true", {
+                responseType: "blob",
+            });
+
+            const blob = new Blob([response.data], {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            });
+
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "export.xlsx";
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+        } catch (err) {
+            console.error("Erro ao exportar:", err);
+        }
+    };
+
     const [formNCM, setFormNCM] = useState(formNCMArray[0]);
     const [formFabNome, setFormFabNome] = useState('MERITEK ELECTRONICS CORPORATION');
     const [formFabEndereco, setFormFabEndereco] = useState('5160 RIVERGRADE RD, CA 91706');
@@ -143,7 +166,6 @@ function TableEdit() {
         const firstChildren = firstParent?.filhos || [];
         setFormNCM(firstChildren);
     }
-
     return (
         <div className='container-lg'>
 
@@ -193,24 +215,24 @@ function TableEdit() {
                                         <Tooltip content={
                                             <div>
                                                 <strong>
-                                                    { orderNcms[index][0].valor }
+                                                    {orderNcms[index][0].valor}
                                                 </strong>
                                                 <span>
-                                                    { orderNcms[index][0].descricao }
+                                                    {orderNcms[index][0].descricao}
                                                 </span>
 
                                                 <br />
                                                 <br />
 
                                                 <strong>
-                                                    { orderNcms[index][0].filhos[0].valor }
-                                                </strong> 
-                                                <span> 
-                                                    { orderNcms[index][0].filhos[0].descricao }
+                                                    {orderNcms[index][0].filhos[0].valor}
+                                                </strong>
+                                                <span>
+                                                    {orderNcms[index][0].filhos[0].descricao}
                                                 </span>
                                             </div>
                                         } position='right'>
-                                            { orderNcms[index][0].filhos[0].valor}
+                                            {orderNcms[index][0].filhos[0].valor}
                                             <FontAwesomeIcon icon={faCircleInfo} className={styles.icon} />
                                         </Tooltip>
                                     )}
@@ -227,10 +249,46 @@ function TableEdit() {
             </table>
 
             <section className={styles.buttonsContainer}>
-                <Button children='Cancelar' variant='outlined' color='gray' fullWidth={true} />
-                <Button children='Finalizar' fullWidth={true} />
+                <Button children='Cancelar' variant='disabled' color='gray' fullWidth={true} />
+                <Button
+                    children='Finalizar'
+                    fullWidth={true}
+                    data-bs-toggle="modal" data-bs-target="#excelModal"
+                />
             </section>
 
+            {/* MODAL EXCEL */}
+            <div className={`modal modal-sm fade ${styles.excelModal}`} id="excelModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+
+                        <div className={`modal-body ${styles.modalBody}`}>
+                            <header className={styles.modalHeader}>
+                                <i class="bi bi-file-earmark-check-fill"></i>
+                                <h3 className={styles.modalTitle}>
+                                    Extração Finalizada!
+                                </h3>
+                            </header>
+
+                            {/* CORPO */}
+                            <p className={styles.modalExcelMain}>
+                                A extração do seu pedido de compras foi finalizado com sucesso!
+                            </p>
+                            <p className={styles.modalExcelText}>
+                                Clique abaixo para baixar o resultado final como Excel e finalizar essa extração.
+                            </p>
+
+
+                            <section className={styles.formButtons}>
+                                <Button children='Voltar' variant='outlined' color='gray' size='small' data-bs-dismiss="modal"
+                                />
+                                <Button children='Baixar Excel' size='small' color='green' fullWidth={true} onClick={handleFinalizar} />
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
             {/* MODAL FORMULÁRIO */}
