@@ -1,11 +1,11 @@
 import styles from './Input.module.css'
 
-const Input = ({placeholder = 'Digite o valor', label, id, type = 'text', value, onChange}) => {
+const Input = ({placeholder = 'Digite o valor', label, id, type = 'text', value, onChange, labelFont = 'text-regular'}) => {
     
     return(
         <div className={styles.container}>
             {label && (
-                <label htmlFor={id} className={styles.label}> 
+                <label htmlFor={id} className={styles.label} style={{font: `var(--${labelFont})`}}> 
                     {label}
                 </label>
             )}
