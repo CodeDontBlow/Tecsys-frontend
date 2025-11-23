@@ -1,9 +1,10 @@
 import styles from './Card.module.css'
 
-const Card = ({title, description, icon, horizontal=false}) => {
+const Card = ({title, description, icon, onClick, horizontal=false}) => {
 
 return (
-    <div className={`${styles['card']} ${horizontal ? styles['card-horizontal'] : ''}`}>
+    <div className={`${styles['card']} ${horizontal ? styles['card-horizontal'] : ''}`}
+        onClick={onClick}>
         <div className={styles['card-icon']}>{icon}</div>
         <div className={styles['card-content']}>
             <h1>{title}</h1>
