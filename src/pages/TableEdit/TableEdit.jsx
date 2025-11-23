@@ -189,9 +189,43 @@ function TableEdit() {
                 <Button
                     children='Finalizar'
                     fullWidth={true}
-                    onClick={handleFinalizar}
+                    data-bs-toggle="modal" data-bs-target="#excelModal"
                 />
             </section>
+
+            {/* MODAL EXCEL */}
+            <div className={`modal modal-sm fade ${styles.excelModal}`} id="excelModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+
+                        <div className={`modal-body ${styles.modalBody}`}>
+                            <header className={styles.modalHeader}>
+                                <i class="bi bi-file-earmark-check-fill"></i>
+                                <h3 className={styles.modalTitle}>
+                                    Extração Finalizada!
+                                </h3>
+                            </header>
+
+                            {/* CORPO */}
+                            <p className={styles.modalExcelMain}>
+                                A extração do seu pedido de compras foi finalizado com sucesso!
+                            </p>
+                            <p className={styles.modalExcelText}>
+                                Clique abaixo para baixar o resultado final como Excel e finalizar essa extração.
+                            </p>
+
+
+                            <section className={styles.formButtons}>
+                                <Button children='Voltar' variant='outlined' color='gray' size='small' data-bs-dismiss="modal"
+                                 />
+                                <Button children='Baixar Excel' size='small' color='green' fullWidth={true} onClick={handleFinalizar} />
+                            </section>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
             {/* MODAL FORMULÁRIO */}
             <div className={`modal modal-lg fade ${styles.formModal}`} id="formModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
