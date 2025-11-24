@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './UserGuide.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
@@ -7,8 +7,6 @@ import {
     faEdit, 
     faDatabase, 
     faChevronRight,
-    faCircle,
-    faCheckCircle,
     faFileArrowDown,
     faLightbulb
 } from '@fortawesome/free-solid-svg-icons'
@@ -18,6 +16,29 @@ import { useNavigate } from 'react-router-dom'
 function UserGuide() {
     const navigate = useNavigate()
     const [activeSection, setActiveSection] = useState('overview')
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const sections = ['overview', 'upload', 'process', 'edit', 'database']
+            const scrollPosition = window.scrollY + 150
+
+            for (const sectionId of sections) {
+                const element = document.getElementById(sectionId)
+                if (element) {
+                    const offsetTop = element.offsetTop
+                    const offsetBottom = offsetTop + element.offsetHeight
+
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                        setActiveSection(sectionId)
+                        break
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
 
     const sections = [
         { id: 'overview', label: 'Visão Geral', icon: faLightbulb },
@@ -46,8 +67,10 @@ function UserGuide() {
                             key={section.id}
                             className={`${styles.navItem} ${activeSection === section.id ? styles.navItemActive : ''}`}
                             onClick={() => scrollToSection(section.id)}
+                            aria-label={`Navegar para ${section.label}`}
+                            aria-current={activeSection === section.id ? 'true' : 'false'}
                         >
-                            <FontAwesomeIcon icon={section.icon} className={styles.navIcon} />
+                            <FontAwesomeIcon icon={section.icon} className={styles.navIcon} aria-hidden="true" />
                             <span>{section.label}</span>
                         </button>
                     ))}
@@ -80,7 +103,7 @@ function UserGuide() {
                             <p>O sistema identifica automaticamente produtos, fabricantes e fornecedores</p>
                         </div>
                         <div className={styles.featureCard}>
-                            <FontAwesomeIcon icon={faCheckCircle} className={styles.featureIcon} />
+                            <FontAwesomeIcon icon={faDatabase} className={styles.featureIcon} />
                             <h3>Associação de NCM</h3>
                             <p>Produtos são associados aos principais NCM's correspondentes</p>
                         </div>
@@ -136,15 +159,12 @@ function UserGuide() {
                         <h3>Como fazer:</h3>
                         <ol className={styles.instructionList}>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span>Clique no botão <strong>"Começar a Extrair"</strong> na página inicial ou acesse diretamente a página de upload</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span>Arraste e solte o arquivo PDF do pedido na área indicada ou clique para selecionar</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span>Aguarde o upload ser concluído - você verá uma confirmação visual</span>
                             </li>
                         </ol>
@@ -179,19 +199,15 @@ function UserGuide() {
                         <h3>O que acontece nesta etapa:</h3>
                         <ol className={styles.instructionList}>
                             <li>
-                                <FontAwesomeIcon icon={faCheckCircle} className={styles.bulletIcon} />
                                 <span><strong>Extração de Dados:</strong> O sistema lê o PDF e identifica produtos, códigos e quantidades</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCheckCircle} className={styles.bulletIcon} />
                                 <span><strong>Identificação Automática:</strong> Cada produto é analisado e associado a informações de fabricante e fornecedor</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCheckCircle} className={styles.bulletIcon} />
                                 <span><strong>Associação de NCM:</strong> O sistema sugere os códigos NCM mais adequados para cada produto</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCheckCircle} className={styles.bulletIcon} />
                                 <span><strong>Geração de Descrições:</strong> Descrições completas são criadas automaticamente para declaração aduaneira</span>
                             </li>
                         </ol>
@@ -234,15 +250,12 @@ function UserGuide() {
                         <h3>Como revisar e editar:</h3>
                         <ol className={styles.instructionList}>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span><strong>Visualizar a Tabela:</strong> Todos os produtos extraídos serão exibidos em formato de tabela</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span><strong>Editar um Item:</strong> Clique na linha do produto que deseja editar</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span><strong>Modificar Campos:</strong> Um formulário será aberto com todos os campos editáveis:
                                     <ul className={styles.subList}>
                                         <li>Part Number (PN)</li>
@@ -255,11 +268,9 @@ function UserGuide() {
                                 </span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span><strong>Salvar Alterações:</strong> Clique em "Salvar" para confirmar as modificações</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span><strong>Finalizar:</strong> Quando estiver satisfeito com todas as informações, clique em "Finalizar" para gerar o Excel</span>
                             </li>
                         </ol>
@@ -310,19 +321,19 @@ function UserGuide() {
                         </div>
 
                         <div className={styles.databaseCard}>
-                            <FontAwesomeIcon icon={faCircle} className={styles.databaseIcon} />
+                            <FontAwesomeIcon icon={faDatabase} className={styles.databaseIcon} />
                             <h3>Produtos</h3>
                             <p>Explore o catálogo completo de produtos já processados. Visualize e atualize informações como códigos, descrições e especificações técnicas.</p>
                         </div>
 
                         <div className={styles.databaseCard}>
-                            <FontAwesomeIcon icon={faCircle} className={styles.databaseIcon} />
+                            <FontAwesomeIcon icon={faDatabase} className={styles.databaseIcon} />
                             <h3>Fornecedores</h3>
                             <p>Gerencie o cadastro de fornecedores, incluindo razão social, endereço, país de origem e outras informações relevantes para o processo aduaneiro.</p>
                         </div>
 
                         <div className={styles.databaseCard}>
-                            <FontAwesomeIcon icon={faCircle} className={styles.databaseIcon} />
+                            <FontAwesomeIcon icon={faDatabase} className={styles.databaseIcon} />
                             <h3>Fabricantes</h3>
                             <p>Mantenha atualizado o cadastro de fabricantes com nome, endereço completo, país de fabricação e demais dados necessários para documentação.</p>
                         </div>
@@ -332,19 +343,15 @@ function UserGuide() {
                         <h3>Como utilizar o Banco de Dados:</h3>
                         <ol className={styles.instructionList}>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span>Acesse o menu "Banco de Dados" na navegação principal</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span>Selecione a categoria que deseja consultar ou editar</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span>Use os filtros e busca para encontrar registros específicos</span>
                             </li>
                             <li>
-                                <FontAwesomeIcon icon={faCircle} className={styles.bulletIcon} />
                                 <span>Clique em qualquer registro para visualizar detalhes ou editar informações</span>
                             </li>
                         </ol>

@@ -1,18 +1,18 @@
 .container {
     display: flex;
     min-height: 100vh;
-    background: var(--background-primary);
+    background: var(--base-white);
 }
 
 /* Sidebar */
 .sidebar {
     position: fixed;
     left: 0;
-    top: 0;
+    top: 75px;
     width: 280px;
-    height: 100vh;
-    background: var(--background-secondary);
-    border-right: 1px solid var(--border-color);
+    height: calc(100vh - 75px);
+    background: var(--white-300);
+    border-right: 1px solid var(--white-500);
     padding: 2rem 1rem;
     overflow-y: auto;
     z-index: 100;
@@ -21,7 +21,7 @@
 .sidebarTitle {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 2rem;
     padding: 0 1rem;
 }
@@ -40,7 +40,7 @@
     background: transparent;
     border: none;
     border-radius: 8px;
-    color: var(--text-secondary);
+    color: var(--white-700);
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
@@ -49,18 +49,18 @@
 }
 
 .navItem:hover {
-    background: var(--background-tertiary);
-    color: var(--text-primary);
+    background: var(--white-500);
+    color: var(--base-black);
 }
 
 .navItemActive {
-    background: var(--royal-blue-100);
-    color: var(--royal-blue-700);
+    background: var(--royal-300);
+    color: var(--base-navy);
 }
 
 .navItemActive:hover {
-    background: var(--royal-blue-100);
-    color: var(--royal-blue-700);
+    background: var(--royal-300);
+    color: var(--base-navy);
 }
 
 .navIcon {
@@ -87,25 +87,25 @@
     gap: 1rem;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--white-500);
 }
 
 .sectionIcon {
     font-size: 2rem;
-    color: var(--royal-blue-500);
+    color: var(--royal-500);
 }
 
 .sectionTitle {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin: 0;
 }
 
 .description {
     font-size: 1.125rem;
     line-height: 1.7;
-    color: var(--text-secondary);
+    color: var(--white-700);
     margin-bottom: 2rem;
 }
 
@@ -119,8 +119,8 @@
 
 .featureCard {
     padding: 1.5rem;
-    background: var(--background-secondary);
-    border: 1px solid var(--border-color);
+    background: var(--white-300);
+    border: 1px solid var(--white-500);
     border-radius: 12px;
     transition: all 0.3s ease;
 }
@@ -128,25 +128,25 @@
 .featureCard:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border-color: var(--royal-blue-300);
+    border-color: var(--royal-300);
 }
 
 .featureIcon {
     font-size: 2rem;
-    color: var(--royal-blue-500);
+    color: var(--royal-500);
     margin-bottom: 1rem;
 }
 
 .featureCard h3 {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 0.5rem;
 }
 
 .featureCard p {
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: var(--white-700);
     line-height: 1.6;
 }
 
@@ -154,14 +154,14 @@
 .workflow {
     margin: 3rem 0;
     padding: 2rem;
-    background: var(--background-secondary);
+    background: var(--white-300);
     border-radius: 12px;
 }
 
 .workflow h2 {
     font-size: 1.5rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 2rem;
 }
 
@@ -178,8 +178,8 @@
     align-items: center;
     gap: 1rem;
     padding: 1.5rem;
-    background: var(--background-primary);
-    border: 1px solid var(--border-color);
+    background: var(--base-white);
+    border: 1px solid var(--white-500);
     border-radius: 10px;
 }
 
@@ -190,7 +190,7 @@
     width: 48px;
     height: 48px;
     min-width: 48px;
-    background: var(--royal-blue-500);
+    background: var(--royal-500);
     color: white;
     font-size: 1.5rem;
     font-weight: 700;
@@ -200,25 +200,25 @@
 .stepContent h4 {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 0.25rem;
 }
 
 .stepContent p {
     font-size: 0.875rem;
-    color: var(--text-secondary);
+    color: var(--white-700);
 }
 
 .stepArrow {
     font-size: 1.5rem;
-    color: var(--text-tertiary);
+    color: var(--white-700);
     min-width: 24px;
 }
 
 /* Instruction Box */
 .instructionBox {
-    background: var(--background-secondary);
-    border-left: 4px solid var(--royal-blue-500);
+    background: var(--white-300);
+    border-left: 4px solid var(--royal-500);
     border-radius: 8px;
     padding: 1.5rem;
     margin: 2rem 0;
@@ -227,7 +227,7 @@
 .instructionBox h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 1rem;
 }
 
@@ -243,7 +243,7 @@
     align-items: flex-start;
     gap: 1rem;
     padding: 0.75rem 0;
-    color: var(--text-secondary);
+    color: var(--white-700);
     line-height: 1.6;
     counter-increment: item;
 }
@@ -251,15 +251,8 @@
 .instructionList > li::before {
     content: counter(item) ".";
     font-weight: 700;
-    color: var(--royal-blue-500);
+    color: var(--royal-500);
     min-width: 24px;
-}
-
-.bulletIcon {
-    color: var(--royal-blue-500);
-    font-size: 0.5rem;
-    margin-top: 0.5rem;
-    min-width: 12px;
 }
 
 .subList {
@@ -292,13 +285,13 @@
 .tipBox h4 {
     font-size: 1rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 0.5rem;
 }
 
 .tipBox ul {
     margin: 0.5rem 0 0 1.25rem;
-    color: var(--text-secondary);
+    color: var(--white-700);
 }
 
 .tipBox li {
@@ -318,12 +311,12 @@
 .progressInfo h3 {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 0.75rem;
 }
 
 .progressInfo p {
-    color: var(--text-secondary);
+    color: var(--white-700);
     line-height: 1.6;
 }
 
@@ -332,7 +325,7 @@
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    background: linear-gradient(135deg, var(--royal-blue-50) 0%, var(--royal-blue-100) 100%);
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
     border-radius: 12px;
     padding: 2rem;
     margin: 2rem 0;
@@ -340,19 +333,19 @@
 
 .highlightIcon {
     font-size: 3rem;
-    color: var(--royal-blue-500);
+    color: var(--royal-500);
     min-width: 48px;
 }
 
 .featureHighlight h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 0.5rem;
 }
 
 .featureHighlight p {
-    color: var(--text-secondary);
+    color: var(--white-700);
     line-height: 1.6;
 }
 
@@ -366,8 +359,8 @@
 
 .databaseCard {
     padding: 2rem;
-    background: var(--background-secondary);
-    border: 1px solid var(--border-color);
+    background: var(--white-300);
+    border: 1px solid var(--white-500);
     border-radius: 12px;
     transition: all 0.3s ease;
 }
@@ -375,25 +368,25 @@
 .databaseCard:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border-color: var(--royal-blue-300);
+    border-color: var(--royal-300);
 }
 
 .databaseIcon {
     font-size: 2.5rem;
-    color: var(--royal-blue-500);
+    color: var(--royal-500);
     margin-bottom: 1rem;
 }
 
 .databaseCard h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--text-primary);
+    color: var(--base-black);
     margin-bottom: 0.75rem;
 }
 
 .databaseCard p {
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: var(--white-700);
     line-height: 1.6;
 }
 
@@ -409,13 +402,13 @@
 .ctaSection h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--text-primary) !important;
+    color: var(--base-black) !important;
     margin-bottom: 1rem;
 }
 
 .ctaSection p {
     font-size: 1.125rem;
-    color: var(--text-secondary) !important;
+    color: var(--white-700) !important;
     margin-bottom: 2rem;
 }
 
@@ -449,7 +442,8 @@
         width: 100%;
         height: auto;
         border-right: none;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--white-500);
+        top: 0;
     }
 
     .content {
