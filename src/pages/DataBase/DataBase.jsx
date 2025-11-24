@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
 import styles from './DataBase.module.css';
 import Card from '../../components/Card/Card';
 import { useNavigate } from "react-router-dom";
@@ -14,7 +12,6 @@ function DataBase() {
             <p>Nesta página, você pode visualizar e editar os dados armazenados no banco, como produtos, fornecedores e fabricantes. Também disponibilizamos o histórico de extração e acompanhamento dessas informações.</p>
             <div className={`${styles.cardArea}`}>
                 <Card 
-                    onClick={() => handleCardClick('/')}
                     icon={<FontAwesomeIcon icon={faClockRotateLeft}/>} 
                     title="Histórico de Extrações" 
                     description="Visualize o histórico completo das extrações" 
