@@ -29,7 +29,7 @@ const Navbar = () => {
 
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <Link className="nav-link" aria-current="page" to="#">Guia de Uso</Link>
+                            <Link className="nav-link" aria-current="page" to="/user-guide">Guia de Uso</Link>
                         </li>
                     </ul>
                 </div>
