@@ -45,6 +45,9 @@ function Homepage () {
                     icon={faArrowUpRightFromSquare}
                     iconPosition="right"
                     className={styles.userGuideBtn}
+                    onClick={() => {
+                        navigate('/user-guide')
+                    }}
                 >
                     Ver Guia de Uso
                 </Button> */}

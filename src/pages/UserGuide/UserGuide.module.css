@@ -1,0 +1,467 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    background: var(--base-white);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 75px;
+    width: 280px;
+    height: calc(100vh - 75px);
+    background: var(--white-300);
+    border-right: 1px solid var(--white-500);
+    padding: 2rem 1rem;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.sidebarTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--base-black);
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--white-700);
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.navItem:hover {
+    background: var(--white-500);
+    color: var(--base-black);
+}
+
+.navItemActive {
+    background: var(--royal-300);
+    color: var(--base-navy);
+}
+
+.navItemActive:hover {
+    background: var(--royal-300);
+    color: var(--base-navy);
+}
+
+.navIcon {
+    width: 18px;
+    font-size: 1rem;
+}
+
+/* Content */
+.content {
+    margin-left: 280px;
+    flex: 1;
+    padding: 3rem;
+    max-width: 1200px;
+}
+
+.section {
+    margin-bottom: 4rem;
+    scroll-margin-top: 2rem;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--white-500);
+}
+
+.sectionIcon {
+    font-size: 2rem;
+    color: var(--royal-500);
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--base-black);
+    margin: 0;
+}
+
+.description {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--white-700);
+    margin-bottom: 2rem;
+}
+
+/* Features Grid */
+.featuresGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.featureCard {
+    padding: 1.5rem;
+    background: var(--white-300);
+    border: 1px solid var(--white-500);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.featureCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: var(--royal-300);
+}
+
+.featureIcon {
+    font-size: 2rem;
+    color: var(--royal-500);
+    margin-bottom: 1rem;
+}
+
+.featureCard h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--base-black);
+    margin-bottom: 0.5rem;
+}
+
+.featureCard p {
+    font-size: 0.95rem;
+    color: var(--white-700);
+    line-height: 1.6;
+}
+
+/* Workflow */
+.workflow {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--white-300);
+    border-radius: 12px;
+}
+
+.workflow h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--base-black);
+    margin-bottom: 2rem;
+}
+
+.workflowSteps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.workflowStep {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--base-white);
+    border: 1px solid var(--white-500);
+    border-radius: 10px;
+}
+
+.stepNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    background: var(--royal-500);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.stepContent h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--base-black);
+    margin-bottom: 0.25rem;
+}
+
+.stepContent p {
+    font-size: 0.875rem;
+    color: var(--white-700);
+}
+
+.stepArrow {
+    font-size: 1.5rem;
+    color: var(--white-700);
+    min-width: 24px;
+}
+
+/* Instruction Box */
+.instructionBox {
+    background: var(--white-300);
+    border-left: 4px solid var(--royal-500);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.instructionBox h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--base-black);
+    margin-bottom: 1rem;
+}
+
+.instructionList {
+    list-style: none;
+    counter-reset: item;
+    padding: 0;
+    margin: 0;
+}
+
+.instructionList > li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    color: var(--white-700);
+    line-height: 1.6;
+    counter-increment: item;
+}
+
+.instructionList > li::before {
+    content: counter(item) ".";
+    font-weight: 700;
+    color: var(--royal-500);
+    min-width: 24px;
+}
+
+.subList {
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+}
+
+.subList li {
+    padding: 0.25rem 0;
+}
+
+/* Tip Box */
+.tipBox {
+    display: flex;
+    gap: 1rem;
+    background: var(--yellow-300);
+    border: 1px solid var(--yellow-500);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.tipIcon {
+    color: var(--yellow-700);
+    font-size: 1.5rem;
+    min-width: 24px;
+    margin-top: 0.25rem;
+}
+
+.tipBox h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--base-black);
+    margin-bottom: 0.5rem;
+}
+
+.tipBox ul {
+    margin: 0.5rem 0 0 1.25rem;
+    color: var(--white-700);
+}
+
+.tipBox li {
+    padding: 0.25rem 0;
+    line-height: 1.6;
+}
+
+/* Progress Info */
+.progressInfo {
+    background: var(--white-300);
+    border: 1px solid var(--royal-300);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.progressInfo h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--base-black);
+    margin-bottom: 0.75rem;
+}
+
+.progressInfo p {
+    color: var(--white-700);
+    line-height: 1.6;
+}
+
+/* Feature Highlight */
+.featureHighlight {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.highlightIcon {
+    font-size: 3rem;
+    color: var(--royal-500);
+    min-width: 48px;
+}
+
+.featureHighlight h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--base-black);
+    margin-bottom: 0.5rem;
+}
+
+.featureHighlight p {
+    color: var(--white-700);
+    line-height: 1.6;
+}
+
+/* Database Grid */
+.databaseGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.databaseCard {
+    padding: 2rem;
+    background: var(--white-300);
+    border: 1px solid var(--white-500);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.databaseCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-color: var(--royal-300);
+}
+
+.databaseIcon {
+    font-size: 2.5rem;
+    color: var(--royal-500);
+    margin-bottom: 1rem;
+}
+
+.databaseCard h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--base-black);
+    margin-bottom: 0.75rem;
+}
+
+.databaseCard p {
+    font-size: 0.95rem;
+    color: var(--white-700);
+    line-height: 1.6;
+}
+
+/* CTA Section */
+.ctaSection {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+    border-radius: 16px;
+    margin-top: 4rem;
+}
+
+.ctaSection h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--base-black);
+    margin-bottom: 1rem;
+}
+
+.ctaSection p {
+    font-size: 1.125rem;
+    color: var(--white-700);
+    margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 240px;
+    }
+
+    .content {
+        margin-left: 240px;
+        padding: 2rem;
+    }
+
+    .workflowSteps {
+        flex-direction: column;
+    }
+
+    .stepArrow {
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--white-500);
+        top: 0;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    .sectionTitle {
+        font-size: 1.5rem;
+    }
+
+    .featuresGrid,
+    .databaseGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .featureHighlight {
+        flex-direction: column;
+        text-align: center;
+    }
+}
