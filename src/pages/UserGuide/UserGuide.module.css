@@ -268,15 +268,15 @@
 .tipBox {
     display: flex;
     gap: 1rem;
-    background: var(--warning-bg, #fffbeb);
-    border: 1px solid var(--warning-border, #fbbf24);
+    background: var(--yellow-300);
+    border: 1px solid var(--yellow-500);
     border-radius: 8px;
     padding: 1.5rem;
     margin: 2rem 0;
 }
 
 .tipIcon {
-    color: var(--warning-text, #f59e0b);
+    color: var(--yellow-700);
     font-size: 1.5rem;
     min-width: 24px;
     margin-top: 0.25rem;
@@ -301,8 +301,8 @@
 
 /* Progress Info */
 .progressInfo {
-    background: var(--info-bg, #eff6ff);
-    border: 1px solid var(--info-border, #60a5fa);
+    background: var(--white-300);
+    border: 1px solid var(--royal-300);
     border-radius: 8px;
     padding: 1.5rem;
     margin: 2rem 0;
@@ -402,13 +402,13 @@
 .ctaSection h2 {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--base-black) !important;
+    color: var(--base-black);
     margin-bottom: 1rem;
 }
 
 .ctaSection p {
     font-size: 1.125rem;
-    color: var(--white-700) !important;
+    color: var(--white-700);
     margin-bottom: 2rem;
 }
 

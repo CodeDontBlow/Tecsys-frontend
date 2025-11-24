@@ -21,9 +21,13 @@
     // Função para obter o tema inicial
     function getInitialTheme() {
         // Primeiro, verifica localStorage
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) {
-            return saved;
+        try {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                return saved;
+            }
+        } catch (error) {
+            console.warn('Dark mode: não foi possível acessar localStorage:', error);
         }
         
         // Depois, verifica preferência do sistema
@@ -38,7 +42,11 @@
     // Função para aplicar o tema
     function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem(STORAGE_KEY, theme);
+        try {
+            localStorage.setItem(STORAGE_KEY, theme);
+        } catch (error) {
+            console.warn('Dark mode: não foi possível salvar preferência de tema:', error);
+        }
         updateToggleButton(theme);
     }
     
@@ -108,8 +116,12 @@
             const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
             mediaQuery.addEventListener('change', (e) => {
                 // Só aplica se não houver preferência salva
-                if (!localStorage.getItem(STORAGE_KEY)) {
-                    applyTheme(e.matches ? 'dark' : 'light');
+                try {
+                    if (!localStorage.getItem(STORAGE_KEY)) {
+                        applyTheme(e.matches ? 'dark' : 'light');
+                    }
+                } catch (error) {
+                    console.warn('Dark mode: não foi possível verificar preferência de tema:', error);
                 }
             });
         }

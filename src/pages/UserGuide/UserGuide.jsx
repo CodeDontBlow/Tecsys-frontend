@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './UserGuide.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { 
@@ -16,12 +16,12 @@ import { useNavigate } from 'react-router-dom'
 function UserGuide() {
     const navigate = useNavigate()
     const [activeSection, setActiveSection] = useState('overview')
+    const timeoutIdRef = useRef(null)
 
     useEffect(() => {
-        let timeoutId
         const handleScroll = () => {
-            if (timeoutId) clearTimeout(timeoutId)
-            timeoutId = setTimeout(() => {
+            if (timeoutIdRef.current) clearTimeout(timeoutIdRef.current)
+            timeoutIdRef.current = setTimeout(() => {
                 const sections = ['overview', 'upload', 'process', 'edit', 'database']
                 const scrollPosition = window.scrollY + 150
 
@@ -42,7 +42,7 @@ function UserGuide() {
 
         window.addEventListener('scroll', handleScroll)
         return () => {
-            if (timeoutId) clearTimeout(timeoutId)
+            if (timeoutIdRef.current) clearTimeout(timeoutIdRef.current)
             window.removeEventListener('scroll', handleScroll)
         }
     }, [])
@@ -56,7 +56,6 @@ function UserGuide() {
     ]
 
     const scrollToSection = (sectionId) => {
-        setActiveSection(sectionId)
         const element = document.getElementById(sectionId)
         if (element) {
             element.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -75,7 +74,7 @@ function UserGuide() {
                             className={`${styles.navItem} ${activeSection === section.id ? styles.navItemActive : ''}`}
                             onClick={() => scrollToSection(section.id)}
                             aria-label={`Navegar para ${section.label}`}
-                            aria-current={activeSection === section.id ? 'true' : undefined}
+                            aria-current={activeSection === section.id ? 'location' : undefined}
                         >
                             <FontAwesomeIcon icon={section.icon} className={styles.navIcon} aria-hidden="true" />
                             <span>{section.label}</span>
