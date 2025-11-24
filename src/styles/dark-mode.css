@@ -279,3 +279,38 @@
 [data-theme="dark"] * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+
+/* ===== USER GUIDE PAGE ===== */
+
+/* Progress Info Box (azul) */
+[data-theme="dark"] [class*="progressInfo"] {
+    background: rgba(59, 130, 246, 0.1) !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+[data-theme="dark"] [class*="progressInfo"] h3,
+[data-theme="dark"] [class*="progressInfo"] p {
+    color: var(--base-white) !important;
+}
+
+/* Tip Box (amarelo/laranja) */
+[data-theme="dark"] [class*="tipBox"] {
+    background: rgba(245, 158, 11, 0.1) !important;
+    border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+[data-theme="dark"] [class*="tipBox"] h4,
+[data-theme="dark"] [class*="tipBox"] ul,
+[data-theme="dark"] [class*="tipBox"] li {
+    color: var(--base-white) !important;
+}
+
+/* CTA Section */
+[data-theme="dark"] [class*="ctaSection"] {
+    background: linear-gradient(135deg, var(--royal-blue-700) 0%, var(--royal-blue-900) 100%) !important;
+}
+
+[data-theme="dark"] [class*="ctaSection"] h2,
+[data-theme="dark"] [class*="ctaSection"] p {
+    color: var(--base-white) !important;
+}

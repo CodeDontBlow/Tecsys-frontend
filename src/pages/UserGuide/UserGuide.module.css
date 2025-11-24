@@ -306,18 +306,6 @@
     line-height: 1.6;
 }
 
-/* Dark mode for Tip Box */
-[data-theme="dark"] .tipBox {
-    background: rgba(245, 158, 11, 0.1);
-    border-color: rgba(245, 158, 11, 0.3);
-}
-
-[data-theme="dark"] .tipBox h4,
-[data-theme="dark"] .tipBox ul,
-[data-theme="dark"] .tipBox li {
-    color: var(--base-white) !important;
-}
-
 /* Progress Info */
 .progressInfo {
     background: var(--info-bg, #eff6ff);
@@ -337,17 +325,6 @@
 .progressInfo p {
     color: var(--text-secondary);
     line-height: 1.6;
-}
-
-/* Dark mode for Progress Info */
-[data-theme="dark"] .progressInfo {
-    background: rgba(59, 130, 246, 0.1);
-    border-color: rgba(59, 130, 246, 0.3);
-}
-
-[data-theme="dark"] .progressInfo h3,
-[data-theme="dark"] .progressInfo p {
-    color: var(--base-white) !important;
 }
 
 /* Feature Highlight */
@@ -440,16 +417,6 @@
     font-size: 1.125rem;
     color: var(--text-secondary) !important;
     margin-bottom: 2rem;
-}
-
-/* Dark mode for CTA Section */
-[data-theme="dark"] .ctaSection {
-    background: linear-gradient(135deg, var(--royal-blue-700) 0%, var(--royal-blue-900) 100%);
-}
-
-[data-theme="dark"] .ctaSection h2,
-[data-theme="dark"] .ctaSection p {
-    color: var(--base-white) !important;
 }
 
 /* Responsive */
