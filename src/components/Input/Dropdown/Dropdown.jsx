@@ -6,14 +6,14 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import inputStyles from '../Input/Input.module.css'
 import styles from './Dropdown.module.css'
 
-const Dropdown = ({label, options, onChange, dataType}) => {
+const Dropdown = ({ label, options, onChange, dataType }) => {
     // 'options' deve ser um array de opções do dropdown
 
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isActivated, setIsActivated] = useState(false)
     const isObj = dataType === 'object'
-    
-    return(
+
+    return (
         <div className={inputStyles.container}>
             {label && (
                 <label className={inputStyles.label}>
@@ -21,9 +21,9 @@ const Dropdown = ({label, options, onChange, dataType}) => {
                 </label>
             )}
 
-            {options.length > 0 ? (
+            {Array.isArray(options) && options.length > 0 ? (
                 <>
-                    <button className={`${inputStyles.input} ${styles.input} ${isActivated && (styles.activated)}`} onClick={() => {setIsActivated(!isActivated)}} type='button'>
+                    <button className={`${inputStyles.input} ${styles.input} ${isActivated && (styles.activated)}`} onClick={() => { setIsActivated(!isActivated) }} type='button'>
                         {
                             isObj ? (
                                 options[currentIndex].valor + ' - ' + options[currentIndex].descricao
@@ -31,16 +31,16 @@ const Dropdown = ({label, options, onChange, dataType}) => {
                                 options[currentIndex]
                             )
                         }
-                        <FontAwesomeIcon icon={faChevronDown} className={styles.icon}/>
+                        <FontAwesomeIcon icon={faChevronDown} className={styles.icon} />
                     </button>
-                    
+
                     <div className={styles.optionsContainer}>
                         {isActivated && (
                             <div className={styles.options}>
                                 {options.map((option, i) => (
-                                    <p 
-                                        className={styles.option} 
-                                        key={i} 
+                                    <p
+                                        className={styles.option}
+                                        key={i}
                                         onClick={() => {
                                             onChange(option)
                                             setCurrentIndex(i); setIsActivated(false)
@@ -57,10 +57,10 @@ const Dropdown = ({label, options, onChange, dataType}) => {
                         )}
                     </div>
                 </>
-            ) 
-            : (
-                <div>Opções deve ser um Array</div>
-            )}
+            )
+                : (
+                    <div>Opções deve ser um Array</div>
+                )}
 
         </div>
     )

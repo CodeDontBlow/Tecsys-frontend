@@ -35,7 +35,7 @@ const getStepStatus = (stepIndex, currentStep) => {
 const Checklist = ({ wsMessages }) => {
     const [calculatedCurrentStep, setCalculatedCurrentStep] = useState(0);
     const [isFinished, setIsFinished] = useState(false);
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         let latestCompletedStepIndex = -1;
@@ -58,7 +58,13 @@ const Checklist = ({ wsMessages }) => {
 
         setCalculatedCurrentStep(latestCompletedStepIndex + 1);
         setIsFinished(pipelineOverallFinished);
-    }, [wsMessages]); 
+    }, [wsMessages]);
+
+    const ncmsMessage = wsMessages.find(msg => msg.process === "get_ncms" && msg.status === "success");
+    const ncmsArray = ncmsMessage?.data || [];
+    const onlyNcms = ncmsArray.map((item) => ({
+        ncms: item.ncms
+    }));
 
     return (
         <div className={styles['checklist-container']}>
@@ -74,7 +80,7 @@ const Checklist = ({ wsMessages }) => {
                     );
                 })}
             </ul>
-            <Button variant="filled" color="royal" fullWidth={true} disabled={!isFinished} onClick={() => { navigate("/table-editing") }}>Visualizar Resultados</Button>
+            <Button variant="filled" color="royal" fullWidth={true} disabled={!isFinished} onClick={() => { navigate("/table-editing", { state: { data: onlyNcms } })}}>Visualizar Resultados</Button>
         </div>
     )
 }

@@ -2,42 +2,48 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './DataBase.module.css';
 import Card from '../../components/Card/Card';
+import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDolly, faTruck, faIndustry, faClockRotateLeft} from '@fortawesome/free-solid-svg-icons';
 
 function DataBase() {
     const navigate = useNavigate();
-
-    const handleCardClick = (link) => {
-        navigate(link);
-    };
-
     return (
         <div className={`container-sm ${styles.container}`}>
             <h1>Banco de Dados</h1>
-            <p>Nesta página você tem acesso ao histórico de dados de extrações realizadas, fornecedores, fabricantes e produtos.
-                <br></br>Clique em um dos cards abaixo para navegar entre as tabelas.
-            </p>
+            <p>Nesta página, você pode visualizar e editar os dados armazenados no banco, como produtos, fornecedores e fabricantes. Também disponibilizamos o histórico de extração e acompanhamento dessas informações.</p>
             <div className={`${styles.cardArea}`}>
                 <Card 
                     onClick={() => handleCardClick('/')}
                     icon={<FontAwesomeIcon icon={faClockRotateLeft}/>} 
                     title="Histórico de Extrações" 
-                    description="Clique aqui para exibir o histórico de extrações de dados anteriores." 
-                    horizontal={true}>
+                    description="Visualize o histórico completo das extrações" 
+                    horizontal={true}
+                    onClick={() => {
+                        navigate('/database/history');
+                    }}>
                 </Card>
                 <Card 
                     icon={<FontAwesomeIcon icon={faDolly}/>} title="Produtos" 
-                    description="Clique aqui para exibir a lista de produtos.">
+                    description="Explore e atualize o catálogo de produtos"
+                    onClick={() => {
+                        navigate('/database/product');
+                    }}>
                 </Card>
                 <Card 
                     icon={<FontAwesomeIcon icon={faTruck}/>} 
-                    title="Fornecedores" description="Clique aqui para exibir a lista de fornecedores.">
+                    title="Fornecedores" description="Gerencie as informações dos seus fornecedores"
+                    onClick={() => {
+                        navigate('/database/supplier');
+                    }}>
                 </Card>
 
                 <Card 
                     icon={<FontAwesomeIcon icon={faIndustry}/>} 
-                    title="Fabricantes" description="Clique aqui para exibir a lista de fabricantes.">
+                    title="Fabricantes" description="Controle e acompanhe os dados dos fabricantes"
+                    onClick={() => {
+                        navigate('/database/manufacturer');
+                    }}>
                 </Card>
             </div>
         </div>
