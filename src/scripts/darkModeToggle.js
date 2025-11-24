@@ -130,6 +130,8 @@
             } else if (attempts < MAX_BUTTON_CREATION_ATTEMPTS) {
                 // Tenta novamente após 100ms
                 setTimeout(() => tryCreateButton(attempts + 1), 100);
+            } else {
+                console.warn('Dark mode toggle: navbar não encontrado após múltiplas tentativas');
             }
         }
         

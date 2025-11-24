@@ -240,17 +240,6 @@
     color: var(--white-300) !important;
 }
 
-/* Homepage - Elementos destacados (Descriptum e PDF) - Escopo limitado à Homepage */
-[data-theme="dark"] [class*="Homepage_"] b {
-    background: var(--base-white) !important;
-    color: var(--black-700) !important;
-}
-
-[data-theme="dark"] [class*="Homepage_"] abbr {
-    background: var(--base-white) !important;
-    color: var(--black-700) !important;
-}
-
 /* Botões outlined no modo escuro */
 [data-theme="dark"] button[class*="outlined"],
 [data-theme="dark"] a[class*="outlined"] {

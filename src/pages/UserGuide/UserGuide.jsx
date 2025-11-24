@@ -18,26 +18,33 @@ function UserGuide() {
     const [activeSection, setActiveSection] = useState('overview')
 
     useEffect(() => {
+        let timeoutId
         const handleScroll = () => {
-            const sections = ['overview', 'upload', 'process', 'edit', 'database']
-            const scrollPosition = window.scrollY + 150
+            if (timeoutId) clearTimeout(timeoutId)
+            timeoutId = setTimeout(() => {
+                const sections = ['overview', 'upload', 'process', 'edit', 'database']
+                const scrollPosition = window.scrollY + 150
 
-            for (const sectionId of sections) {
-                const element = document.getElementById(sectionId)
-                if (element) {
-                    const offsetTop = element.offsetTop
-                    const offsetBottom = offsetTop + element.offsetHeight
+                for (const sectionId of sections) {
+                    const element = document.getElementById(sectionId)
+                    if (element) {
+                        const offsetTop = element.offsetTop
+                        const offsetBottom = offsetTop + element.offsetHeight
 
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-                        setActiveSection(sectionId)
-                        break
+                        if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+                            setActiveSection(sectionId)
+                            break
+                        }
                     }
                 }
-            }
+            }, 100)
         }
 
         window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
+        return () => {
+            if (timeoutId) clearTimeout(timeoutId)
+            window.removeEventListener('scroll', handleScroll)
+        }
     }, [])
 
     const sections = [
@@ -68,7 +75,7 @@ function UserGuide() {
                             className={`${styles.navItem} ${activeSection === section.id ? styles.navItemActive : ''}`}
                             onClick={() => scrollToSection(section.id)}
                             aria-label={`Navegar para ${section.label}`}
-                            aria-current={activeSection === section.id ? 'true' : 'false'}
+                            aria-current={activeSection === section.id ? 'true' : undefined}
                         >
                             <FontAwesomeIcon icon={section.icon} className={styles.navIcon} aria-hidden="true" />
                             <span>{section.label}</span>
