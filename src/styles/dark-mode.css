@@ -240,15 +240,15 @@
     color: var(--white-300) !important;
 }
 
-/* Homepage - Elementos destacados (Descriptum e PDF) */
-[data-theme="dark"] b {
-    background: var(--black-500) !important;
-    color: var(--base-white) !important;
+/* Homepage - Elementos destacados (Descriptum e PDF) - Escopo limitado à Homepage */
+[data-theme="dark"] [class*="Homepage_"] b {
+    background: var(--base-white) !important;
+    color: var(--black-700) !important;
 }
 
-[data-theme="dark"] abbr {
-    background: var(--black-500) !important;
-    color: var(--base-white) !important;
+[data-theme="dark"] [class*="Homepage_"] abbr {
+    background: var(--base-white) !important;
+    color: var(--black-700) !important;
 }
 
 /* Botões outlined no modo escuro */
@@ -263,11 +263,6 @@
     background-color: var(--black-500) !important;
     border-color: var(--base-white) !important;
     color: var(--base-white) !important;
-}
-
-/* Transições suaves */
-[data-theme="dark"] * {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* ===== USER GUIDE PAGE ===== */

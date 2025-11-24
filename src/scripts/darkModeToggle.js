@@ -15,6 +15,9 @@
     // Chave para localStorage
     const STORAGE_KEY = 'theme-preference';
     
+    // Número máximo de tentativas para criar o botão (20 × 100ms = 2 segundos)
+    const MAX_BUTTON_CREATION_ATTEMPTS = 20;
+    
     // Função para obter o tema inicial
     function getInitialTheme() {
         // Primeiro, verifica localStorage
@@ -68,10 +71,18 @@
         const button = document.createElement('button');
         button.id = 'dark-mode-toggle';
         button.setAttribute('aria-label', 'Alternar modo escuro');
+        button.setAttribute('type', 'button');
+        button.setAttribute('tabindex', '0');
         button.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
         
-        // Event listener
+        // Event listeners para mouse e teclado
         button.addEventListener('click', toggleTheme);
+        button.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleTheme();
+            }
+        });
         
         // Adiciona ao navbar
         li.appendChild(button);
@@ -116,7 +127,7 @@
             if (navbar) {
                 createToggleButton();
                 updateToggleButton(initialTheme);
-            } else if (attempts < 20) {
+            } else if (attempts < MAX_BUTTON_CREATION_ATTEMPTS) {
                 // Tenta novamente após 100ms
                 setTimeout(() => tryCreateButton(attempts + 1), 100);
             }

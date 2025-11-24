@@ -120,3 +120,14 @@ div.buttonsContainer .startProcessBtn{
         background-position: right;
     }   
 }
+
+/* Dark Mode - Descriptum e PDF */
+[data-theme="dark"] p.text > b{
+    background: var(--base-white);
+    color: var(--black-700);
+}
+
+[data-theme="dark"] p.text > abbr{
+    background: var(--base-white);
+    color: var(--black-700);
+}
