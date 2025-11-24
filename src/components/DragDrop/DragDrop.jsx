@@ -5,11 +5,12 @@ import { useState, useRef, useEffect } from "react";
 import styles from './DragDrop.module.css';
 import api from "../../services/axiosConfig";
 import Button from "../Button";
-import { connectWebSocket } from "../../services/websocket";
+import { connectWebSocket, disconnectWebSocket } from "../../services/websocket";
 
 const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMessages, setCurrentStep }) => {
   const [file, setFile] = useState(null);
   const inputRef = useRef();
+  const wsRef = useRef(null);
   // const navigate = useNavigate();
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -40,7 +41,7 @@ const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMes
     const formData = new FormData();
     formData.append("pdf", file[0]);
 
-    connectWebSocket(
+     wsRef.current = connectWebSocket(
       handleWsMessage,
       null,
       null
@@ -57,6 +58,17 @@ const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMes
     setCurrentStep(2)
   };
 
+   const handleCancelProcess = () => {
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({ action: "cancel_process" }));
+    }
+
+    disconnectWebSocket();
+    setFile(null);
+    setIsFileUploaded(false);
+    setCurrentStep(1);
+    setWsMessages([]);
+  };
 
   if (isFileUploaded) {
     return (
@@ -79,10 +91,10 @@ const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMes
 
         <div className={styles.actions}>
           <Button
-            variant="disabled"
+            variant="outlined"
             color="gray"
             full="true"
-            onClick={() => setFile(null)}
+            onClick={handleCancelProcess}
           >
             Cancelar
           </Button>
@@ -96,7 +108,7 @@ const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMes
       <div className={styles.mainContainer}>
         <div className={styles.dropzone}>
           <div className={styles.uploadIcon}>
-            <i class="bi bi-file-earmark-check-fill"></i>
+            <i className="bi bi-file-earmark-check-fill"></i>
 
           </div>
 
