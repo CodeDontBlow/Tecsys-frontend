@@ -20,6 +20,8 @@
 .checklist-container li {
     padding: 0.75rem;
     border-top: 1px solid var(--white-500);
+    display: flex;
+    align-items: center;
 }   
 
 .checklist-count {
@@ -41,7 +43,12 @@
 .checklist-icon {
     color: var(--black-500);
     padding-left: 0.1rem;
-    padding-right: 0.2rem;
+    padding-right: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
 }
 
 .completed {
@@ -60,4 +67,22 @@
     to {
         transform: rotate(360deg);
     }
+}
+
+.spinner {
+   width: 16px;
+   height: 16px;
+   border-radius: 50%;
+   background: radial-gradient(farthest-side, var(--navy-500) 94%,#0000) top/2.4px 2.4px no-repeat,
+          conic-gradient(#0000 30%,var(--navy-500));
+   -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 2.4px),#000 0);
+   mask: radial-gradient(farthest-side,#0000 calc(100% - 2.4px),#000 0);
+   animation: spinner-checklist 1s infinite linear;
+   flex-shrink: 0;
+}
+
+@keyframes spinner-checklist {
+   100% {
+      transform: rotate(1turn);
+   }
 }

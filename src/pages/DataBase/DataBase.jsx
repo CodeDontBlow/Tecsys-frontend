@@ -7,7 +7,6 @@ import { faDolly, faTruck, faIndustry, faClockRotateLeft} from '@fortawesome/fre
 function DataBase() {
     const navigate = useNavigate();
     return (
-
         <div className={`container-sm ${styles.container}`}>
             <h1>Banco de Dados</h1>
             <p>Nesta página, você pode visualizar e editar os dados armazenados no banco, como produtos, fornecedores e fabricantes. Também disponibilizamos o histórico de extração e acompanhamento dessas informações.</p>
@@ -21,7 +20,6 @@ function DataBase() {
                         navigate('/database/history');
                     }}>
                 </Card>
-
                 <Card 
                     icon={<FontAwesomeIcon icon={faDolly}/>} title="Produtos" 
                     description="Explore e atualize o catálogo de produtos"
@@ -29,7 +27,6 @@ function DataBase() {
                         navigate('/database/product');
                     }}>
                 </Card>
-
                 <Card 
                     icon={<FontAwesomeIcon icon={faTruck}/>} 
                     title="Fornecedores" description="Gerencie as informações dos seus fornecedores"

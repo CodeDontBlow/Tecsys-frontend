@@ -34,7 +34,7 @@ const StepMap = ({currentStep}) => {
             case 'completed':
                 return <span className={styles['step-map-check']}><FontAwesomeIcon icon={faCircleCheck} /></span>
             case 'in-progress':
-                return <span className={styles['step-map-load']}><FontAwesomeIcon icon={faArrowRotateRight} /></span>
+                return <div className={styles['spinner']}></div>
             default: // 'pending'
                 return <span className={styles['step-map-count']}>{stepNumber}</span>
         }
