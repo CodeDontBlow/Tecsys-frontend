@@ -73,7 +73,7 @@ const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMes
   if (isFileUploaded) {
     return (
       <div className={styles.mainContainer}>
-        <div className={styles.dropzone}>
+        <div className={`${styles.dropzone} ${styles.uploaded}`}>
           <div className={styles.uploadClock}>
             <i class="bi bi-clock-fill"></i>
 
@@ -146,7 +146,7 @@ const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMes
   }
 
   return (
-    <div
+    <label
       className={styles.dropzone}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
@@ -169,7 +169,7 @@ const DragDropFiles = ({ isFileUploaded, setIsFileUploaded, setWsMessages, wsMes
         accept="application/pdf"
         ref={inputRef}
       />
-    </div>
+    </label>
   );
 };
 

@@ -12,18 +12,51 @@
   max-width: 600px;
   margin: 30px auto;
   padding: 50px;
-  background-color: var(--white-300);
+  background: var(--white-300);
+  scale: 1.02;
+  animation: shine-background 2s ease-out infinite;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-out;
 }
 
-.dropzone:hover {
-  background-color: var(--white-300);
-}
+  label.dropzone:hover {
+    background: 
+        linear-gradient(
+            45deg,
+            transparent 0%,
+            var(--white-500) 60%,
+            transparent 100%
+        ),
+        var(--white-300);
+        scale: 1.05;
+        animation: shine-background 2s ease-out infinite;
+        cursor: pointer;
+  }
+
+  label.dropzone:active {
+    background: var(--white-500) 60%;
+    scale: .95;
+  }
+
+  .dropzone.uploaded{
+    background: 
+        linear-gradient(
+            45deg,
+            transparent 0%,
+            var(--white-500) 60%,
+            transparent 100%
+        ),
+        var(--white-300);
+        animation: shine-background 5s ease-out infinite;    
+ 
+    & > div{
+      background-color: transparent;
+    }
+  }
 
 .uploadButton {
   background-color: var(--base-white);
@@ -39,10 +72,6 @@
   height: 100px;
 }
 
-.uploadButton:hover {
-  background-color: var(--base-royal);
-}
-
 .uploadButton i {
   font-size: 3rem;
   color: var(--base-navy);
@@ -50,10 +79,6 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.uploadButton:hover i {
-  color: var(--base-white);
 }
 
 .text-container {
@@ -134,4 +159,15 @@ input[type="file"] {
   display: flex;
   gap: 15px;
   width: 100%;
+}
+
+@keyframes shine-background{
+    from{
+        background-size: 1000% 100%;
+        background-position: left;
+    }
+    to{
+        background-size: 1000% 100%;
+        background-position: right;
+    }   
 }
