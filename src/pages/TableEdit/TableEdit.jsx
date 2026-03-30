@@ -114,26 +114,24 @@ function TableEdit() {
 
         const data = location.state.data || [];
 
-        // 1 — transforma a lista inteira
+        // Transforma cada item pegando o PRIMEIRO NCM de cada produto
         const transformed = data.map(item => {
             const ncms = item.ncms || [];
-            return ncms.map(ncm => ({
-                valor: ncm.ncm_6,
-                descricao: ncm.description,
-                filhos: (ncm.ncm_8 ?? []).map(f => ({
+            const firstNcm = ncms[0];
+            
+            if (!firstNcm) return null;
+            
+            return {
+                valor: firstNcm.ncm_6,
+                descricao: firstNcm.description,
+                filhos: (firstNcm.ncm_8 ?? []).map(f => ({
                     valor: f.ncm_code,
                     descricao: f.description
                 }))
-            }));
+            };
         });
 
-        // 2 — duplica essa lista transformada para cada item
-        const final = data.map(() => ({
-            item: transformed
-        }));
         console.log('result', transformed)
-
-
         setOrderNcms(transformed)
 
     }, [location])
@@ -211,28 +209,28 @@ function TableEdit() {
                                         P/N: ${d.product_part_number}.
                                     `} </td>
                                 <td className={styles.ncm}>
-                                    {orderNcms && (
+                                    {orderNcms && orderNcms[index] && (
                                         <Tooltip content={
                                             <div>
                                                 <strong>
-                                                    {orderNcms[index][0].valor}
+                                                    {orderNcms[index].valor}
                                                 </strong>
                                                 <span>
-                                                    {orderNcms[index][0].descricao}
+                                                    {orderNcms[index].descricao}
                                                 </span>
 
                                                 <br />
                                                 <br />
 
                                                 <strong>
-                                                    {orderNcms[index][0].filhos[0].valor}
+                                                    {orderNcms[index].filhos[0]?.valor}
                                                 </strong>
                                                 <span>
-                                                    {orderNcms[index][0].filhos[0].descricao}
+                                                    {orderNcms[index].filhos[0]?.descricao}
                                                 </span>
                                             </div>
                                         } position='right'>
-                                            {orderNcms[index][0].filhos[0].valor}
+                                            {orderNcms[index].filhos[0]?.valor}
                                             <FontAwesomeIcon icon={faCircleInfo} className={styles.icon} />
                                         </Tooltip>
                                     )}
